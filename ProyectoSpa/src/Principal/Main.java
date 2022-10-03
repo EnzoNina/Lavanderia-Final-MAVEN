@@ -13,9 +13,9 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        DMI principal= new DMI();
-       principal.setVisible(true);
+    public static void main(String[] args) {   
+       Login login = new Login();
+       login.setVisible(true);    
     }
     
 }
