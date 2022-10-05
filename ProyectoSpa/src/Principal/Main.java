@@ -2,8 +2,8 @@
 package Principal;
 
 import java.util.Scanner;
-import DAO.*;
 import Vista.*;
+import Modelo.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +15,8 @@ public class Main {
     public static void main(String[] args) {
        DMI principal= new DMI();
        principal.setVisible(true);
-       
+       DAO conexion = new DAO();
+       conexion.connect();
        
     
     }

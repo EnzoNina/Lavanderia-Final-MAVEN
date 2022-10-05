@@ -11,7 +11,9 @@ import java.util.Date;
 public class Cliente extends Persona{
     private String codigoCliente;
 
-    public Cliente(String nombre, String apellido, String dni, String correo, String telefono, String direccion,String distrito, String EstadoCivil, String codigoCliente) {
+    public Cliente(String nombre, String apellido, String dni, String correo,
+            String telefono, String direccion,String distrito, String EstadoCivil,
+            String codigoCliente) {
         super(nombre, apellido, dni, correo, telefono, direccion,distrito, EstadoCivil);
         this.codigoCliente = codigoCliente;
     }
