@@ -9,21 +9,20 @@ import java.util.Date;
  * @author CLEVER
  */
 public class Cliente extends Persona{
-    private String codigoCliente;
+    private String IDCliente;
+    private Date FechaNacimiento;
+    private String EstadoCivil;
 
-    public Cliente(String nombre, String apellido, String dni, String correo,
-            String telefono, String direccion,String distrito, String EstadoCivil,
-            String codigoCliente) {
-        super(nombre, apellido, dni, correo, telefono, direccion,distrito, EstadoCivil);
-        this.codigoCliente = codigoCliente;
+    public Cliente(String nombre, String apellido, String dni, String correo, String telefono, String direccion,String distrito,
+            String IDCliente,Date FechaNacimiento,String EstadoCivil) {
+        super(nombre, apellido, dni, direccion,distrito,telefono,correo);
+        this.IDCliente = IDCliente;
+        this.FechaNacimiento = FechaNacimiento;
+        this.EstadoCivil = EstadoCivil;
+        
     }
     //Getters and Setters
-    public String getCodigoCliente() {
-        return codigoCliente;
-    }
-    public void setCodigoCliente(String codigoCliente) {
-        this.codigoCliente = codigoCliente;
-    }
+    
     
     
 }

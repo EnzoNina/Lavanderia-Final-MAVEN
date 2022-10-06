@@ -1,0 +1,17 @@
+CREATE TABLE Cliente
+(
+IdCliente char(4) not null,
+NCliente varchar(30) not NULL,
+ACliente varchar(30) not NULL,
+DNI char(8) not null,
+CorreoCliente varchar(30) not null,
+Telefono char(9) not null,
+Direccion varchar(50) not null,
+EstadoCivil varchar(10) not null,
+CONSTRAINT PK_IdCLiente PRIMARY key (IdCliente)
+)
+INSERT INTO Cliente (NCliente,ACliente,DNI,CorreoCliente,
+Telefono,Direccion,EstadoCivil)
+VALUES
+('Clever','Machaca','76954141','mhugoclever@gmail.com',
+'915093950','asoc. vivi','soletero')
