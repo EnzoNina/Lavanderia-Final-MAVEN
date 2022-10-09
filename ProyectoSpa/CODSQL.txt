@@ -1,3 +1,5 @@
+-----CREACION DE TABLA CLIENTE-----
+
 CREATE TABLE Cliente
 (
 IdCliente char(4) not null,
@@ -10,8 +12,23 @@ Direccion varchar(50) not null,
 EstadoCivil varchar(10) not null,
 CONSTRAINT PK_IdCLiente PRIMARY key (IdCliente)
 )
+-----MODELO SE INSERCION TABLA CLIENTE-----
+
 INSERT INTO Cliente (NCliente,ACliente,DNI,CorreoCliente,
 Telefono,Direccion,EstadoCivil)
 VALUES
 ('Clever','Machaca','76954141','mhugoclever@gmail.com',
 '915093950','asoc. vivi','soletero')
+
+-----CREACION DE LA TABLA SERVICIOS-----
+
+CREATE TABLE Servicios
+(
+IDServicio char(4) not null,
+Caracteristicas varchar(30) not NULL,
+Descripcion varchar(100) not NULL,
+Tiempo datetime not null,
+Precio money not NULL,
+
+CONSTRAINT PK_IDServicio PRIMARY key (IDServicio)
+)

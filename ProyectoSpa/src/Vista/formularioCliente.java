@@ -3,15 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista;
+import Modelo.DAO;
 import Personas.*;
 import Controlador.*;
 import javax.swing.JOptionPane;
+import Modelo.*;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author CLEVER
  */
 public class formularioCliente extends javax.swing.JFrame {
     Registros registro = new Registros();
+    DAO sql = new DAO();
+    private DefaultTableModel modeloServiciosElegidos = new DefaultTableModel();
+    Cliente objCliente = new Cliente();
+    
+    
     /**
      * Creates new form Cliente
      */
@@ -53,6 +61,16 @@ public class formularioCliente extends javax.swing.JFrame {
         cbxEstadoCivil.removeAllItems();
         cbxEstadoCivil.addItem("Soltero");
         cbxEstadoCivil.addItem("Casado");
+        this.inicializaTabla();
+    }
+    private void inicializaTabla()
+    {   
+        //ASIGNA TITULOS A LA TABLA
+        modeloServiciosElegidos.addColumn("NOMBRE");
+        modeloServiciosElegidos.addColumn("APELLIDO");
+        modeloServiciosElegidos.addColumn("TIEMPO TOTAL");
+        modeloServiciosElegidos.addColumn("COSTO TOTAL");
+        tblCliente.setModel(modeloServiciosElegidos);
     }
 
     /**
@@ -87,6 +105,9 @@ public class formularioCliente extends javax.swing.JFrame {
         btnRegistrarCliente = new javax.swing.JButton();
         cbxDistrito = new javax.swing.JComboBox<>();
         cbxEstadoCivil = new javax.swing.JComboBox<>();
+        txtFechaNacimiento = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblCliente = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,6 +158,13 @@ public class formularioCliente extends javax.swing.JFrame {
             }
         });
 
+        txtFechaNacimiento.setText("DD/ MM/AA");
+        txtFechaNacimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaNacimientoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -175,21 +203,19 @@ public class formularioCliente extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel11)
                                 .addComponent(jLabel10))))
+                    .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                        .addComponent(txtNombres, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtApellidos, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtDNI, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                        .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addComponent(txtApellidos, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cbxEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 272, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(235, 235, 235))))
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(262, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,7 +228,8 @@ public class formularioCliente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabel9)
+                    .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,21 +263,41 @@ public class formularioCliente extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Registrar", jPanel1);
 
+        tblCliente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblCliente);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         pack();
@@ -262,23 +309,36 @@ public class formularioCliente extends javax.swing.JFrame {
 
     private void btnRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarClienteActionPerformed
         //CREAMOS UNA INSTANCIA DE CLIENTE
-        registro.registrarCliente(new Cliente(txtNombres.getText(),
+        
+        
+        objCliente = new Cliente(
+        txtNombres.getText(),
         txtApellidos.getText(),
         txtDNI.getText(),
-        txtCorreo.getText(),
-        txtTelefono.getText(),
         txtDireccion.getText(),
         cbxDistrito.getSelectedItem().toString(),
-        cbxEstadoCivil.getSelectedItem().toString(),
-        txtCodigo.getText())
-        );
+        txtTelefono.getText(),
+        txtCorreo.getText(),
+        txtCodigo.getText(),
+        txtFechaNacimiento.getText(),
+        cbxEstadoCivil.getSelectedItem().toString());
+        
+        
+        
         JOptionPane.showMessageDialog(null, "Cliente Grabado con Exito!!!",
         "Grabando",JOptionPane.INFORMATION_MESSAGE);
+        System.out.print(objCliente.getNombre());
+        
+        sql.connect();
     }//GEN-LAST:event_btnRegistrarClienteActionPerformed
 
     private void cbxEstadoCivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEstadoCivilActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxEstadoCivilActionPerformed
+
+    private void txtFechaNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaNacimientoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaNacimientoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -332,12 +392,15 @@ public class formularioCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable tblCliente;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtFechaNacimiento;
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
