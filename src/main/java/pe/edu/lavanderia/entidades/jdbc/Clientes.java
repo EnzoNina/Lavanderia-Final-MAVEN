@@ -1,6 +1,7 @@
 package pe.edu.lavanderia.entidades.jdbc;
 
 public class Clientes {
+
     private int cod;
     private String nombres;
     private String apellidoPaterno;
@@ -42,7 +43,6 @@ public class Clientes {
     }
 
     // Getter & Setter
-
     public int getCod() {
         return cod;
     }
