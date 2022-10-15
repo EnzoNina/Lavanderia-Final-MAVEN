@@ -89,7 +89,7 @@ public class ServletServicios extends HttpServlet {
     private void deleteServicio(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         BOGestionServicios bo = new BOGestionServicios();
-        int cod = Integer.parseInt(request.getParameter("codigo"));
+        int cod = Integer.parseInt(request.getParameter("cod"));
         bo.removeServicio(cod);
         response.sendRedirect("ServletServicios");
     }

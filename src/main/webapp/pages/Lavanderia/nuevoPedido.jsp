@@ -81,7 +81,7 @@
                                     <input type="text" class="form-control" name="prendas"  placeholder="Prendas">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="cantidad"  placeholder="Cantidad">
+                                    <input type="number" class="form-control" name="cantidad"  placeholder="Cantidad">
                                 </div>
 
                             </div>

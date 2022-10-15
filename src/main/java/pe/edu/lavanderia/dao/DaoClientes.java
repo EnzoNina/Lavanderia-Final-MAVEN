@@ -41,7 +41,7 @@ public class DaoClientes extends DaoGenerico {
     public Clientes searchClientes(String cadenaBusqueda) {
         Clientes u = new Clientes();
         Connection cnx = getConexion();
-        String sentencia = "cod_cliente, nombres, ape_paterno, ape_materno, dni, celular, direccion FROM public.clientes WHERE dni = ?";
+        String sentencia = "SELECT cod_cliente, nombres, ape_paterno, ape_materno, dni, celular, direccion FROM public.clientes WHERE dni = ?";
         try {
             PreparedStatement stm = cnx.prepareStatement(sentencia);
             stm.setString(1, cadenaBusqueda);
