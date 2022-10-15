@@ -31,4 +31,9 @@ public class BOGestionClientes {
         DaoClientes dao = new DaoClientes();
         dao.removeClientes(cod);
     }
+
+    public boolean login(String user, String pass) {
+        DaoClientes dao = new DaoClientes();
+        return dao.login(user,pass);
+    }
 }

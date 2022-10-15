@@ -139,4 +139,36 @@ public class DaoClientes extends DaoGenerico {
         }
     }
 
+    public boolean login(String user, String pass) {
+        boolean login = false;
+        String dni = null;
+        Connection co = getConexion();
+        try {
+            String sql = "SELECT dni FROM clientes WHERE usuario = ? AND contraseña = ?";
+            PreparedStatement pst = co.prepareStatement(sql);
+            pst.setString(1, user);
+            pst.setString(2, pass);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                dni = rs.getString(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            try {
+                co.close();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        if (dni != null) {
+            login = true;
+        } else {
+            login = false;
+        }
+
+        return login;
+    }
+
 }

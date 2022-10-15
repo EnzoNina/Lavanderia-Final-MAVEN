@@ -2,7 +2,6 @@ package pe.edu.lavanderia.proc.mantenimientos;
 
 import java.util.List;
 
-import pe.edu.lavanderia.dao.DaoClientes;
 import pe.edu.lavanderia.dao.DaoEmpleados;
 import pe.edu.lavanderia.entidades.jdbc.Empleados;
 
@@ -26,5 +25,10 @@ public class BOGestionEmpleados {
     public void removeEmpleado(int cod) {
         DaoEmpleados dao = new DaoEmpleados();
         dao.removeEmpleado(cod);
+    }
+
+    public boolean login(String user, String pass) {
+        DaoEmpleados dao = new DaoEmpleados();
+        return dao.login(user,pass);
     }
 }

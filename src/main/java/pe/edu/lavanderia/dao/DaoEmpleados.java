@@ -25,8 +25,9 @@ public class DaoEmpleados extends DaoGenerico {
             ResultSet rs = ps.executeQuery();// Ejecutamos el query
             // Recorremos el resultado
             while (rs.next()) {
-                // Creamos Empleado                
-                Empleados obEmpleado = new Empleados(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+                // Creamos Empleado
+                Empleados obEmpleado = new Empleados(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
                 clientList.add(obEmpleado);
 
             }
@@ -105,6 +106,38 @@ public class DaoEmpleados extends DaoGenerico {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    public boolean login(String user, String pass) {
+        boolean login = false;
+        String dni = null;
+        Connection co = getConexion();
+        try {
+            String sql = "SELECT dni FROM empleado WHERE usuario = ? AND contraseña = ?";
+            PreparedStatement pst = co.prepareStatement(sql);
+            pst.setString(1, user);
+            pst.setString(2, pass);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                dni = rs.getString(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            try {
+                co.close();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        if (dni != null) {
+            login = true;
+        } else {
+            login = false;
+        }
+
+        return login;
     }
 
 }
