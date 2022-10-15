@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import pe.edu.lavanderia.entidades.jdbc.Categorias;
 
 public class DaoCategorias extends DaoGenerico {
+
     // Obtenemos categorias
     public List<Categorias> getCategorias() {
         List<Categorias> list = new ArrayList<Categorias>();
@@ -96,6 +97,27 @@ public class DaoCategorias extends DaoGenerico {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public List<Integer> getCodCategorias() {
+        List<Integer> list = new ArrayList<Integer>();
+        Connection conexion = getConexion();
+        String sentencia = "SELECT cod_categoria FROM public.categorias";
+        PreparedStatement ps;
+        try {
+            ps = conexion.prepareStatement(sentencia);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int cod = rs.getInt("cod_categoria");
+                list.add(cod);
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return list;
     }
 
 }

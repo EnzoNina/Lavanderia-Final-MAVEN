@@ -1,7 +1,6 @@
 package pe.edu.lavanderia.proc.mantenimientos;
 
 import java.util.List;
-
 import pe.edu.lavanderia.dao.DaoPedidos;
 import pe.edu.lavanderia.entidades.jdbc.Pedidos;
 
@@ -14,15 +13,15 @@ public class BOGestionPedidos {
         return dao.getPedidos();
     }
 
-    public void addServicio(Pedidos ob) {
-        dao.addPedidos(ob);
+    public void addPedido(Pedidos ob, String tipo) {
+        dao.addPedidos(ob, tipo);
     }
 
-    public void editServicio(Pedidos ob) {
-        dao.editPedidos(ob);
+    public void editPedido(Pedidos ob, String tipo) {
+        dao.editPedidos(ob, tipo);
     }
 
-    public void removeServicio(int cod) {
+    public void removePedido(int cod) {
         dao.removePedidos(cod);
     }
 

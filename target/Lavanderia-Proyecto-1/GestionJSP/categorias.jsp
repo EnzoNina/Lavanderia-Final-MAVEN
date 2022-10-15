@@ -197,7 +197,7 @@
                 <form method="get" action="<%=request.getContextPath()%>/ServletCategorias" >
                     <input type="hidden" name="instruccion" value="delete"/>
                     <h4>¿Esta seguro que desea borrar la categoria?</h4>
-                    <div class="mb-3 row" ">
+                    <div class="mb-3 row" style="display:none;">
                         <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="codigo" value="" />

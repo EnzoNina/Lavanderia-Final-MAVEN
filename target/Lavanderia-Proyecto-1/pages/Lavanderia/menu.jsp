@@ -58,7 +58,18 @@
                                 <img src="../../images/clients-icon.png" class="card-img-top"
                                      alt="Clientes">
                                 <div class="card-body">
-                                    <h5 class="card-title">Clientes</h5>
+                                    <h5 class="card-title">Mant. Clientes</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="card">
+                            <a href="<%=request.getContextPath()%>/ServletEmpleados">
+                                <img src="../../images/clients-icon.png" class="card-img-top"
+                                     alt="Clientes">
+                                <div class="card-body">
+                                    <h5 class="card-title">Mant. Empleados</h5>
                                 </div>
                             </a>
                         </div>
@@ -74,13 +85,14 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6">
+                    <div class="col-lg-4 col-sm-6" style="margin-top: 10px;">
                         <div class="card">
-                            <a href="../../GestionJSP/servicios.jsp"> <img
+                            <a href="<%=request.getContextPath()%>/ServletServicios"> 
+                                <img
                                     src="../../images/servicios-icon.png" class="card-img-top"
                                     alt="Servicios">
                                 <div class="card-body">
-                                    <h5 class="card-title">Servicios</h5>
+                                    <h5 class="card-title">Mant. Servicios</h5>
                                 </div>
                             </a>
                         </div>
@@ -92,32 +104,23 @@
                                     src="../../images/categorias-icon.png" class="card-img-top"
                                     alt="Categorias">
                                 <div class="card-body">
-                                    <h5 class="card-title">Categorias</h5>
+                                    <h5 class="card-title">Mant. Categorias</h5>
                                 </div>
                             </a>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6" style="margin-top: 10px;">
                         <div class="card">
-                            <a href=""> <img src="../../images/nuevopedido-icon.png"
-                                             class="card-img-top" alt="Nuevo Pedido">
+                            <a href="<%=request.getContextPath()%>/ServletPedidos"> 
+
+                                <img src="../../images/nuevopedido-icon.png"
+                                     class="card-img-top" alt="Nuevo Pedido">
                                 <div class="card-body">
                                     <h5 class="card-title">Nuevo Pedido</h5>
                                 </div>
                             </a>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6" style="margin-top: 10px;">
-                        <div class="card">
-                            <a href="visitasDomicilio.html"> <img
-                                    src="../../images/domicilio.png" class="card-img-top"
-                                    alt="Nuevo Pedido">
-                                <div class="card-body">
-                                    <h5 class="card-title">Visitas a domicilio</h5>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    </div>                   
                 </div>
             </div>
         </div>

@@ -1,7 +1,6 @@
 package pe.edu.lavanderia.proc.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;

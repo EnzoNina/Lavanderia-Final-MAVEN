@@ -37,14 +37,13 @@ public class DaoServicios extends DaoGenerico {
 
     public void addServicios(Servicios servicio) {
         Connection cnx = getConexion();
-        String sentencia = "INSERT INTO public.servicios (cod_servicio, nom_servicio, desc_servicio, cod_categoria, precio) VALUES (?, ?, ?, ?, ?);";
+        String sentencia = "INSERT INTO public.servicios (nom_servicio, desc_servicio, cod_categoria, precio) VALUES (?, ?, ?, ?);";
         try {
-            PreparedStatement stm = cnx.prepareStatement(sentencia);
-            stm.setInt(1, servicio.getCod());
-            stm.setString(2, servicio.getNombre());
-            stm.setString(3, servicio.getDescripcion());
-            stm.setInt(4, servicio.getCod_categoria());
-            stm.setDouble(5, servicio.getPrecio());
+            PreparedStatement stm = cnx.prepareStatement(sentencia);            
+            stm.setString(1, servicio.getNombre());
+            stm.setString(2, servicio.getDescripcion());
+            stm.setInt(3, servicio.getCod_categoria());
+            stm.setDouble(4, servicio.getPrecio());
             stm.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);

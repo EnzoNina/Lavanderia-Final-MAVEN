@@ -1,6 +1,7 @@
 package pe.edu.lavanderia.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +16,7 @@ public class DaoPedidos extends DaoGenerico {
     public List<Pedidos> getPedidos() {
         List<Pedidos> serviceList = new ArrayList<Pedidos>();// Creamos lista
         Connection conexion = getConexion();// Obtenemos conexion
-        String sentencia = "SELECT cod_pedido, cod_cliente, direccion, horario, prendas, cantidad, observacion, monto, fecha_entrega FROM public.Pedidos";
+        String sentencia = "SELECT cod_pedido, cod_cliente,tipo , direccion, horario, prendas, cantidad, observacion, monto, fecha_entrega, tipo FROM public.Pedidos";
 
         PreparedStatement ps;
         try {
@@ -24,7 +25,7 @@ public class DaoPedidos extends DaoGenerico {
 
             // Recorremos
             while (rs.next()) {
-                Pedidos obpedido = new Pedidos(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getInt(6),rs.getString(7),rs.getDouble(8),rs.getDate(9));
+                Pedidos obpedido = new Pedidos(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getDouble(9), rs.getDate(10));
                 serviceList.add(obpedido);
             }
 
@@ -34,20 +35,21 @@ public class DaoPedidos extends DaoGenerico {
         return serviceList;
     }
 
-    public void addPedidos(Pedidos pedido) {
+    public void addPedidos(Pedidos pedido, String tipo) {
         Connection cnx = getConexion();
-        String sentencia = "INSERT INTO public.Pedidos (cod_pedido, cod_cliente, direccion, horario, prendas, cantidad, observacion, monto, fecha_entrega) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String sentencia = "INSERT INTO public.Pedidos (cod_pedido, cod_cliente, tipo, direccion, horario, prendas, cantidad, observacion, monto, fecha_entrega) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
         try {
             PreparedStatement stm = cnx.prepareStatement(sentencia);
             stm.setInt(1, pedido.getCod());
             stm.setInt(2, pedido.getCod_cliente());
-            stm.setString(3, pedido.getDireccion());
-            stm.setString(4, pedido.getHorario());
-            stm.setString(5, pedido.getPrendas());
-            stm.setInt(6, pedido.getCantidad());
-            stm.setString(7, pedido.getObservacion());
-            stm.setDouble(8, pedido.getMonto());
-            stm.setDate(9, (java.sql.Date) pedido.getFecha_entrega());
+            stm.setString(3, tipo);
+            stm.setString(4, pedido.getDireccion());
+            stm.setDate(5, (Date) pedido.getFecha_estimada());
+            stm.setString(6, pedido.getPrendas());
+            stm.setString(7, pedido.getCantidad());
+            stm.setString(8, pedido.getObservacion());
+            stm.setDouble(9, pedido.getMonto());
+            stm.setDate(10, (Date) pedido.getFecha_entrega());
             stm.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -61,20 +63,21 @@ public class DaoPedidos extends DaoGenerico {
     }
 
     // Método para editar Pedidos
-    public void editPedidos(Pedidos pedido) {
+    public void editPedidos(Pedidos pedido, String tipo) {
         Connection cnx = getConexion();
-        String sentencia = "UPDATE public.pedidos SET cod_cliente = ?, direccion = ?, horario = ?, prendas = ?, cantidad = ?, observacion = ?, monto = ?, fecha_entrega = ? WHERE cod_pedido = ?";
+        String sentencia = "UPDATE public.pedidos SET cod_cliente = ?, tipo=? ,direccion = ?, horario = ?, prendas = ?, cantidad = ?, observacion = ?, monto = ?, fecha_entrega = ? WHERE cod_pedido = ?";
         try {
             PreparedStatement stm = cnx.prepareStatement(sentencia);
             stm.setInt(1, pedido.getCod_cliente());
-            stm.setString(2, pedido.getDireccion());
-            stm.setString(3, pedido.getHorario());
-            stm.setString(4, pedido.getPrendas());
-            stm.setInt(5, pedido.getCantidad());
-            stm.setString(6, pedido.getObservacion());
-            stm.setDouble(7, pedido.getMonto());
-            stm.setDate(8, (java.sql.Date) pedido.getFecha_entrega());
-            stm.setInt(9, pedido.getCod());
+            stm.setString(2, tipo);
+            stm.setString(3, pedido.getDireccion());
+            stm.setDate(4, (Date) pedido.getFecha_estimada());
+            stm.setString(5, pedido.getPrendas());
+            stm.setString(6, pedido.getCantidad());
+            stm.setString(7, pedido.getObservacion());
+            stm.setDouble(8, pedido.getMonto());
+            stm.setDate(9, (Date) pedido.getFecha_entrega());
+            stm.setInt(10, pedido.getCod());
             stm.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);

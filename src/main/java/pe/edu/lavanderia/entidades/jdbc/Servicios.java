@@ -19,6 +19,13 @@ public class Servicios {
         this.precio = precio;
     }
 
+    public Servicios(String nombre, String descripcion, int cod_categoria, double precio) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.cod_categoria = cod_categoria;
+        this.precio = precio;
+    }
+
     // Getter & Setter
 
     public int getCod() {

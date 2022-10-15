@@ -11,6 +11,10 @@ public class BOGestionCategorias {
     public List<Categorias> getCategorias() {
         return dao.getCategorias();
     }
+    
+    public List<Integer> getCodCategorias(){
+        return dao.getCodCategorias();
+    }
 
     public void addCategoria(Categorias ob) {
         dao.addCategoria(ob);

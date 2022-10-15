@@ -10,6 +10,7 @@ import java.util.List;
 import pe.edu.lavanderia.entidades.jdbc.Clientes;
 
 public class DaoClientes extends DaoGenerico {
+
     // Metodo para listar Clientes
     public List<Clientes> getClientes() {
         List<Clientes> clientList = new ArrayList<Clientes>();// Creamos arrayList
@@ -37,16 +38,15 @@ public class DaoClientes extends DaoGenerico {
     }
 
     // Método para filtrar Clientes
-    public List<Clientes> searchClientes(String cadenaBusqueda) {
-        List<Clientes> lst = new ArrayList<Clientes>();
+    public Clientes searchClientes(String cadenaBusqueda) {
+        Clientes u = new Clientes();
         Connection cnx = getConexion();
-        String sentencia = "cod_cliente, nombres, ape_paterno, ape_materno, dni, celular, direccion FROM public.clientes WHERE dni LIKE ?";
+        String sentencia = "cod_cliente, nombres, ape_paterno, ape_materno, dni, celular, direccion FROM public.clientes WHERE dni = ?";
         try {
             PreparedStatement stm = cnx.prepareStatement(sentencia);
-            stm.setString(1, "%" + cadenaBusqueda + "%");
+            stm.setString(1, cadenaBusqueda);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                Clientes u = new Clientes();
                 u.setCod(rs.getInt(1));
                 u.setNombres(rs.getString(2));
                 u.setApellidoPaterno(rs.getString(3));
@@ -54,7 +54,6 @@ public class DaoClientes extends DaoGenerico {
                 u.setDni(rs.getString(5));
                 u.setCelular(rs.getString(6));
                 u.setDireccion(rs.getString(7));
-                lst.add(u);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -65,7 +64,7 @@ public class DaoClientes extends DaoGenerico {
                 throw new RuntimeException(e);
             }
         }
-        return lst;
+        return u;
     }
 
     // Método para agregar Clientes
