@@ -113,14 +113,14 @@
                                     <div class="mb-3 row">
                                         <label for="staticEmail" class="col-sm-2 col-form-label">Servicio</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="nom" />
+                                            <input type="text" class="form-control" name="nom" required/>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label for="staticEmail"
                                                class="col-sm-2 col-form-label">Descripcion</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="desc" />
+                                            <input type="text" class="form-control" name="desc" required/>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -141,7 +141,7 @@
                                     <div class="mb-3 row">
                                         <label for="staticEmail" class="col-sm-2 col-form-label">Precio</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="prec" />
+                                            <input type="text" class="form-control" name="prec" required/>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -161,114 +161,114 @@
 
                 <!-- Modal Editar -->
                 <div class="modal fade" id="editar" tabindex="-1" aria-labelledby="editar"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="editar">Editar
-                                        servicio</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <form method="get" action="<%=request.getContextPath()%>/ServletServicios">
-                                        <input type="hidden" name="instruccion" value="edit" />
-                                        
-                                        <div class="mb-3 row">
-                                            <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="cod" />
-                                            </div>
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editar">Editar
+                                    servicio</h5>
+                            </div>
+                            <div class="modal-body">
+                                <form method="get" action="<%=request.getContextPath()%>/ServletServicios">
+                                    <input type="hidden" name="instruccion" value="edit" />
+
+                                    <div class="mb-3 row" style="display:none;">
+                                        <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="cod" />
                                         </div>
-                                        
-                                        <div class="mb-3 row">
-                                            <label for="staticEmail" class="col-sm-2 col-form-label">Servicio</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="nom" />
-                                            </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <label for="staticEmail" class="col-sm-2 col-form-label">Servicio</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="nom" required />
                                         </div>
-                                        <div class="mb-3 row">
-                                            <label for="staticEmail"
-                                                class="col-sm-2 col-form-label">Descripcion</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="desc" />
-                                            </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="staticEmail"
+                                               class="col-sm-2 col-form-label">Descripcion</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="desc" required/>
                                         </div>
-                                        <div class="mb-3 row">
-                                            <label for="staticEmail" class="col-sm-2 col-form-label">Codigo-Categoria</label>
-                                            <div class="col-sm-10">
-                                                <select class="form-select" name="cate"
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="staticEmail" class="col-sm-2 col-form-label">Codigo-Categoria</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-select" name="cate"
                                                     aria-label="Codigo Categoria...">
-                                                    <c:forEach items="${categoriasCod}" var="codCategoria">
-                                                        <option value="${codCategoria}">
-                                                            <c:out value="${codCategoria}"></c:out>
+                                                <c:forEach items="${categoriasCod}" var="codCategoria">
+                                                    <option value="${codCategoria}">
+                                                        <c:out value="${codCategoria}"></c:out>
                                                         </option>
-                                                    </c:forEach>
-                                                </select>                                               
-                                            </div>
+                                                </c:forEach>
+                                            </select>                                               
                                         </div>
-                                        <div class="mb-3 row">
-                                            <label for="staticEmail" class="col-sm-2 col-form-label">Precio</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="prec" />
-                                            </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="staticEmail" class="col-sm-2 col-form-label">Precio</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="prec" required/>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">Cerrar</button>
-                                            <button type="submit" class="btn btn-primary">
-                                                <a>Editar</a>
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
+                                        <button type="submit" class="btn btn-primary">
+                                            <a>Editar</a>
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                
-                
+                </div>
+
+
 
             </div>
 
-                <!-- Modal Borrar -->
-                <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="delete"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="delete">Borrar
-                                        servicio</h5>
+            <!-- Modal Borrar -->
+            <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="delete"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="delete">Borrar
+                                servicio</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form method="get" action="<%=request.getContextPath()%>/ServletServicios">
+                                <input type="hidden" name="instruccion" value="delete" />     
+                                <h4>¿Esta seguro que desea borrar la categoria?</h4>                                   
+                                <div class="mb-3 row" style="display:none;" >
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="cod" />
+                                    </div>
+                                </div>                                         
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <a>Borrar</a>
+                                    </button>
                                 </div>
-                                <div class="modal-body">
-                                    <form method="get" action="<%=request.getContextPath()%>/ServletServicios">
-                                        <input type="hidden" name="instruccion" value="delete" />     
-                                        <h4>¿Esta seguro que desea borrar la categoria?</h4>                                   
-                                        <div class="mb-3 row" style="display:none;" >
-                                            <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="cod" />
-                                            </div>
-                                        </div>                                         
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Cerrar</button>
-                                            <button type="submit" class="btn btn-primary">
-                                                <a>Borrar</a>
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
-                
-                
-
+                </div>
             </div>
+
+
 
         </div>
-        <div class="snackbars" id="form-output-global"></div>
-        <script src="http://localhost:8080/lavanderia/js/core.min.js"></script>
-        <script src="http://localhost:8080/lavanderia/js/gestionServicios.js"></script>
-        <script src="http://localhost:8080/lavanderia/js/script.js"></script>
-    </body>
+
+    </div>
+    <div class="snackbars" id="form-output-global"></div>
+    <script src="http://localhost:8080/lavanderia/js/core.min.js"></script>
+    <script src="http://localhost:8080/lavanderia/js/gestionServicios.js"></script>
+    <script src="http://localhost:8080/lavanderia/js/script.js"></script>
+</body>
 
 </html>

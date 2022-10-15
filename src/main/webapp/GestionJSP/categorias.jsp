@@ -100,13 +100,13 @@
                                     <div class="mb-3 row">
                                         <label for="text" class="col-sm-2 col-form-label">Categoria</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="nom" />
+                                            <input type="text" class="form-control" name="nom" required/>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label for="text" class="col-sm-2 col-form-label">Descripcion</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="desc" />
+                                            <input type="text" class="form-control" name="desc" required/>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -143,22 +143,22 @@
                     <div class="modal-body">
                         <form method="get" action="<%=request.getContextPath()%>/ServletCategorias" >
                             <input type="hidden" name="instruccion" value="edit"/>
-                            <div class="mb-3 row">
+                            <div class="mb-3 row" style="display:none;">
                                 <label for="text" class="col-sm-2 col-form-label">Cod</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="cod" />
+                                    <input type="text" class="form-control" name="cod" required/>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="text" class="col-sm-2 col-form-label">Categoria</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="nom" />
+                                    <input type="text" class="form-control" name="nom" required/>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="text" class="col-sm-2 col-form-label">Descripcion</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="desc" />
+                                    <input type="text" class="form-control" name="desc" required/>
                                 </div>
                             </div>
                             <div class="mb-3 row">

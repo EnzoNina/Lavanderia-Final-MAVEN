@@ -6,7 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import pe.edu.lavanderia.proc.mantenimientos.BOGestionClientes;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionEmpleados;
 
 @WebServlet(name = "loginEmpleado", urlPatterns = {"/loginEmpleado"})
