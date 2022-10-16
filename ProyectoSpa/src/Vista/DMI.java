@@ -129,7 +129,7 @@ public class DMI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        formularioCliente objCliente = new formularioCliente();
+        FormularioCliente objCliente = new FormularioCliente();
             objCliente.setVisible(true);
             this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed

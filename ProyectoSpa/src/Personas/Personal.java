@@ -8,6 +8,7 @@ package Personas;
  */
 public class Personal extends Persona{
     private String IDPersonal;
+    private String PContraseña;
     private String especialidad;
     public Personal(){
         
@@ -18,6 +19,7 @@ public class Personal extends Persona{
         this.IDPersonal = IDPersonal;
         this.especialidad = especialidad;
     }
+    
     //Getters and Setters
 
     public String getIDPersonal() {

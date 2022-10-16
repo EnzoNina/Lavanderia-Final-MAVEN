@@ -1,12 +1,13 @@
 
 package Personas;
 import java.util.Date;
+
 /**
  *
  * @author CLEVER
  */
 public class Cliente extends Persona{
-    private String IDCliente;
+    
     private String FechaNacimiento;
     private String EstadoCivil;
     
@@ -17,7 +18,7 @@ public class Cliente extends Persona{
             String distrito, String telefono, String correo,
             String IDCliente,String FechaNacimiento,String EstadoCivil) {
         super(nombre, apellido, dni, direccion,distrito,telefono,correo);
-        this.IDCliente = IDCliente;
+        
         this.FechaNacimiento = FechaNacimiento;
         this.EstadoCivil = EstadoCivil;
         
@@ -26,14 +27,6 @@ public class Cliente extends Persona{
     
     
     //Getters and Setters
-
-    public String getIDCliente() {
-        return IDCliente;
-    }
-
-    public void setIDCliente(String IDCliente) {
-        this.IDCliente = IDCliente;
-    }
 
     public String getFechaNacimiento() {
         return FechaNacimiento;
@@ -50,7 +43,7 @@ public class Cliente extends Persona{
     public void setEstadoCivil(String EstadoCivil) {
         this.EstadoCivil = EstadoCivil;
     }
-
+    
     
     
     

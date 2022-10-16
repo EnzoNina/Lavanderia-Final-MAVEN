@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Modelo;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
 
-import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author CLEVER
@@ -19,6 +16,7 @@ public class DAO {
     Connection connection = null;
     Statement statement = null;
     Connection conn = null;
+    
     public Connection connect(){
         
         try
@@ -31,31 +29,27 @@ public class DAO {
         }
         return conn;
     }
-    public int SentenciaSQL (String strSentenciaSQL)
-    {
-        try
-        {
-            PreparedStatement pstm = conn.prepareStatement(strSentenciaSQL);
-            pstm.execute();
-            return 1;
-        }catch(SQLException e)
-        {
-            System.out.println(e.getMessage());
-            return 0;
+    public void SentenciaSQL(String sql) {
+        try {
+            connection = connect();
+            statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println("Error al ejecutar la sentencia SQL: " + e.getMessage());
         }
     }
-    public ResultSet consultaRegistro(String strSentenciaSQL)
-    {
-        try
-        {
-            PreparedStatement pstm = conn.prepareStatement(strSentenciaSQL);
-            ResultSet respuesta = pstm.executeQuery();
-            return respuesta;
-        }catch (SQLException e)
-        {
-            System.out.println(e.getMessage());
-            return null;
+    public ResultSet consultaRegistro(String sql) {
+        ResultSet rs = null;
+        try {
+            connection = connect();
+            statement = connection.createStatement();
+            rs = statement.executeQuery(sql);
+        } catch (SQLException e) {
+            System.out.println("Error al ejecutar la consulta: " + e.getMessage());
         }
+        return rs;
     }
     
 }
