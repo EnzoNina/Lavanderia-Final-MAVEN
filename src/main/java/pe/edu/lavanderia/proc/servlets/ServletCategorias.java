@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pe.edu.lavanderia.dto.DtoCategorias;
 import pe.edu.lavanderia.entidades.jdbc.Categorias;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionCategorias;
 
@@ -49,9 +50,17 @@ public class ServletCategorias extends HttpServlet {
 
     private void getCategorias(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Categorias> lst = bo.getCategorias();
-        request.setAttribute("list", lst);
-        request.getRequestDispatcher("GestionJSP/categorias.jsp").forward(request, response);
+
+        String tipo = request.getParameter("tipo");
+        if (tipo.equalsIgnoreCase("empleado")) {
+            List<DtoCategorias> lst = bo.getCategoriasDTO();
+            request.setAttribute("lst", lst);
+            request.getRequestDispatcher("pages/PersonalLavanderia/categorias.jsp").forward(request, response);
+        } else {
+            List<Categorias> lst = bo.getCategorias();
+            request.setAttribute("list", lst);
+            request.getRequestDispatcher("GestionJSP/categorias.jsp").forward(request, response);
+        }
     }
 
     // Metodos

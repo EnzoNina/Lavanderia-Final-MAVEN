@@ -9,12 +9,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pe.edu.lavanderia.dto.DtoServicios;
 import pe.edu.lavanderia.entidades.jdbc.Servicios;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionCategorias;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionServicios;
 
 @WebServlet(name = "ServletServicios", urlPatterns = {"/ServletServicios"})
 public class ServletServicios extends HttpServlet {
+
+    @EJB
+    private BOGestionCategorias bOGestionCategorias;
 
     @EJB
     private BOGestionServicios bo;
@@ -49,12 +53,23 @@ public class ServletServicios extends HttpServlet {
 
     private void getServicios(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        BOGestionCategorias boCa = new BOGestionCategorias();
-        List<Servicios> lst = bo.getServicios();
-        List<Integer> listCodCategorias = boCa.getCodCategorias();
-        request.setAttribute("list", lst);
-        request.setAttribute("categoriasCod", listCodCategorias);
-        request.getRequestDispatcher("GestionJSP/servicios.jsp").forward(request, response);
+
+        String tipo = request.getParameter("tipo");
+        if (tipo.equalsIgnoreCase("empleado")) {            
+            List<DtoServicios> lst = bo.getServiciosDTO();
+            List<Integer> listCodCategorias = bOGestionCategorias.getCodCategorias();
+            
+            request.setAttribute("categoriasCod", listCodCategorias);
+            request.setAttribute("lst", lst);
+            request.getRequestDispatcher("pages/PersonalLavanderia/servicios.jsp").forward(request, response);
+        } else {            
+            List<Servicios> lst = bo.getServicios();
+            List<Integer> listCodCategorias = bOGestionCategorias.getCodCategorias();
+            request.setAttribute("list", lst);
+            request.setAttribute("categoriasCod", listCodCategorias);
+            request.getRequestDispatcher("GestionJSP/servicios.jsp").forward(request, response);
+        }
+
     }
 
     // Metodos

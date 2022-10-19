@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pe.edu.lavanderia.dto.DtoEmpleados;
 import pe.edu.lavanderia.entidades.jdbc.Empleados;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionEmpleados;
 
@@ -49,9 +50,20 @@ public class ServletEmpleados extends HttpServlet {
 
     private void getEmpleados(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Empleados> lst = bo.getEmpleados();
-        request.setAttribute("lst", lst);
-        request.getRequestDispatcher("GestionJSP/empleado.jsp").forward(request, response);
+        
+        String tipo = request.getParameter("tipo");
+        
+        if(tipo.equalsIgnoreCase("empleado")){
+            List<DtoEmpleados> lst = bo.getEmpleadosDTO();
+            request.setAttribute("lst", lst);
+            request.getRequestDispatcher("pages/PersonalLavanderia/empleado.jsp").forward(request, response);
+        }else{
+            List<Empleados> lst = bo.getEmpleados();
+            request.setAttribute("lst", lst);
+            request.getRequestDispatcher("GestionJSP/empleado.jsp").forward(request, response);
+            
+        }
+        
     }
 
     // Metodos

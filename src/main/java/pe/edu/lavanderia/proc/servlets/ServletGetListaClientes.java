@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pe.edu.lavanderia.dto.DtoClientes;
 
 import pe.edu.lavanderia.entidades.jdbc.Clientes;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionClientes;
@@ -28,9 +29,18 @@ public class ServletGetListaClientes extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Clientes> lst = bo.getClientes();
-        request.getSession().setAttribute("clientList", lst);
-        request.getRequestDispatcher("GestionJSP/clients.jsp").forward(request, response);
+        String tipo = request.getParameter("tipo");
+        if (tipo.equals("personal")) {
+            //Crear bo que te retorne una lista de dtoClientes
+            List<DtoClientes> lst = bo.getClientesDTO();
+            request.getSession().setAttribute("clientList", lst);
+            request.getRequestDispatcher("pages/PersonalLavanderia/clients.jsp").forward(request, response);
+        } else {
+            List<Clientes> lst = bo.getClientes();
+            request.getSession().setAttribute("clientList", lst);
+            request.getRequestDispatcher("GestionJSP/clients.jsp").forward(request, response);
+        }
+
     }
 
 }
