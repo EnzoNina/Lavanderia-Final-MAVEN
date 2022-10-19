@@ -2,6 +2,7 @@ package pe.edu.lavanderia.proc.servlets;
 
 import java.io.IOException;
 import java.util.List;
+import javax.ejb.EJB;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +13,11 @@ import pe.edu.lavanderia.entidades.jdbc.Servicios;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionCategorias;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionServicios;
 
-@WebServlet(name = "ServletServicios", urlPatterns = { "/ServletServicios" })
+@WebServlet(name = "ServletServicios", urlPatterns = {"/ServletServicios"})
 public class ServletServicios extends HttpServlet {
+
+    @EJB
+    private BOGestionServicios bo;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -45,7 +49,6 @@ public class ServletServicios extends HttpServlet {
 
     private void getServicios(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        BOGestionServicios bo = new BOGestionServicios();
         BOGestionCategorias boCa = new BOGestionCategorias();
         List<Servicios> lst = bo.getServicios();
         List<Integer> listCodCategorias = boCa.getCodCategorias();
@@ -58,13 +61,11 @@ public class ServletServicios extends HttpServlet {
     private void newServicio(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        BOGestionServicios bo = new BOGestionServicios();
-
         String nombre = request.getParameter("nom");
-        String descripcion =  request.getParameter("desc");
+        String descripcion = request.getParameter("desc");
         int cod_categoria = Integer.parseInt(request.getParameter("cate"));
         double precio = Double.parseDouble(request.getParameter("prec"));
-        
+
         Servicios ob = new Servicios(nombre, descripcion, cod_categoria, precio);
         bo.addServicio(ob);
         response.sendRedirect("ServletServicios");
@@ -73,22 +74,20 @@ public class ServletServicios extends HttpServlet {
 
     private void editServicio(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        BOGestionServicios bo =  new BOGestionServicios();
 
         int cod = Integer.parseInt(request.getParameter("cod"));
         String nombre = request.getParameter("nom");
-        String descripcion =  request.getParameter("desc");
+        String descripcion = request.getParameter("desc");
         int cod_categoria = Integer.parseInt(request.getParameter("cate"));
         double precio = Double.parseDouble(request.getParameter("prec"));
 
-        Servicios ob = new Servicios(cod,nombre, descripcion, cod_categoria, precio);
+        Servicios ob = new Servicios(cod, nombre, descripcion, cod_categoria, precio);
         bo.editServicio(ob);
         response.sendRedirect("ServletServicios");
     }
 
     private void deleteServicio(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        BOGestionServicios bo = new BOGestionServicios();
         int cod = Integer.parseInt(request.getParameter("cod"));
         bo.removeServicio(cod);
         response.sendRedirect("ServletServicios");

@@ -8,6 +8,9 @@ public class Categorias {
     private boolean estado;
 
     // Constructor
+    public Categorias() {
+    }
+
     public Categorias(int cod_categoria, String nombre, String descripcion, boolean estado) {
         super();
         this.cod_categoria = cod_categoria;

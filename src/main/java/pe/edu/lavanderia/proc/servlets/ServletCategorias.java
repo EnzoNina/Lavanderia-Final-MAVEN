@@ -2,6 +2,7 @@ package pe.edu.lavanderia.proc.servlets;
 
 import java.io.IOException;
 import java.util.List;
+import javax.ejb.EJB;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,9 @@ import pe.edu.lavanderia.proc.mantenimientos.BOGestionCategorias;
 
 @WebServlet(name = "ServletCategorias", urlPatterns = {"/ServletCategorias"})
 public class ServletCategorias extends HttpServlet {
+
+    @EJB
+    private BOGestionCategorias bo;
 
     //final static BOGestionCategorias bo = new BOGestionCategorias();
     @Override
@@ -45,7 +49,6 @@ public class ServletCategorias extends HttpServlet {
 
     private void getCategorias(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        BOGestionCategorias bo = new BOGestionCategorias();
         List<Categorias> lst = bo.getCategorias();
         request.setAttribute("list", lst);
         request.getRequestDispatcher("GestionJSP/categorias.jsp").forward(request, response);
@@ -54,8 +57,6 @@ public class ServletCategorias extends HttpServlet {
     // Metodos
     private void newCategoria(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        BOGestionCategorias bo = new BOGestionCategorias();
 
         String nombre = request.getParameter("nom");
         String descripcion = request.getParameter("desc");
@@ -76,7 +77,6 @@ public class ServletCategorias extends HttpServlet {
 
     private void editCategoria(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        BOGestionCategorias bo = new BOGestionCategorias();
         int cod = Integer.parseInt(request.getParameter("cod"));
         String nombre = request.getParameter("nom");
         String descripcion = request.getParameter("desc");
@@ -95,8 +95,7 @@ public class ServletCategorias extends HttpServlet {
     }
 
     private void deleteCategoria(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {        
-        BOGestionCategorias bo = new BOGestionCategorias();
+            throws ServletException, IOException {
         int cod = Integer.parseInt(request.getParameter("codigo"));
         bo.removeCategoria(cod);
         response.sendRedirect("ServletCategorias");

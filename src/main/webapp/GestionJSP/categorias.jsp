@@ -73,8 +73,13 @@
 
                             <tr>
                                 <td id="cod" > <c:out value="${categoria.cod_categoria}" ></c:out> </td>
-                                <td id="nombre" > <c:out value="${categoria.nombre}" ></c:out> </td>
-                                <td id="desc" > <c:out value="${categoria.descripcion}" ></c:out> </td>
+                                    <td id="nombre">
+                                        <a href="ServletServiciosXCategoria?cod_categoria=${categoria.cod_categoria}">
+                                            <c:out value="${categoria.nombre}" ></c:out> 
+                                        </a>
+                                    </td>
+
+                                    <td id="desc" > <c:out value="${categoria.descripcion}" ></c:out> </td>
                                 <td id="estado" > <c:out value="${categoria.estado}" ></c:out> </td>
                                     <td>
                                         <button class="btn btn-primary" data-toggle="modal" data-target="#categoria" data-cod="${categoria.cod_categoria}" data-nom="${categoria.nombre}" data-desc="${categoria.descripcion}" data-estado="${categoria.estado}" >Editar</button>

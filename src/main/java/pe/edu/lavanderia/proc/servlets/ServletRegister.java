@@ -1,6 +1,7 @@
 package pe.edu.lavanderia.proc.servlets;
 
 import java.io.IOException;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,9 @@ import pe.edu.lavanderia.proc.mantenimientos.BOGestionClientes;
 public class ServletRegister extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
+
+    @EJB
+    private BOGestionClientes bo;
 
     public ServletRegister() {
         super();
@@ -33,7 +37,6 @@ public class ServletRegister extends HttpServlet {
         String contraseña = request.getParameter("contra");
         // Creamos objeto cliente
         Clientes ob = new Clientes(nombre, apePaterno, apeMaterno, DNI, celular, direccion, usuario, contraseña);
-        BOGestionClientes bo = new BOGestionClientes();
         bo.addClientes(ob);
         // Regresamos a la lista de clientes
         response.sendRedirect("ServletListaClientes");

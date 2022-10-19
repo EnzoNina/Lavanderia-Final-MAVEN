@@ -2,6 +2,7 @@ package pe.edu.lavanderia.proc.servlets;
 
 import java.io.IOException;
 import java.util.List;
+import javax.ejb.EJB;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,19 +15,22 @@ import pe.edu.lavanderia.proc.mantenimientos.BOGestionClientes;
 
 @WebServlet("/ServletListaClientes")
 public class ServletGetListaClientes extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-	public ServletGetListaClientes() {
-		super();
+    private static final long serialVersionUID = 1L;
 
-	}
+    @EJB
+    private BOGestionClientes bo;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		BOGestionClientes bo = new BOGestionClientes();
-		List<Clientes> lst = bo.getClientes();
-		request.setAttribute("clientList", lst);
-		request.getRequestDispatcher("GestionJSP/clients.jsp").forward(request, response);		
-	}
+    public ServletGetListaClientes() {
+        super();
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        List<Clientes> lst = bo.getClientes();
+        request.getSession().setAttribute("clientList", lst);
+        request.getRequestDispatcher("GestionJSP/clients.jsp").forward(request, response);
+    }
 
 }

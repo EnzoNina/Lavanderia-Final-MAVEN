@@ -2,7 +2,6 @@
 <%@page import="pe.edu.lavanderia.entidades.jdbc.Clientes"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html class="wide wow-animation" lang="es">
     <head>
         <title>Programar Visita</title>

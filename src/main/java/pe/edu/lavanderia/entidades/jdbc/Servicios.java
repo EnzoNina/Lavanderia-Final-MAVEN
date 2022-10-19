@@ -9,6 +9,15 @@ public class Servicios {
     private double precio;
 
     // Constructor
+    public Servicios() {
+    }
+
+    public Servicios(String nombre, String descripcion, int cod_categoria, double precio) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.cod_categoria = cod_categoria;
+        this.precio = precio;
+    }
 
     public Servicios(int cod, String nombre, String descripcion, int cod_categoria, double precio) {
         super();
@@ -19,15 +28,7 @@ public class Servicios {
         this.precio = precio;
     }
 
-    public Servicios(String nombre, String descripcion, int cod_categoria, double precio) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.cod_categoria = cod_categoria;
-        this.precio = precio;
-    }
-
     // Getter & Setter
-
     public int getCod() {
         return cod;
     }

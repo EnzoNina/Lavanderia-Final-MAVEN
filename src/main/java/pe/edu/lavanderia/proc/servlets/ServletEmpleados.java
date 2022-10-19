@@ -2,6 +2,7 @@ package pe.edu.lavanderia.proc.servlets;
 
 import java.io.IOException;
 import java.util.List;
+import javax.ejb.EJB;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,9 @@ import pe.edu.lavanderia.proc.mantenimientos.BOGestionEmpleados;
 
 @WebServlet(name = "ServletEmpleados", urlPatterns = {"/ServletEmpleados"})
 public class ServletEmpleados extends HttpServlet {
+
+    @EJB
+    private BOGestionEmpleados bo;
 
     //final static BOGestionEmpleados bo = new BOGestionEmpleados();
     @Override
@@ -45,7 +49,6 @@ public class ServletEmpleados extends HttpServlet {
 
     private void getEmpleados(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        BOGestionEmpleados bo = new BOGestionEmpleados();
         List<Empleados> lst = bo.getEmpleados();
         request.setAttribute("lst", lst);
         request.getRequestDispatcher("GestionJSP/empleado.jsp").forward(request, response);
@@ -54,8 +57,6 @@ public class ServletEmpleados extends HttpServlet {
     // Metodos
     private void newEmpleado(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        BOGestionEmpleados bo = new BOGestionEmpleados();
 
         String nombre = request.getParameter("nombres");
         String dni = request.getParameter("dni");
@@ -73,7 +74,6 @@ public class ServletEmpleados extends HttpServlet {
 
     private void editEmpleado(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        BOGestionEmpleados bo = new BOGestionEmpleados();
         int cod = Integer.parseInt(request.getParameter("codi"));
         String nombre = request.getParameter("nombres");
         String dni = request.getParameter("dni");
@@ -90,7 +90,6 @@ public class ServletEmpleados extends HttpServlet {
 
     private void deleteEmpleado(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        BOGestionEmpleados bo = new BOGestionEmpleados();
         int cod = Integer.parseInt(request.getParameter("codi"));
         bo.removeEmpleado(cod);
         response.sendRedirect("ServletEmpleados");

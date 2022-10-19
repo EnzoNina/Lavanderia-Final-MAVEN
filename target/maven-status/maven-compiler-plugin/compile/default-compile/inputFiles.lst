@@ -1,4 +1,5 @@
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/dao/DaoClientes.java
+/home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/dto/DtoEmpleados.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/proc/servlets/ServletBorrar.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/entidades/jdbc/Categorias.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/proc/servlets/ServletEditar.java
@@ -7,9 +8,11 @@
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/dao/DaoEmpleados.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/entidades/jdbc/Empleados.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/proc/servlets/ServletPedidos.java
+/home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/dto/DtoCategorias.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/proc/servlets/ServletRegister.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/proc/mantenimientos/BOGestionCategorias.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/entidades/jdbc/Servicios.java
+/home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/proc/servlets/ServletServiciosXCategoria.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/proc/servlets/loginUsuario.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/proc/servlets/ServletCategorias.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/proc/mantenimientos/BOGestionServicios.java
@@ -17,8 +20,10 @@
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/dao/DaoServicios.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/entidades/jdbc/Clientes.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/proc/servlets/ServletServicios.java
+/home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/dto/DtoClientes.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/proc/servlets/ServletEmpleados.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/proc/mantenimientos/BOGestionClientes.java
+/home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/dto/DtoServicios.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/proc/servlets/ServletGetListaClientes.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/proc/mantenimientos/BOGestionEmpleados.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/proc/servlets/loginEmpleado.java

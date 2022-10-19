@@ -16,7 +16,7 @@ public class DaoServicios extends DaoGenerico {
         List<Servicios> serviceList = new ArrayList<Servicios>();// Creamos lista
         Connection conexion = getConexion();// Obtenemos conexion
         String sentencia = "SELECT cod_servicio, nom_servicio, desc_servicio, cod_categoria, precio FROM public.servicios";
-
+        
         PreparedStatement ps;
         try {
             ps = conexion.prepareStatement(sentencia);
@@ -28,18 +28,18 @@ public class DaoServicios extends DaoGenerico {
                         rs.getDouble(5));
                 serviceList.add(obServicio);
             }
-
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return serviceList;
     }
-
+    
     public void addServicios(Servicios servicio) {
         Connection cnx = getConexion();
         String sentencia = "INSERT INTO public.servicios (nom_servicio, desc_servicio, cod_categoria, precio) VALUES (?, ?, ?, ?);";
         try {
-            PreparedStatement stm = cnx.prepareStatement(sentencia);            
+            PreparedStatement stm = cnx.prepareStatement(sentencia);
             stm.setString(1, servicio.getNombre());
             stm.setString(2, servicio.getDescripcion());
             stm.setInt(3, servicio.getCod_categoria());
@@ -98,4 +98,30 @@ public class DaoServicios extends DaoGenerico {
         }
     }
 
+    //Método para consultar por Categoria
+    public List<Servicios> getServiciosXCategoria(int cod_categoria) {
+        List<Servicios> serviceList = new ArrayList<Servicios>();// Creamos lista
+        Connection conexion = getConexion();// Obtenemos conexion
+        String sentencia = "SELECT cod_servicio, nom_servicio, desc_servicio, precio FROM public.servicios WHERE cod_categoria = ? ";
+        
+        try {
+            PreparedStatement stm = conexion.prepareStatement(sentencia);
+            stm.setInt(1, cod_categoria);
+            ResultSet rs = stm.executeQuery();
+
+            // Recorremos
+            while (rs.next()) {
+                Servicios s = new Servicios();
+                s.setCod(rs.getInt(1));
+                s.setNombre(rs.getString(2));
+                s.setDescripcion(rs.getString(3));
+                s.setPrecio(rs.getDouble(4));
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return serviceList;
+    }
+    
 }
