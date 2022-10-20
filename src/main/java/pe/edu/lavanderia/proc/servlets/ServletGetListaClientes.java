@@ -30,12 +30,12 @@ public class ServletGetListaClientes extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String tipo = request.getParameter("tipo");
-        if (tipo.equals("personal")) {
+        /*if (tipo.equals("personal")) {
             //Crear bo que te retorne una lista de dtoClientes
             List<DtoClientes> lst = bo.getClientesDTO();
             request.getSession().setAttribute("clientList", lst);
             request.getRequestDispatcher("pages/PersonalLavanderia/clients.jsp").forward(request, response);
-        } else {
+        } else {*/
             List<Clientes> lst = bo.getClientes();
             request.getSession().setAttribute("clientList", lst);
             request.getRequestDispatcher("GestionJSP/clients.jsp").forward(request, response);

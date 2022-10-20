@@ -56,7 +56,7 @@ public class ServletEmpleados extends HttpServlet {
         if(tipo.equalsIgnoreCase("empleado")){
             List<DtoEmpleados> lst = bo.getEmpleadosDTO();
             request.setAttribute("lst", lst);
-            request.getRequestDispatcher("pages/PersonalLavanderia/empleado.jsp").forward(request, response);
+            request.getRequestDispatcher("pages/PersonalLavanderia/empleadoPersonal.jsp").forward(request, response);
         }else{
             List<Empleados> lst = bo.getEmpleados();
             request.setAttribute("lst", lst);

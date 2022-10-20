@@ -27,5 +27,6 @@ pe/edu/lavanderia/proc/mantenimientos/BOGestionServicios.class
 pe/edu/lavanderia/proc/servlets/ServletEmpleados.class
 pe/edu/lavanderia/dto/DtoCategorias.class
 pe/edu/lavanderia/dao/DaoGenerico.class
+pe/edu/lavanderia/dto/DtoPedidos.class
 pe/edu/lavanderia/proc/servlets/ServletRegister.class
 pe/edu/lavanderia/dto/DtoClientes.class

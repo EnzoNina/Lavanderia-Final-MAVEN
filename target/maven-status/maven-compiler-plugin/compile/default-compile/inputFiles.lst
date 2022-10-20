@@ -1,4 +1,5 @@
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/dao/DaoClientes.java
+/home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/dto/DtoPedidos.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/dto/DtoEmpleados.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/proc/servlets/ServletBorrar.java
 /home/sammael/NetBeansProjects/Lavanderia-Final-MAVEN/src/main/java/pe/edu/lavanderia/entidades/jdbc/Categorias.java

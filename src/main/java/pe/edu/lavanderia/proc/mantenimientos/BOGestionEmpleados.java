@@ -1,11 +1,14 @@
 package pe.edu.lavanderia.proc.mantenimientos;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
+import java.util.ArrayList;
 import java.util.List;
 import pe.edu.lavanderia.dao.DaoEmpleados;
 import pe.edu.lavanderia.entidades.jdbc.Empleados;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import pe.edu.lavanderia.dto.DtoEmpleados;
 
 @Stateless
 @LocalBean
@@ -37,5 +40,21 @@ public class BOGestionEmpleados {
     public boolean login(String user, String pass) {
         DaoEmpleados dao = new DaoEmpleados();
         return dao.login(user, pass);
+    }
+    
+    public List<DtoEmpleados> getEmpleadosDTO(){
+        List<DtoEmpleados> lstDto = new ArrayList<DtoEmpleados>();
+        DaoEmpleados dao = new DaoEmpleados();
+        List<Empleados> lst = dao.getEmpleados();
+        for (Empleados empleados : lst) {
+            DtoEmpleados dto = new DtoEmpleados();
+            dto.setCod(empleados.getCod());
+            dto.setNombre(empleados.getNombre());
+            dto.setApe_paterno(empleados.getApe_paterno());
+            dto.setApe_materno(empleados.getApe_materno());
+            dto.setCelular(empleados.getCelular());
+            lstDto.add(dto);
+        }
+        return lstDto;
     }
 }
