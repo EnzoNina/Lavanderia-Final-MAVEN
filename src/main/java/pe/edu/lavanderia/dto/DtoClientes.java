@@ -4,8 +4,7 @@ public class DtoClientes {
 
     private int cod;
     private String nombres;
-    private String apellidoPaterno;
-    private String apellidoMaterno;
+    private String apellidos;
     private String dni;
     private String celular;
     private String direccion;
@@ -22,24 +21,16 @@ public class DtoClientes {
         return nombres;
     }
 
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
     public void setNombres(String nombres) {
         this.nombres = nombres;
-    }
-
-    public String getApellidoPaterno() {
-        return apellidoPaterno;
-    }
-
-    public void setApellidoPaterno(String apellidoPaterno) {
-        this.apellidoPaterno = apellidoPaterno;
-    }
-
-    public String getApellidoMaterno() {
-        return apellidoMaterno;
-    }
-
-    public void setApellidoMaterno(String apellidoMaterno) {
-        this.apellidoMaterno = apellidoMaterno;
     }
 
     public String getDni() {

@@ -119,12 +119,12 @@ public class DaoCategorias extends DaoGenerico {
         }
         return list;
     }
-    
-    public Categorias getXCodigo(int cod_categoria){
-        Categorias c = null;
+
+    public Categorias getXCodigo(int cod_categoria) {
+        Categorias c = new Categorias();
         Connection conexion = getConexion();// Obtenemos conexion
-        String sentencia = "SELECT nom_categoria FROM public.categorias WHERE cod_categoria=?";
-        
+        String sentencia = "SELECT nom_categoria,desc_categoria FROM public.categorias WHERE cod_categoria=?";
+
         try {
             PreparedStatement stm = conexion.prepareStatement(sentencia);
             stm.setInt(1, cod_categoria);
@@ -132,11 +132,11 @@ public class DaoCategorias extends DaoGenerico {
 
             // Recorremos
             while (rs.next()) {
-                c = new Categorias();
                 c.setCod_categoria(cod_categoria);
                 c.setNombre(rs.getString(1));
+                c.setDescripcion(rs.getString("desc_categoria"));
             }
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -15,7 +15,7 @@
               href="//fonts.googleapis.com/css?family=Montserrat:300,400,700%7CPoppins:300,400,500,700,900" />
         <link rel="stylesheet" href="http://localhost:8080/lavanderia/css/bootstrap.css" />
         <link rel="stylesheet" href="http://localhost:8080/lavanderia/css/fonts.css" />
-        <link rel="stylesheet" href="http://localhost:8080/lavanderia/css/style.css" />
+        <link rel="stylesheet" href="http://localhost:8080/lavanderia/css/style.css" />       
         <style>
             .ie-panel {
                 display: none;
@@ -52,41 +52,39 @@
         </div>
         <div class="page">
             <div style="background: white; color: black;">
-                <<h2>Datos de la Categoria</h2>
+                <h4>Datos de la Categoria</h4>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">Codigo</th>
                             <th scope="col">Nombre</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>
-                                <c:out value="${dtoCategorias.Categorias.cod_categoria}"></c:out>
+                                <c:out value="${lstServicios.cod_categoria}"></c:out>
                                 </td>
                                 <td>
-                                <c:out value="${dtoCategorias.Categorias.nombre}"></c:out>
+                                <c:out value="${lstServicios.nombre}"></c:out>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <<h2>Servicios de la Categoria</h2>
+                    <h4>Servicios de la Categoria</h4>
 
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">Codigo</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Descripcion</th>
-                                <th scope="col">Categoria</th>
-                                <th scope="col">Precio</th>
-                                <th scope="col">Accion</th>
+                                <th scope="col">Descripcion</th>                                
+                                <th scope="col">Precio</th>                                
                             </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${dtoCategorias.lstServiciosXCategoria}" var="servicio">
+                        <c:forEach items="${lstServicios.lstServicios}" var="servicio">
                             <tr>
                                 <td id="cod">
                                     <c:out value="${servicio.cod}"></c:out>
@@ -104,11 +102,6 @@
                         </c:forEach>
                     </tbody>
                 </table>
-
-
-
-
-
             </div>
 
         </div>

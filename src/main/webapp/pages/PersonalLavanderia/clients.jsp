@@ -63,7 +63,7 @@
         <div class="page">
             <div style="background: white; color: black;">
                 <a class="btn btn-primary"
-                   href="http://localhost:8080/lavanderia/pages/registrar.jsp">Agregar
+                   href="http://localhost:8080/lavanderia/pages/registrar.jsp?tipo=personal">Agregar
                     cliente</a>
 
 
@@ -86,11 +86,9 @@
                                 <td id="apePaterno"><c:out
                                         value="${cliente.apellidos}"></c:out></td>                            
                                 <td id="dni"><c:out value="${cliente.dni}"></c:out></td>
-                                <td id="celular"><c:out value="${cliente.celular}"></c:out></td>
-                                <td id="usuario"><c:out value="${cliente.usuario}"></c:out></td>
-                                <td id="contraseña"><c:out value="${cliente.contraseña}"></c:out></td>
+                                <td id="celular"><c:out value="${cliente.celular}"></c:out></td>                                
                                 <td id="direccion"><c:out value="${cliente.direccion}"></c:out></td>                                    
-                            </tr>
+                                </tr>
 
                         </c:forEach>
                     </tbody>

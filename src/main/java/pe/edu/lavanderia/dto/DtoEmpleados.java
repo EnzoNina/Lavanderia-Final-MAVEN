@@ -5,8 +5,7 @@ public class DtoEmpleados {
     private int cod;
     private String dni;
     private String nombre;
-    private String ape_paterno;
-    private String ape_materno;
+    private String apellidos;
     private String celular;
 
     public int getCod() {
@@ -33,20 +32,12 @@ public class DtoEmpleados {
         this.nombre = nombre;
     }
 
-    public String getApe_paterno() {
-        return ape_paterno;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApe_paterno(String ape_paterno) {
-        this.ape_paterno = ape_paterno;
-    }
-
-    public String getApe_materno() {
-        return ape_materno;
-    }
-
-    public void setApe_materno(String ape_materno) {
-        this.ape_materno = ape_materno;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getCelular() {

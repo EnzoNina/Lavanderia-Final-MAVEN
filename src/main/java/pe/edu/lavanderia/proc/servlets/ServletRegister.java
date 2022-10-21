@@ -27,6 +27,7 @@ public class ServletRegister extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Obtenemos datos
+        String tipo = request.getParameter("tipo");
         String nombre = request.getParameter("nombre");
         String apePaterno = request.getParameter("apePaterno");
         String apeMaterno = request.getParameter("apeMaterno");
@@ -38,8 +39,14 @@ public class ServletRegister extends HttpServlet {
         // Creamos objeto cliente
         Clientes ob = new Clientes(nombre, apePaterno, apeMaterno, DNI, celular, direccion, usuario, contraseña);
         bo.addClientes(ob);
-        // Regresamos a la lista de clientes
-        response.sendRedirect("ServletListaClientes");
+        if (tipo.equalsIgnoreCase("personal")) {
+
+            response.sendRedirect("ServletListaClientes?tipo=personal");
+        } else {
+            // Regresamos a la lista de clientes        
+            response.sendRedirect("ServletListaClientes");
+        }
+
     }
 
 }

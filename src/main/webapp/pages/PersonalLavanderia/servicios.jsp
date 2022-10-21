@@ -66,7 +66,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${list}" var="servicio">
+                        <c:forEach items="${lst}" var="servicio">
                             <tr>
                                 <td id="cod">
                                     <c:out value="${servicio.cod}"></c:out>
@@ -80,15 +80,7 @@
                                     <td id="precio">
                                     <c:out value="${servicio.precio}"></c:out>
                                     </td>
-                                    <td>
-                                        <button class="btn btn-primary" data-toggle="modal" data-target="#editar"
-                                                data-cod="${servicio.cod}" data-nom="${servicio.nombre}"
-                                        data-desc="${servicio.descripcion}" data-cate="${servicio.cod_categoria}"
-                                        data-prec="${servicio.precio}">Editar</button>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#delete"
-                                            data-cod="${servicio.cod}">Eliminar</button>
-                                </td>
-                            </tr>
+                                </tr>
                         </c:forEach>
                     </tbody>
                 </table>
@@ -105,6 +97,7 @@
                             <div class="modal-body">
                                 <form method="get" action="<%=request.getContextPath()%>/ServletServicios">
                                     <input type="hidden" name="instruccion" value="new" />
+                                    <input type="hidden" name="tipo" value="personal"/>
                                     <div class="mb-3 row">
                                         <label for="staticEmail" class="col-sm-2 col-form-label">Servicio</label>
                                         <div class="col-sm-10">

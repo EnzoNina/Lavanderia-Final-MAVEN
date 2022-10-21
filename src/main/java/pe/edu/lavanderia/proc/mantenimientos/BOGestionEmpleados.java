@@ -1,6 +1,6 @@
 package pe.edu.lavanderia.proc.mantenimientos;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
+import entidades.Empleado;
 import java.util.ArrayList;
 import java.util.List;
 import pe.edu.lavanderia.dao.DaoEmpleados;
@@ -8,11 +8,16 @@ import pe.edu.lavanderia.entidades.jdbc.Empleados;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import pe.edu.lavanderia.dto.DtoEmpleados;
 
 @Stateless
 @LocalBean
 public class BOGestionEmpleados {
+
+    @PersistenceContext(unitName = "Lavanderia-JPA")
+    private EntityManager em;
 
     public BOGestionEmpleados() {
     }
@@ -20,6 +25,10 @@ public class BOGestionEmpleados {
     public List<Empleados> getEmpleados() {
         DaoEmpleados dao = new DaoEmpleados();
         return dao.getEmpleados();
+    }
+
+    public void addEmpleadoJPA(Empleado empleado) {
+        em.persist(empleado);
     }
 
     public void addEmpleado(Empleados empleado) {
@@ -37,21 +46,21 @@ public class BOGestionEmpleados {
         dao.removeEmpleado(cod);
     }
 
-    public boolean login(String user, String pass) {
+    public String login(String user, String pass) {
         DaoEmpleados dao = new DaoEmpleados();
         return dao.login(user, pass);
     }
-    
-    public List<DtoEmpleados> getEmpleadosDTO(){
+
+    public List<DtoEmpleados> getEmpleadosDTO() {
         List<DtoEmpleados> lstDto = new ArrayList<DtoEmpleados>();
         DaoEmpleados dao = new DaoEmpleados();
         List<Empleados> lst = dao.getEmpleados();
         for (Empleados empleados : lst) {
             DtoEmpleados dto = new DtoEmpleados();
             dto.setCod(empleados.getCod());
+            dto.setDni(empleados.getDni());
             dto.setNombre(empleados.getNombre());
-            dto.setApe_paterno(empleados.getApe_paterno());
-            dto.setApe_materno(empleados.getApe_materno());
+            dto.setApellidos(empleados.getApe_paterno() + " " + empleados.getApe_materno());
             dto.setCelular(empleados.getCelular());
             lstDto.add(dto);
         }

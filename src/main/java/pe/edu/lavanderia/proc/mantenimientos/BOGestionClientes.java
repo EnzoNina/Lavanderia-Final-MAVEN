@@ -50,15 +50,14 @@ public class BOGestionClientes {
             DtoClientes dto = new DtoClientes();
             dto.setCod(clientes.getCod());
             dto.setNombres(clientes.getNombres());
-            dto.setApellidoPaterno(clientes.getApellidoPaterno());
-            dto.setApellidoMaterno(clientes.getApellidoMaterno());
+            dto.setApellidos(clientes.getApellidoPaterno() + " " + clientes.getApellidoMaterno());
             dto.setDni(clientes.getDni());
             dto.setCelular(clientes.getCelular());
             dto.setDireccion(clientes.getDireccion());
             lstDto.add(dto);
         }
         return lstDto;
-        
+
     }
 
     public boolean login(String user, String pass) {

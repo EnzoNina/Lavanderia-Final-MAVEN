@@ -79,12 +79,12 @@
                         <c:forEach items="${lst}" var="empleado">
                             <tr>
                                 <td id="codigo"><c:out value="${empleado.cod}"></c:out></td>
+                                <td id="dni"><c:out value="${empleado.dni}"></c:out></td>
                                 <td id="nombre"><c:out value="${empleado.nombre}"></c:out></td>
                                 <td id="apePaterno"><c:out
                                         value="${empleado.apellidos}"></c:out></td>
-                                <td id="dni"><c:out value="${empleado.dni}"></c:out></td>
                                 <td id="celular"><c:out value="${empleado.celular}"></c:out></td>                                
-                            </tr>
+                                </tr>
 
                         </c:forEach>
                     </tbody>
@@ -102,6 +102,13 @@
                                 <form action="<%=request.getContextPath()%>/ServletEmpleados"
                                       method="get">
                                     <input type="hidden" name="instruccion" value="new" />
+                                    <input type="hidden" name="tipo" value="personal"/>
+                                    
+                                    <select class="form-select" name="empleado"
+                                            aria-label="Tipo Empleado">
+                                        <option value="empleado">empleado</option>
+                                        <option value="administrador">administrador</option>
+                                    </select> 
                                     <div class="mb-3 row" style="display: none;">
                                         <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
                                         <div class="col-sm-10">

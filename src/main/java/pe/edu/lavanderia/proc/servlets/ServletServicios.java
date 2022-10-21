@@ -1,5 +1,6 @@
 package pe.edu.lavanderia.proc.servlets;
 
+import entidades.Servicio;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;
@@ -55,14 +56,20 @@ public class ServletServicios extends HttpServlet {
             throws ServletException, IOException {
 
         String tipo = request.getParameter("tipo");
-        if (tipo.equalsIgnoreCase("empleado")) {            
+
+        if (tipo == null) {
+            tipo = "administracion";
+        }
+
+        if (tipo.equalsIgnoreCase("personal")) {
             List<DtoServicios> lst = bo.getServiciosDTO();
             List<Integer> listCodCategorias = bOGestionCategorias.getCodCategorias();
-            
-            request.setAttribute("categoriasCod", listCodCategorias);
+
             request.setAttribute("lst", lst);
+            request.setAttribute("categoriasCod", listCodCategorias);
             request.getRequestDispatcher("pages/PersonalLavanderia/servicios.jsp").forward(request, response);
-        } else {            
+
+        } else if (tipo.equalsIgnoreCase("administracion")) {
             List<Servicios> lst = bo.getServicios();
             List<Integer> listCodCategorias = bOGestionCategorias.getCodCategorias();
             request.setAttribute("list", lst);
@@ -75,16 +82,26 @@ public class ServletServicios extends HttpServlet {
     // Metodos
     private void newServicio(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        String tipo = request.getParameter("tipo");
         String nombre = request.getParameter("nom");
         String descripcion = request.getParameter("desc");
         int cod_categoria = Integer.parseInt(request.getParameter("cate"));
         double precio = Double.parseDouble(request.getParameter("prec"));
 
-        Servicios ob = new Servicios(nombre, descripcion, cod_categoria, precio);
-        bo.addServicio(ob);
-        response.sendRedirect("ServletServicios");
+        //Servicios ob = new Servicios(nombre, descripcion, cod_categoria, precio);
+        //bo.addServicio(ob);
+        Servicio ob = new Servicio();
+        ob.setNomServicio(nombre);
+        ob.setDescServicio(descripcion);
+        ob.setCodCategoria(cod_categoria);
+        ob.setPrecio(precio);
+        bo.addServicioJPA(ob);
 
+        if (tipo.equalsIgnoreCase("personal")) {
+            response.sendRedirect("ServletServicios?tipo=personal");
+        } else {
+            response.sendRedirect("ServletServicios");
+        }
     }
 
     private void editServicio(HttpServletRequest request, HttpServletResponse response)

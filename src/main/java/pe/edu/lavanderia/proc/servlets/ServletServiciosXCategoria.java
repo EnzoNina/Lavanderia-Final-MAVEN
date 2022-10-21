@@ -28,7 +28,7 @@ public class ServletServiciosXCategoria extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int cod_categoria = Integer.parseInt(request.getParameter("cod_categoria"));
-        DtoCategorias dto = bo.getServiciosXCategoria(cod_categoria);
+        DtoCategorias dto = bo.getServiciosXCategoria(cod_categoria);                        
         request.getSession().setAttribute("lstServicios", dto);
         request.getRequestDispatcher("ConsultaJSP/serviciosXCategoria.jsp").forward(request, response);
     }

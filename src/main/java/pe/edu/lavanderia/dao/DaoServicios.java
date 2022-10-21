@@ -16,7 +16,7 @@ public class DaoServicios extends DaoGenerico {
         List<Servicios> serviceList = new ArrayList<Servicios>();// Creamos lista
         Connection conexion = getConexion();// Obtenemos conexion
         String sentencia = "SELECT cod_servicio, nom_servicio, desc_servicio, cod_categoria, precio FROM public.servicios";
-        
+
         PreparedStatement ps;
         try {
             ps = conexion.prepareStatement(sentencia);
@@ -28,13 +28,13 @@ public class DaoServicios extends DaoGenerico {
                         rs.getDouble(5));
                 serviceList.add(obServicio);
             }
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return serviceList;
     }
-    
+
     public void addServicios(Servicios servicio) {
         Connection cnx = getConexion();
         String sentencia = "INSERT INTO public.servicios (nom_servicio, desc_servicio, cod_categoria, precio) VALUES (?, ?, ?, ?);";
@@ -103,7 +103,7 @@ public class DaoServicios extends DaoGenerico {
         List<Servicios> serviceList = new ArrayList<Servicios>();// Creamos lista
         Connection conexion = getConexion();// Obtenemos conexion
         String sentencia = "SELECT cod_servicio, nom_servicio, desc_servicio, precio FROM public.servicios WHERE cod_categoria = ? ";
-        
+
         try {
             PreparedStatement stm = conexion.prepareStatement(sentencia);
             stm.setInt(1, cod_categoria);
@@ -116,12 +116,20 @@ public class DaoServicios extends DaoGenerico {
                 s.setNombre(rs.getString(2));
                 s.setDescripcion(rs.getString(3));
                 s.setPrecio(rs.getDouble(4));
+                serviceList.add(s);
             }
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                conexion.close();
+            } catch (Exception e2) {
+                throw new RuntimeException(e2);
+            }
         }
+
         return serviceList;
     }
-    
+
 }

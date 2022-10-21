@@ -7,7 +7,7 @@
 <html class="wide wow-animation" lang="en">
 
     <head>
-        <title>Categorias - Lavanderia</title>
+        <title>Categorias - Lavanderia - Personal</title>
         <meta charset="utf-8" />
         <meta name="viewport"
               content="width=device-width, height=device-height, initial-scale=1.0" />
@@ -62,28 +62,21 @@
                         <tr>
                             <th scope="col">Codigo</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Descripcion</th>
-                            <th scope="col">Estado</th>                            
+                            <th scope="col">Descripcion</th>                            
                         </tr>
                     </thead>
                     <tbody>
 
-                        <c:forEach items="${list}" var="categoria">
+                        <c:forEach items="${lst}" var="categoria">
                             <tr>
-                                <td>
-                                    <a></a>                                                                        
-                                </td>
                                 <td id="cod" > <c:out value="${categoria.cod_categoria}" ></c:out> </td>
                                     <td id="nombre">
                                         <a href="ServletServiciosXCategoria?cod_categoria=${categoria.cod_categoria}">
                                         <c:out value="${categoria.nombre}" ></c:out> 
                                         </a>
                                     </td>
-
-                                    <td id="desc" > <c:out value="${categoria.descripcion}" ></c:out> </td>
-                                <td id="estado" > <c:out value="${categoria.estado}" ></c:out> </td>
+                                    <td id="desc" > <c:out value="${categoria.descripcion}" ></c:out> </td>                                
                                 </tr>
-
                         </c:forEach>                                                
                     </tbody>
                 </table>
@@ -99,6 +92,7 @@
                             <div class="modal-body">
                                 <form method="get" action="<%=request.getContextPath()%>/ServletCategorias" >
                                     <input type="hidden" name="instruccion" value="new"/>
+                                    <input type="hidden" name="tipo" value="personal"/>
                                     <div class="mb-3 row">
                                         <label for="text" class="col-sm-2 col-form-label">Categoria</label>
                                         <div class="col-sm-10">
@@ -135,9 +129,9 @@
                 </div>
             </div>
         </div>                
-<div class="snackbars" id="form-output-global"></div>
-<script src="http://localhost:8080/lavanderia/js/core.min.js"></script>
-<script src="http://localhost:8080/lavanderia/js/gestionCategorias.js"></script>
-<%-- <script src="http://localhost:8080/lavanderia/js/script.js"></script>	 --%>
-</body>
+        <div class="snackbars" id="form-output-global"></div>
+        <script src="http://localhost:8080/lavanderia/js/core.min.js"></script>
+        <script src="http://localhost:8080/lavanderia/js/gestionCategorias.js"></script>
+        <%-- <script src="http://localhost:8080/lavanderia/js/script.js"></script>	 --%>
+    </body>
 </html>
