@@ -10,6 +10,7 @@ public class Empleados {
     private String celular;
     private String usuario;
     private String contraseña;
+    private String tipo;
 
     // Constructores
     public Empleados() {
@@ -24,11 +25,19 @@ public class Empleados {
         this.usuario = usuario;
         this.contraseña = contraseña;
     }
-    
-    
-    
 
-    public Empleados(int cod, String dni, String nombre, String ape_paterno, String ape_materno, String celular, String usuario, String contraseña) {
+    public Empleados(String dni, String nombre, String ape_paterno, String ape_materno, String celular, String usuario, String contraseña, String tipo) {
+        this.dni = dni;
+        this.nombre = nombre;
+        this.ape_paterno = ape_paterno;
+        this.ape_materno = ape_materno;
+        this.celular = celular;
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+        this.tipo = tipo;
+    }
+
+    public Empleados(int cod, String dni, String nombre, String ape_paterno, String ape_materno, String celular, String usuario, String contraseña, String tipo) {
         this.cod = cod;
         this.dni = dni;
         this.nombre = nombre;
@@ -37,6 +46,7 @@ public class Empleados {
         this.celular = celular;
         this.usuario = usuario;
         this.contraseña = contraseña;
+        this.tipo = tipo;
     }
 
     public int getCod() {
@@ -101,6 +111,14 @@ public class Empleados {
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
 }

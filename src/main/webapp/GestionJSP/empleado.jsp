@@ -76,6 +76,7 @@
                             <th scope="col">Celular</th>
                             <th scope="col">Usuario</th>
                             <th scope="col">Contraseña</th>                            
+                            <th scope="col">Tipo</th>
                             <th scope="col">Accion</th>
                         </tr>
                     </thead>
@@ -91,7 +92,8 @@
                                 <td id="dni"><c:out value="${empleado.dni}"></c:out></td>
                                 <td id="celular"><c:out value="${empleado.celular}"></c:out></td>
                                 <td id="usuario"><c:out value="${empleado.usuario}"></c:out></td>
-                                <td id="contraseña"><c:out value="${empleado.contraseña}"></c:out></td>                                
+                                <td id="contraseña"><c:out value="${empleado.contraseña}"></c:out></td>
+                                <td id="tipo"><c:out value="${empleado.tipo}"></c:out></td>
                                     <td>
                                         <button class="btn btn-primary" data-target="#editEmpleado"
                                                 data-codi="${empleado.cod}" data-nombres="${empleado.nombre}"
@@ -124,6 +126,13 @@
                                 <form action="<%=request.getContextPath()%>/ServletEmpleados"
                                       method="get">
                                     <input type="hidden" name="instruccion" value="new" />
+
+                                    <select class="form-select" name="empleado"
+                                            aria-label="Tipo Empleado">
+                                        <option value="empleado">empleado</option>
+                                        <option value="administrador">administrador</option>
+                                    </select> 
+
                                     <div class="mb-3 row" style="display: none;">
                                         <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
                                         <div class="col-sm-10">
@@ -206,6 +215,13 @@
                                 <form action="<%=request.getContextPath()%>/ServletEmpleados"
                                       method="get">
                                     <input type="hidden" name="instruccion" value="edit" />
+
+                                    <select class="form-select" name="empleado"
+                                            aria-label="Tipo Empleado">
+                                        <option value="empleado">empleado</option>
+                                        <option value="administrador">administrador</option>
+                                    </select> 
+
                                     <div class="mb-3 row" style="display: none;">
                                         <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
                                         <div class="col-sm-10">

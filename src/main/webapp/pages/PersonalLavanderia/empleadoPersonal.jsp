@@ -106,8 +106,7 @@
                                     
                                     <select class="form-select" name="empleado"
                                             aria-label="Tipo Empleado">
-                                        <option value="empleado">empleado</option>
-                                        <option value="administrador">administrador</option>
+                                        <option value="empleado">empleado</option>                                        
                                     </select> 
                                     <div class="mb-3 row" style="display: none;">
                                         <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>

@@ -88,8 +88,13 @@ public class ServletServicios extends HttpServlet {
         int cod_categoria = Integer.parseInt(request.getParameter("cate"));
         double precio = Double.parseDouble(request.getParameter("prec"));
 
-        //Servicios ob = new Servicios(nombre, descripcion, cod_categoria, precio);
-        //bo.addServicio(ob);
+        Servicios ob = new Servicios(nombre, descripcion, cod_categoria, precio);
+        bo.addServicio(ob);
+        
+        if (tipo == null) {
+            tipo = "administracion";
+        }
+        
         /*Servicio ob = new Servicio();
         ob.setNomServicio(nombre);
         ob.setDescServicio(descripcion);

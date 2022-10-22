@@ -84,12 +84,13 @@ public class ServletCategorias extends HttpServlet {
             estado = false;
         }
 
-        //Categorias ob = new Categorias(nombre, descripcion, estado);
-        /*Categoria obJPA = new Categoria();
-        obJPA.setNomCategoria(nombre);
-        obJPA.setDescCategoria(descripcion);
-        obJPA.setEstado(estado);
-        bo.addCategoriaJPA(obJPA);*/
+        Categorias ob = new Categorias(nombre, descripcion, estado);
+
+        bo.addCategoria(ob);
+
+        if (tipo == null) {
+            tipo = "administracion";
+        }
 
         if (tipo.equalsIgnoreCase("personal")) {
             response.sendRedirect("ServletCategorias?tipo=personal");

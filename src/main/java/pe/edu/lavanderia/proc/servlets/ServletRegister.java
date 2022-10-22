@@ -37,7 +37,6 @@ public class ServletRegister extends HttpServlet {
         String celular = request.getParameter("celular");
         String usuario = request.getParameter("usuario");
         String contraseña = request.getParameter("contra");
-        System.out.println("TIPO ES: " + tipo);
         // Creamos objeto cliente
         Clientes ob = new Clientes(nombre, apePaterno, apeMaterno, DNI, celular, direccion, usuario, contraseña, correo);
         bo.addClientes(ob);
@@ -47,11 +46,9 @@ public class ServletRegister extends HttpServlet {
         }
 
         if (tipo.equalsIgnoreCase("personal")) {
-            System.out.println("azaaaaaaaaa");
             response.sendRedirect("ServletListaClientes?tipo=personal");
         } else {
-            // Regresamos a la lista de clientes
-            System.out.println("Si entra");
+            // Regresamos a la lista de clientes            
             response.sendRedirect("ServletListaClientes");
         }
 
