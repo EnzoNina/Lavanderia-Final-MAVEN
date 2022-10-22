@@ -1,5 +1,6 @@
 package pe.edu.lavanderia.proc.servlets;
 
+//import entidades.Empleado;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import pe.edu.lavanderia.dto.DtoEmpleados;
 import pe.edu.lavanderia.entidades.jdbc.Empleados;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionEmpleados;
-import entidades.Empleado;
+
 
 @WebServlet(name = "ServletEmpleados", urlPatterns = {"/ServletEmpleados"})
 public class ServletEmpleados extends HttpServlet {
@@ -82,7 +83,7 @@ public class ServletEmpleados extends HttpServlet {
         String empleadoTipo = request.getParameter("empleado");
         //Empleados o = new Empleados(dni, nombre, ape_paterno, ape_materno, celular, usuario, contraseña);
         //bo.addEmpleado(o);
-        Empleado ob = new Empleado();
+        /*Empleado ob = new Empleado();
         ob.setNombre(nombre);
         ob.setDni(dni);
         ob.setApePaterno(ape_paterno);
@@ -92,7 +93,7 @@ public class ServletEmpleados extends HttpServlet {
         ob.setTipo(empleadoTipo);
         ob.setContraseña(contraseña);
         
-        bo.addEmpleadoJPA(ob);
+        bo.addEmpleadoJPA(ob);*/
         
         if (tipo.equalsIgnoreCase("personal")) {
             response.sendRedirect("ServletEmpleados?tipo=personal");

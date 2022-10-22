@@ -1,6 +1,6 @@
 package pe.edu.lavanderia.proc.servlets;
 
-import entidades.Servicio;
+//import entidades.Servicio;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;
@@ -90,13 +90,12 @@ public class ServletServicios extends HttpServlet {
 
         //Servicios ob = new Servicios(nombre, descripcion, cod_categoria, precio);
         //bo.addServicio(ob);
-        Servicio ob = new Servicio();
+        /*Servicio ob = new Servicio();
         ob.setNomServicio(nombre);
         ob.setDescServicio(descripcion);
         ob.setCodCategoria(cod_categoria);
         ob.setPrecio(precio);
-        bo.addServicioJPA(ob);
-
+        bo.addServicioJPA(ob);*/
         if (tipo.equalsIgnoreCase("personal")) {
             response.sendRedirect("ServletServicios?tipo=personal");
         } else {

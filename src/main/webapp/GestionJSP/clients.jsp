@@ -74,6 +74,7 @@
                             <th scope="col">Nombres</th>
                             <th scope="col">Apellido Paterno</th>
                             <th scope="col">Apellido Materno</th>
+                            <th scope="col">Correo Electronico</th>
                             <th scope="col">DNI</th>
                             <th scope="col">Celular</th>
                             <th scope="col">Usuario</th>
@@ -91,6 +92,7 @@
                                         value="${cliente.apellidoPaterno}"></c:out></td>
                                 <td id="apeMaterno"><c:out
                                         value="${cliente.apellidoMaterno}"></c:out></td>
+                                <td id="correo"><c:out value="${cliente.correo}"></c:out></td>
                                 <td id="dni"><c:out value="${cliente.dni}"></c:out></td>
                                 <td id="celular"><c:out value="${cliente.celular}"></c:out></td>
                                 <td id="usuario"><c:out value="${cliente.usuario}"></c:out></td>
@@ -101,6 +103,7 @@
                                                 data-cod="${cliente.cod}" data-nombres="${cliente.nombres}"
                                         data-pa="${cliente.apellidoPaterno}"
                                         data-ma="${cliente.apellidoMaterno}" data-dni="${cliente.dni}"
+                                        data-correo="${cliente.correo}"
                                         data-celular="${cliente.celular}"
                                         data-usuario="${cliente.usuario}"
                                         data-contra="${cliente.contraseña}"
@@ -152,6 +155,13 @@
                                             Materno</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" name="ma" value="" required/>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="staticEmail" class="col-sm-2 col-form-label">Correo Electronico</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="correo"
+                                                   value="" required/>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">

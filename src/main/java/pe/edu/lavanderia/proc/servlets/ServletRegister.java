@@ -32,12 +32,14 @@ public class ServletRegister extends HttpServlet {
         String apePaterno = request.getParameter("apePaterno");
         String apeMaterno = request.getParameter("apeMaterno");
         String DNI = request.getParameter("DNI");
+        String correo = request.getParameter("correo");
         String direccion = request.getParameter("direccion");
         String celular = request.getParameter("celular");
         String usuario = request.getParameter("usuario");
         String contraseña = request.getParameter("contra");
+        System.out.println("Correo : " + correo);
         // Creamos objeto cliente
-        Clientes ob = new Clientes(nombre, apePaterno, apeMaterno, DNI, celular, direccion, usuario, contraseña);
+        Clientes ob = new Clientes(nombre, apePaterno, apeMaterno, DNI, celular, direccion, usuario, contraseña, correo);
         bo.addClientes(ob);
         if (tipo.equalsIgnoreCase("personal")) {
 

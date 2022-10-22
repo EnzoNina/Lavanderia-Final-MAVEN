@@ -16,7 +16,7 @@ public class DaoClientes extends DaoGenerico {
         List<Clientes> clientList = new ArrayList<Clientes>();// Creamos arrayList
         Connection conexion = getConexion();// Obtenemos conexion a la base de datos
         // Preparamos sentencia
-        String sentencia = "SELECT cod_cliente, nombres, ape_paterno, ape_materno, dni, celular, direccion, usuario,contraseña FROM public.clientes";
+        String sentencia = "SELECT cod_cliente, nombres, ape_paterno, ape_materno, dni, celular, direccion, usuario,contraseña,correo FROM public.clientes";
 
         PreparedStatement ps;
         try {
@@ -26,7 +26,7 @@ public class DaoClientes extends DaoGenerico {
             while (rs.next()) {
                 // Creamos cliente
                 Clientes obCliente = new Clientes(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
+                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
                 clientList.add(obCliente);
 
             }
@@ -70,7 +70,7 @@ public class DaoClientes extends DaoGenerico {
     // Método para agregar Clientes
     public void addClientes(Clientes cliente) {
         Connection cnx = getConexion();
-        String sentencia = "INSERT INTO public.clientes (nombres, ape_paterno, ape_materno, dni, celular, direccion, usuario, contraseña) VALUES(?,?,?,?,?,?,?,?)";
+        String sentencia = "INSERT INTO public.clientes (nombres, ape_paterno, ape_materno, dni, celular, direccion, usuario, contraseña,correo) VALUES(?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement stm = cnx.prepareStatement(sentencia);
             stm.setString(1, cliente.getNombres());
@@ -81,6 +81,7 @@ public class DaoClientes extends DaoGenerico {
             stm.setString(6, cliente.getDireccion());
             stm.setString(7, cliente.getUsuario());
             stm.setString(8, cliente.getContraseña());
+            stm.setString(9, cliente.getCorreo());
             stm.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -96,7 +97,7 @@ public class DaoClientes extends DaoGenerico {
     // Método para editar Clientes
     public void editClientes(Clientes cliente) {
         Connection cnx = getConexion();
-        String sentencia = "UPDATE public.clientes SET nombres = ?, ape_paterno = ?, ape_materno = ?, celular = ?, direccion = ?, usuario = ?, contraseña = ?, dni=? WHERE cod_cliente= ?";
+        String sentencia = "UPDATE public.clientes SET nombres = ?, ape_paterno = ?, ape_materno = ?, celular = ?, direccion = ?, usuario = ?, contraseña = ?, dni=?,correo=? WHERE cod_cliente= ?";
         try {
             PreparedStatement stm = cnx.prepareStatement(sentencia);
             stm.setString(1, cliente.getNombres());
@@ -107,7 +108,8 @@ public class DaoClientes extends DaoGenerico {
             stm.setString(6, cliente.getUsuario());
             stm.setString(7, cliente.getContraseña());
             stm.setString(8, cliente.getDni());
-            stm.setInt(9, cliente.getCod());
+            stm.setString(9, cliente.getCorreo());
+            stm.setInt(10, cliente.getCod());
             stm.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);

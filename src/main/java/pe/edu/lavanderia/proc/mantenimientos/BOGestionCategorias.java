@@ -1,6 +1,6 @@
 package pe.edu.lavanderia.proc.mantenimientos;
 
-import entidades.Categoria;
+//import entidades.Categoria;
 import java.util.ArrayList;
 import java.util.List;
 import pe.edu.lavanderia.dao.DaoCategorias;
@@ -16,8 +16,8 @@ import pe.edu.lavanderia.dto.DtoCategorias;
 @LocalBean
 public class BOGestionCategorias {
 
-    @PersistenceContext(unitName = "Lavanderia-JPA")
-    private EntityManager em;
+    /*@PersistenceContext(unitName = "Lavanderia-JPA")
+    private EntityManager em;*/
 
     public BOGestionCategorias() {
     }
@@ -32,9 +32,9 @@ public class BOGestionCategorias {
         return dao.getCodCategorias();
     }
 
-    public void addCategoriaJPA(Categoria ob) {
+    /*public void addCategoriaJPA(Categoria ob) {
         em.persist(ob);
-    }
+    }*/
 
     public void addCategoria(Categorias ob) {
         DaoCategorias dao = new DaoCategorias();

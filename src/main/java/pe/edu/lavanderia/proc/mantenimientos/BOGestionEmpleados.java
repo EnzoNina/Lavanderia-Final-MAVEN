@@ -1,6 +1,6 @@
 package pe.edu.lavanderia.proc.mantenimientos;
 
-import entidades.Empleado;
+//import entidades.Empleado;
 import java.util.ArrayList;
 import java.util.List;
 import pe.edu.lavanderia.dao.DaoEmpleados;
@@ -16,8 +16,8 @@ import pe.edu.lavanderia.dto.DtoEmpleados;
 @LocalBean
 public class BOGestionEmpleados {
 
-    @PersistenceContext(unitName = "Lavanderia-JPA")
-    private EntityManager em;
+    /*@PersistenceContext(unitName = "Lavanderia-JPA")
+    private EntityManager em;*/
 
     public BOGestionEmpleados() {
     }
@@ -27,9 +27,9 @@ public class BOGestionEmpleados {
         return dao.getEmpleados();
     }
 
-    public void addEmpleadoJPA(Empleado empleado) {
+    /*public void addEmpleadoJPA(Empleado empleado) {
         em.persist(empleado);
-    }
+    }*/
 
     public void addEmpleado(Empleados empleado) {
         DaoEmpleados dao = new DaoEmpleados();

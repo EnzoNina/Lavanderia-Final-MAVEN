@@ -1,6 +1,6 @@
 package pe.edu.lavanderia.proc.mantenimientos;
 
-import entidades.Servicio;
+//import entidades.Servicio;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,48 +19,46 @@ import pe.edu.lavanderia.entidades.jdbc.Categorias;
 @Stateless
 @LocalBean
 public class BOGestionServicios {
-    
-    @PersistenceContext(unitName = "Lavanderia-JPA")
-    private EntityManager em;
-    
+
+    /*@PersistenceContext(unitName = "Lavanderia-JPA")
+    private EntityManager em;*/
     public BOGestionServicios() {
     }
-    
+
     public List<Servicios> getServicios() {
         DaoServicios daoServicio = new DaoServicios();
         return daoServicio.getServicios();
     }
-    
-    public void addServicioJPA(Servicio ob) {
+
+    /*    public void addServicioJPA(Servicio ob) {
         em.persist(ob);
-    }
-    
+    }*/
     public void addServicio(Servicios ob) {
         DaoServicios dao = new DaoServicios();
         dao.addServicios(ob);
     }
-    
+
     public void editServicio(Servicios ob) {
         DaoServicios dao = new DaoServicios();
         dao.editServicios(ob);
     }
-    
+
     public void removeServicio(int cod) {
         DaoServicios dao = new DaoServicios();
         dao.removeServicios(cod);
     }
-    
+
     public List<DtoServicios> getServiciosDTO() {
         List<DtoServicios> lstDto = new ArrayList<DtoServicios>();
-        
+
         DaoServicios dao = new DaoServicios();
-        
+
         List<Servicios> lst = dao.getServicios();
-        
+
         for (Servicios servicios : lst) {
-            
+
             DtoServicios dto = new DtoServicios();
-            
+
             dto.setCod(servicios.getCod());
             dto.setNombre(servicios.getNombre());
             dto.setDescripcion(servicios.getDescripcion());
@@ -69,7 +67,7 @@ public class BOGestionServicios {
         }
         return lstDto;
     }
-    
+
     public DtoCategorias getServiciosXCategoria(int cod_categoria) {
         //Creamos DTO
         DtoCategorias dtoCategorias = new DtoCategorias();
@@ -79,7 +77,7 @@ public class BOGestionServicios {
         DaoServicios dao = new DaoServicios();
         //Obtenemos la lista de servicios
         List<Servicios> lst = dao.getServiciosXCategoria(cod_categoria);
-        
+
         for (Servicios servicio : lst) {
             DtoServicios dto = new DtoServicios();
             dto.setCod(servicio.getCod());
@@ -100,5 +98,5 @@ public class BOGestionServicios {
         dtoCategorias.setDescripcion(cat.getDescripcion());
         return dtoCategorias;
     }
-    
+
 }

@@ -75,6 +75,12 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Correo Electronico</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="correo" required/>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
                         <label for="inputPassword" class="col-sm-2 col-form-label">DNI</label>
                         <div class="col-sm-10">
                             <input type="number" class="form-control" name="DNI" maxlength=8
