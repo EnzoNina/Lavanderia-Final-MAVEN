@@ -15,7 +15,7 @@
           style="background-image: url('http://localhost:8080/lavanderia/images/fondo2.jpg');">
         <%@ include file="../Common/body.html" %>
 
-        <div class="page">
+        <div class="page">            
             <div class=" container col-auto bg-danger p-5 text-center" style="background: white; color: black;" >
                 <div class="row row-cols-1 row-cols-md-2 g-4">                    
                     <!-- Tabla Tipo Prenda -->
@@ -189,7 +189,7 @@
                             <input type="hidden" name="instruccion" value="edit"/>
                             <input type="hidden" name="tipo" value="prenda"/>
 
-                            <div class="mb-3 row" >
+                            <div class="mb-3 row" style="display: none">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="cod" />
@@ -250,7 +250,7 @@
                             <input type="hidden" name="instruccion" value="delete"/>
                             <input type="hidden" name="tipo" value="prenda"/>
 
-                            <div class="mb-3 row" >
+                            <div class="mb-3 row" style="display: none">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="cod" />
@@ -313,7 +313,7 @@
                             <input type="hidden" name="instruccion" value="edit"/>
                             <input type="hidden" name="tipo" value="tipoPrenda"/>                            
 
-                            <div class="mb-3 row" >
+                            <div class="mb-3 row" style="display: none" >
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="cod" />
@@ -352,7 +352,7 @@
                             <input type="hidden" name="instruccion" value="delete"/>
                             <input type="hidden" name="tipo" value="tipoPrenda"/>                            
 
-                            <div class="mb-3 row" >
+                            <div class="mb-3 row" style="display: none" >
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="cod" />
@@ -416,7 +416,7 @@
                             <input type="hidden" name="instruccion" value="edit"/>
                             <input type="hidden" name="tipo" value="tipoTela"/>                            
 
-                            <div class="mb-3 row" >
+                            <div class="mb-3 row" style="display: none">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="cod" />
@@ -455,7 +455,7 @@
                             <input type="hidden" name="instruccion" value="delete"/>
                             <input type="hidden" name="tipo" value="tipoTela"/>                            
 
-                            <div class="mb-3 row" >
+                            <div class="mb-3 row" style="display: none">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="cod" />

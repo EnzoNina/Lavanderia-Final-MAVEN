@@ -11,6 +11,7 @@
     <body style="background-image: url('http://localhost:8080/lavanderia/images/fondo2.jpg');">
         <%@ include file="../../Common/body.html" %>
         <div class="page">                        
+            
             <div class=" container col-auto bg-danger p-5 text-center">
                 <form class="formulario"  method="get" action="<%=request.getContextPath()%>/ServletPedidos" name="formulario" style="width:100%; ">
                     <div class="row row-cols-1 row-cols-md-2 g-4">               

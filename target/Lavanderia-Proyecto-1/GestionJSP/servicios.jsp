@@ -13,6 +13,7 @@
           style="background-image: url('http://localhost:8080/lavanderia/images/fondo2.jpg');">
         <%@ include file="../Common/body.html" %>
         <div class="page">
+            <a class="btn btn-primary" href="http://localhost:8080/lavanderia/pages/Lavanderia/menu.jsp">Volver al Menu</a>
             <div style="background: white; color: black;">
                 <button type="button" class="btn btn-primary" style="margin: 15px;" data-target="#exampleModal"
                         data-toggle="modal">Agregar

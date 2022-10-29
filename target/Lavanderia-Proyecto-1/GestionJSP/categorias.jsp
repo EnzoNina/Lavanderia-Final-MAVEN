@@ -14,7 +14,8 @@
     <body class="m-0 vh-100 row justify-content-center align-items-center"
           style="background-image: url('http://localhost:8080/lavanderia/images/fondo2.jpg');">
         <%@ include file="../Common/body.html" %>
-        <div class="">
+        <div class="page">
+            <a class="btn btn-primary" href="http://localhost:8080/lavanderia/pages/Lavanderia/menu.jsp">Volver al Menu</a>
             <div style="background: white; color: black;">
                 <button type="button" class="btn btn-primary" style="margin: 15px;" data-target="#agregar"
                         data-toggle="modal">Agregar categoria</button>                
@@ -182,6 +183,6 @@
         <div class="snackbars" id="form-output-global"></div>
         <script src="http://localhost:8080/lavanderia/js/core.min.js"></script>
         <script src="http://localhost:8080/lavanderia/js/gestionCategorias.js"></script>
-        <%-- <script src="http://localhost:8080/lavanderia/js/script.js"></script>	 --%>
+        <script src="http://localhost:8080/lavanderia/js/script.js"></script>
     </body>
 </html>

@@ -143,23 +143,19 @@ public class ServletPedidos extends HttpServlet {
 
     private void newPedido(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            //Obtenemos el codigo del empleado
-            int cod_empleado = Integer.parseInt((String) request.getSession().getAttribute("codemple"));
-            String tipo = request.getParameter("tipo");
-            int cod_cliente = Integer.parseInt(request.getParameter("cod"));
-            String observacion = request.getParameter("observacion");
-            String fecha_entrega = request.getParameter("fecha_entrega");
+        //Obtenemos el codigo del empleado
+        int cod_empleado = Integer.parseInt((String) request.getSession().getAttribute("codemple"));
+        String tipo = request.getParameter("tipo");
+        int cod_cliente = Integer.parseInt(request.getParameter("cod"));
+        String observacion = request.getParameter("observacion");
+        String fecha_entrega = request.getParameter("fecha_entrega");
 
-            Date fecha_entregaSQL = Date.valueOf(fecha_entrega);
-            Pedidos ob = new Pedidos(cod_cliente, cod_empleado, fecha_entregaSQL, observacion, tipo, total);
-            System.out.println(ob.toString());
-            bo.addPedido(ob);
-            bo.addDetallePedido(lstRopaServicio, lstRopaCant, lstSubTotal);
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        Date fecha_entregaSQL = Date.valueOf(fecha_entrega);
+        Pedidos ob = new Pedidos(cod_cliente, cod_empleado, fecha_entregaSQL, observacion, tipo, total);
+        System.out.println(ob.toString());
+        bo.addPedido(ob);
+        bo.addDetallePedido(lstRopaServicio, lstRopaCant, lstSubTotal);
+        response.sendRedirect("pages/Lavanderia/menu.jsp");        
     }
 
     private void editPedido(HttpServletRequest request, HttpServletResponse response)

@@ -12,6 +12,7 @@
           style="background-image: url('../../images/fondo2.jpg');">
         <%@ include file="../../Common/body.html" %>
         <div class="page">
+            <a class="btn btn-primary" href="http://localhost:8080/lavanderia/pages/login.jsp">Volver al Login</a>
             <div class="container" style="max-width: 800px; margin-top: 100px;">
                 <div class="row row-cols-1 row-cols-md-2 g-4">
                     <div class="col-lg-4 col-sm-6">

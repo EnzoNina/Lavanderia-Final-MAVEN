@@ -16,6 +16,7 @@
           style="background-image: url('http://localhost:8080/lavanderia/images/fondo2.jpg');">
         <%@ include file="../../Common/body.html" %>
         <div class="page">
+            <a class="btn btn-primary" href="http://localhost:8080/lavanderia/pages/PersonalLavanderia/menuPersonal.jsp">Volver al Menu</a>
             <div style="background: white; color: black;">
                 <a class="btn btn-primary"
                    href="http://localhost:8080/lavanderia/pages/registrar.jsp?tipo=personal">Agregar
