@@ -71,6 +71,7 @@ public class ServletEmpleados extends HttpServlet {
     // Metodos
     private void newEmpleado(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String tipo = request.getParameter("tipo");
         String nombre = request.getParameter("nombres");
         String dni = request.getParameter("dni");

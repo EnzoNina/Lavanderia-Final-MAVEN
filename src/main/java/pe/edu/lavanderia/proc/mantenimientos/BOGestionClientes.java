@@ -60,7 +60,7 @@ public class BOGestionClientes {
 
     }
 
-    public boolean login(String user, String pass) {
+    public String login(String user, String pass) {
         DaoClientes dao = new DaoClientes();
         return dao.login(user, pass);
     }

@@ -141,8 +141,7 @@ public class DaoClientes extends DaoGenerico {
         }
     }
 
-    public boolean login(String user, String pass) {
-        boolean login = false;
+    public String login(String user, String pass) {
         String dni = null;
         Connection co = getConexion();
         try {
@@ -165,12 +164,12 @@ public class DaoClientes extends DaoGenerico {
         }
 
         if (dni != null) {
-            login = true;
+            dni = dni;
         } else {
-            login = false;
+            dni = "";
         }
 
-        return login;
+        return dni;
     }
 
 }

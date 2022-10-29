@@ -1,62 +1,44 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package pe.edu.lavanderia.entidades.jdbc;
 
-import java.util.Date;
+import java.sql.Date;
 
-/**
- *
- * @author sammael
- */
 public class Pedidos {
 
-    private int cod;
+    private int cod_pedido;
     private int cod_cliente;
-    private String tipo;
-    private String direccion;
-    private Date fecha_estimada;
-    private String prendas;
-    private String cantidad;
-    private String observacion;
-    private double monto;
+    private int cod_empleado;
     private Date fecha_entrega;
+    private String observaciones;
+    private String tipo;
+    private double total;
 
-    public Pedidos() {
-    }
-
-    public Pedidos(int cod_cliente, String tipo, String direccion, Date fecha_estimada, String prendas, String cantidad, String observacion, double monto, Date fecha_entrega) {
+    //Constructor
+    public Pedidos(int cod_pedido, int cod_cliente, int cod_empleado, Date fecha_entrega, String observaciones, String tipo, double total) {
+        this.cod_pedido = cod_pedido;
         this.cod_cliente = cod_cliente;
-        this.tipo = tipo;
-        this.direccion = direccion;
-        this.fecha_estimada = fecha_estimada;
-        this.prendas = prendas;
-        this.cantidad = cantidad;
-        this.observacion = observacion;
-        this.monto = monto;
+        this.cod_empleado = cod_empleado;
         this.fecha_entrega = fecha_entrega;
+        this.observaciones = observaciones;
+        this.tipo = tipo;
+        this.total = total;
     }
 
-    public Pedidos(int cod, int cod_cliente, String tipo, String direccion, Date fecha_estimada, String prendas, String cantidad, String observacion, double monto, Date fecha_entrega) {
-        this.cod = cod;
+    public Pedidos(int cod_cliente, int cod_empleado, Date fecha_entrega, String observaciones, String tipo, double total) {
         this.cod_cliente = cod_cliente;
-        this.tipo = tipo;
-        this.direccion = direccion;
-        this.fecha_estimada = fecha_estimada;
-        this.prendas = prendas;
-        this.cantidad = cantidad;
-        this.observacion = observacion;
-        this.monto = monto;
+        this.cod_empleado = cod_empleado;
         this.fecha_entrega = fecha_entrega;
+        this.observaciones = observaciones;
+        this.tipo = tipo;
+        this.total = total;
     }
 
-    public int getCod() {
-        return cod;
+    //Getter & Setter
+    public int getCod_pedido() {
+        return cod_pedido;
     }
 
-    public void setCod(int cod) {
-        this.cod = cod;
+    public void setCod_pedido(int cod_pedido) {
+        this.cod_pedido = cod_pedido;
     }
 
     public int getCod_cliente() {
@@ -67,60 +49,12 @@ public class Pedidos {
         this.cod_cliente = cod_cliente;
     }
 
-    public String getTipo() {
-        return tipo;
+    public int getCod_empleado() {
+        return cod_empleado;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public Date getFecha_estimada() {
-        return fecha_estimada;
-    }
-
-    public void setFecha_estimada(Date fecha_estimada) {
-        this.fecha_estimada = fecha_estimada;
-    }
-
-    public String getPrendas() {
-        return prendas;
-    }
-
-    public void setPrendas(String prendas) {
-        this.prendas = prendas;
-    }
-
-    public String getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(String cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public String getObservacion() {
-        return observacion;
-    }
-
-    public void setObservacion(String observacion) {
-        this.observacion = observacion;
-    }
-
-    public double getMonto() {
-        return monto;
-    }
-
-    public void setMonto(double monto) {
-        this.monto = monto;
+    public void setCod_empleado(int cod_empleado) {
+        this.cod_empleado = cod_empleado;
     }
 
     public Date getFecha_entrega() {
@@ -131,4 +65,33 @@ public class Pedidos {
         this.fecha_entrega = fecha_entrega;
     }
 
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedidos{" + "cod_pedido=" + cod_pedido + ", cod_cliente=" + cod_cliente + ", cod_empleado=" + cod_empleado + ", fecha_entrega=" + fecha_entrega + ", observaciones=" + observaciones + ", tipo=" + tipo + ", total=" + total + '}';
+    }
+           
 }

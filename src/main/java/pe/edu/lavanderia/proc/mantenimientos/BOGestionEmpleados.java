@@ -8,16 +8,11 @@ import pe.edu.lavanderia.entidades.jdbc.Empleados;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import pe.edu.lavanderia.dto.DtoEmpleados;
 
 @Stateless
 @LocalBean
 public class BOGestionEmpleados {
-
-    /*@PersistenceContext(unitName = "Lavanderia-JPA")
-    private EntityManager em;*/
 
     public BOGestionEmpleados() {
     }
@@ -26,10 +21,6 @@ public class BOGestionEmpleados {
         DaoEmpleados dao = new DaoEmpleados();
         return dao.getEmpleados();
     }
-
-    /*public void addEmpleadoJPA(Empleado empleado) {
-        em.persist(empleado);
-    }*/
 
     public void addEmpleado(Empleados empleado) {
         DaoEmpleados dao = new DaoEmpleados();
@@ -46,7 +37,7 @@ public class BOGestionEmpleados {
         dao.removeEmpleado(cod);
     }
 
-    public String login(String user, String pass) {
+    public String[] login(String user, String pass) {
         DaoEmpleados dao = new DaoEmpleados();
         return dao.login(user, pass);
     }
@@ -55,6 +46,7 @@ public class BOGestionEmpleados {
         List<DtoEmpleados> lstDto = new ArrayList<DtoEmpleados>();
         DaoEmpleados dao = new DaoEmpleados();
         List<Empleados> lst = dao.getEmpleados();
+
         for (Empleados empleados : lst) {
             DtoEmpleados dto = new DtoEmpleados();
             dto.setCod(empleados.getCod());

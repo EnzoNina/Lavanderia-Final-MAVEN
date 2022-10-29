@@ -5,48 +5,11 @@
 <html class="wide wow-animation" lang="es">
     <head>
         <title>Programar Visita</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <link rel="icon" href="http://localhost:8080/lavanderia/images/favicon.ico" type="image/x-icon" />
-        <link rel="stylesheet" type="text/css"
-              href="//fonts.googleapis.com/css?family=Montserrat:300,400,700%7CPoppins:300,400,500,700,900" />
-        <link rel="stylesheet" href="http://localhost:8080/lavanderia/css/bootstrap.css" />
-        <link rel="stylesheet" href="http://localhost:8080/lavanderia/css/fonts.css" />
-        <link rel="stylesheet" href="http://localhost:8080/lavanderia/css/style.css" />
-        <style>
-            .ie-panel {
-                display: none;
-                background: #212121;
-                padding: 10px 0;
-                box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.3);
-                clear: both;
-                text-align: center;
-                position: relative;
-                z-index: 1;
-            }
-
-            html.ie-10 .ie-panel,
-            html.lt-ie-10 .ie-panel {
-                display: block;
-            }
-        </style>
+        <%@ include file="../../Common/estilos.html" %>
     </head>
 
     <body style="background-image: url('http://localhost:8080/lavanderia/images/fondo2.jpg');">
-        <div class="ie-panel">
-            <a href="http://windows.microsoft.com/en-US/internet-explorer/"><img
-                    src="../images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820"
-                    alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a>
-        </div>
-        <div class="preloader">
-            <div class="preloader-body">
-                <div class="cssload-container">
-                    <div class="cssload-speeding-wheel"></div>
-                </div>
-                <p>Cargando...</p>
-            </div>
-        </div>
+        <%@ include file="../../Common/body.html" %>
         <div class="page">                        
             <div class=" container col-auto bg-danger p-5 text-center">
                 <form class="formulario"  method="get" action="<%=request.getContextPath()%>/ServletPedidos" name="formulario" style="width:100%; ">
@@ -76,9 +39,15 @@
                             </div>                            
                             <h6>Datos del pedido</h6>
                             <div class="row g-3">
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="prendas"  placeholder="Prendas">
-                                </div>
+                                <div class="col-md-6">                                    
+                                    <label>Prenda:</label>
+                                    <select class="form-select" aria-label="Prenda" name="prenda" >
+                                        <option selected>Seleccione una prenda</option>
+                                        <c:forEach items="${lstPrendas}" var="prenda" >                                        
+                                            <option value="${prenda.cod}"> <c:out value="${prenda.cod}-${prenda.tipoPrenda}-${prenda.tipoTela}-${prenda.color}" ></c:out> </option>
+                                        </c:forEach>
+                                    </select>
+                                </div> 
                                 <div class="col-md-6">
                                     <input type="number" class="form-control" name="cantidad"  placeholder="Cantidad">
                                 </div>
@@ -104,14 +73,9 @@
                                     <input type="text" class="form-control" name="observacion"  placeholder="Observacion">
                                 </div>
                                 <div class="mb-3 row imput-group">
-                                    <span class="input-group-text">Fecha estimada de entrega</span>
-                                    <input type="date" name="fecha_estimada" value="2022-09-01T21:09">
-                                </div>
-
-                                <div class="mb-3 row imput-group">
-                                    <span class="input-group-text">Fecha de entrega</span>
-                                    <input type="date" name="fecha_entrega" value="2022-09-01T21:09">
-                                </div>
+                                    <span class="input-group-text">Fecha de Entrega</span>
+                                    <input type="date" name="fecha_entrega" required="" >
+                                </div>                                
                             </div>
                             <ul class="list-group">
                                 <li class="list-group-item active" aria-current="true">Ropa Agregada</li>

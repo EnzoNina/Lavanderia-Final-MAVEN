@@ -1,6 +1,5 @@
 package pe.edu.lavanderia.proc.mantenimientos;
 
-//import entidades.Servicio;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,16 +11,13 @@ import pe.edu.lavanderia.dao.DaoCategorias;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+
 import pe.edu.lavanderia.entidades.jdbc.Categorias;
 
 @Stateless
 @LocalBean
 public class BOGestionServicios {
 
-    /*@PersistenceContext(unitName = "Lavanderia-JPA")
-    private EntityManager em;*/
     public BOGestionServicios() {
     }
 
@@ -30,9 +26,6 @@ public class BOGestionServicios {
         return daoServicio.getServicios();
     }
 
-    /*    public void addServicioJPA(Servicio ob) {
-        em.persist(ob);
-    }*/
     public void addServicio(Servicios ob) {
         DaoServicios dao = new DaoServicios();
         dao.addServicios(ob);

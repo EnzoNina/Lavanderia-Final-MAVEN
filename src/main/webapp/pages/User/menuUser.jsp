@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
 
@@ -71,7 +72,7 @@
                 </div>                
                 <div class="col-lg-4 col-sm-6">
                     <div class="card">
-                        <a href="visitaDomiciliaria.html">
+                        <a href="<%=request.getContextPath()%>/ServletVisitaDomiciliaria">
                             <img src="../../images/nuevopedido-icon.png" class="card-img-top" alt="Nuevo Pedido">
                             <div class="card-body">
                                 <h5 class="card-title">Nuevo Pedido</h5>

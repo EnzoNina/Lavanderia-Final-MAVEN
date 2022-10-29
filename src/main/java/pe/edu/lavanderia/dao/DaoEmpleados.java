@@ -18,7 +18,7 @@ public class DaoEmpleados extends DaoGenerico {
         // Preparamos sentencia
 
         String sentencia = "SELECT cod_empleado, dni, nombre, ape_paterno, ape_materno, celular, usuario,contraseña,tipo FROM public.empleado";
-        
+
         PreparedStatement ps;
         try {
             ps = conexion.prepareStatement(sentencia);
@@ -29,9 +29,9 @@ public class DaoEmpleados extends DaoGenerico {
                 Empleados obEmpleado = new Empleados(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
                         rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
                 clientList.add(obEmpleado);
-                
+
             }
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -109,18 +109,21 @@ public class DaoEmpleados extends DaoGenerico {
             }
         }
     }
-    
-    public String login(String user, String pass) {
+
+    public String[] login(String user, String pass) {
         String tipo = null;
+        String cod_empleado = "";
         Connection co = getConexion();
+        String[] arr = new String[2];
         try {
-            String sql = "SELECT tipo FROM empleado WHERE usuario = ? AND contraseña = ?";
+            String sql = "SELECT cod_empleado,tipo FROM empleado WHERE usuario = ? AND contraseña = ?";
             PreparedStatement pst = co.prepareStatement(sql);
             pst.setString(1, user);
             pst.setString(2, pass);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                tipo = rs.getString(1);
+                cod_empleado = rs.getString(1);
+                tipo = rs.getString(2);
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -131,12 +134,15 @@ public class DaoEmpleados extends DaoGenerico {
                 throw new RuntimeException(e);
             }
         }
-        
+
         if (tipo == null) {
             tipo = "ninguno";
         }
-        
-        return tipo;
+
+        arr[0] = cod_empleado;
+        arr[1] = tipo;
+
+        return arr;
     }
-    
+
 }

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionClientes;
 
-@WebServlet(name = "loginUsuario", urlPatterns = { "/loginUsuario" })
+@WebServlet(name = "loginUsuario", urlPatterns = {"/loginUsuario"})
 public class loginUsuario extends HttpServlet {
 
     @Override
@@ -23,11 +23,14 @@ public class loginUsuario extends HttpServlet {
         String user = request.getParameter("user");
         String pass = request.getParameter("pass");
 
-        boolean login = bo.login(user, pass);
+        String dni = bo.login(user, pass);
 
-        if (login) {
-            response.sendRedirect("pages/User/menuUser.html");
+        if (!dni.isEmpty()) {
+            request.getSession().setAttribute("DNI", dni);
+            System.out.println("EL DNI SE ESTABLECIO EN " + dni);
+            response.sendRedirect("pages/User/menuUser.jsp");
         } else {
+            System.out.println("El dni es :" + dni);
             response.sendRedirect("pages/login.jsp");
         }
 

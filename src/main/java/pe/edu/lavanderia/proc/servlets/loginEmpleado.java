@@ -21,12 +21,14 @@ public class loginEmpleado extends HttpServlet {
         String user = request.getParameter("user");
         String pass = request.getParameter("pass");
 
-        String login = bo.login(user, pass);
-                
+        String[] datosEmpleado = bo.login(user, pass);
 
-        if (login.equalsIgnoreCase("administrador")) {
+        if (datosEmpleado[1].equalsIgnoreCase("administrador")) {
+            System.out.println("Cod empleado: "+datosEmpleado[0]);
+            request.getSession().setAttribute("codemple", datosEmpleado[0]);
             response.sendRedirect("pages/Lavanderia/menu.jsp");
-        } else if (login.equalsIgnoreCase("personal")) {
+        } else if (datosEmpleado[1].equalsIgnoreCase("personal")) {
+            request.getSession().setAttribute("cod_empleado", datosEmpleado[0]);
             response.sendRedirect("pages/PersonalLavanderia/menuPersonal.jsp");
         } else {
             response.sendRedirect("pages/login.jsp");
