@@ -10,10 +10,6 @@
         <title>Categorias - Lavanderia - Personal</title>
         <%@ include file="../../Common/estilos.html" %>
     </head>
-
-    <footer>
-    </footer>
-
     <body class="m-0 vh-100 row justify-content-center align-items-center"
           style="background-image: url('http://localhost:8080/lavanderia/images/fondo2.jpg');">
         <%@ include file="../../Common/body.html" %>

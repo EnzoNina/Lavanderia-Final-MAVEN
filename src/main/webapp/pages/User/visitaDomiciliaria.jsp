@@ -49,7 +49,7 @@
                             <div class="formulario">
                                 <h6>Datos de Recojo</h6>
                                 <div class="mb-3 row">
-                                    <input type="text" class="form-control" name="observacion"  placeholder="Observacion">
+                                    <input type="text" class="form-control" name="distrito"  placeholder="Distrito">
                                 </div>
                                 <div class="mb-3 row imput-group">
                                     <span class="input-group-text">Fecha de recojo</span>
@@ -64,8 +64,7 @@
                                         <option value="2">14:00 - 20:00</option>                                          
                                     </select>
                                 </div>
-                                <div class="col-md-6">
-                                <input type="number" class="form-control" name="distrito"  placeholder="Distrito">
+                                <div class="col-md-6">                                
                             </div>
                             </div>
                             <ul class="list-group">
