@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import pe.edu.lavanderia.entidades.jdbc.Categorias;
 
 public class DaoCategorias extends DaoGenerico {
+
     // Obtenemos categorias
     public List<Categorias> getCategorias() {
         List<Categorias> list = new ArrayList<Categorias>();
@@ -96,6 +97,50 @@ public class DaoCategorias extends DaoGenerico {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public List<Integer> getCodCategorias() {
+        List<Integer> list = new ArrayList<Integer>();
+        Connection conexion = getConexion();
+        String sentencia = "SELECT cod_categoria FROM public.categorias";
+        PreparedStatement ps;
+        try {
+            ps = conexion.prepareStatement(sentencia);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int cod = rs.getInt("cod_categoria");
+                list.add(cod);
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public Categorias getXCodigo(int cod_categoria) {
+        Categorias c = new Categorias();
+        Connection conexion = getConexion();// Obtenemos conexion
+        String sentencia = "SELECT nom_categoria,desc_categoria FROM public.categorias WHERE cod_categoria=?";
+
+        try {
+            PreparedStatement stm = conexion.prepareStatement(sentencia);
+            stm.setInt(1, cod_categoria);
+            ResultSet rs = stm.executeQuery();
+
+            // Recorremos
+            while (rs.next()) {
+                c.setCod_categoria(cod_categoria);
+                c.setNombre(rs.getString(1));
+                c.setDescripcion(rs.getString("desc_categoria"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return c;
     }
 
 }

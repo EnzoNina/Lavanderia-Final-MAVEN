@@ -1,6 +1,7 @@
 package pe.edu.lavanderia.entidades.jdbc;
 
 public class Clientes {
+
     private int cod;
     private String nombres;
     private String apellidoPaterno;
@@ -10,13 +11,13 @@ public class Clientes {
     private String direccion;
     private String usuario;
     private String contraseña;
+    private String correo;
 
     // Constructores
     public Clientes() {
     }
 
-    public Clientes(int cod, String nombres, String apellidoPaterno, String apellidoMaterno, String dni, String celular,
-            String direccion, String usuario, String contraseña) {
+    public Clientes(int cod, String nombres, String apellidoPaterno, String apellidoMaterno, String dni, String celular, String direccion, String usuario, String contraseña, String correo) {
         this.cod = cod;
         this.nombres = nombres;
         this.apellidoPaterno = apellidoPaterno;
@@ -26,11 +27,10 @@ public class Clientes {
         this.direccion = direccion;
         this.usuario = usuario;
         this.contraseña = contraseña;
+        this.correo = correo;
     }
 
-    public Clientes(String nombres, String apellidoPaterno, String apellidoMaterno, String dni, String celular,
-            String direccion, String usuario, String contraseña) {
-        super();
+    public Clientes(String nombres, String apellidoPaterno, String apellidoMaterno, String dni, String celular, String direccion, String usuario, String contraseña, String correo) {
         this.nombres = nombres;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -39,10 +39,10 @@ public class Clientes {
         this.direccion = direccion;
         this.usuario = usuario;
         this.contraseña = contraseña;
+        this.correo = correo;
     }
 
     // Getter & Setter
-
     public int getCod() {
         return cod;
     }
@@ -113,6 +113,14 @@ public class Clientes {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     @Override

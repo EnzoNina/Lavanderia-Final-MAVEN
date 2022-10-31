@@ -10,12 +10,13 @@ import java.util.List;
 import pe.edu.lavanderia.entidades.jdbc.Clientes;
 
 public class DaoClientes extends DaoGenerico {
+
     // Metodo para listar Clientes
     public List<Clientes> getClientes() {
         List<Clientes> clientList = new ArrayList<Clientes>();// Creamos arrayList
         Connection conexion = getConexion();// Obtenemos conexion a la base de datos
         // Preparamos sentencia
-        String sentencia = "SELECT cod_cliente, nombres, ape_paterno, ape_materno, dni, celular, direccion, usuario,contraseña FROM public.clientes";
+        String sentencia = "SELECT cod_cliente, nombres, ape_paterno, ape_materno, dni, celular, direccion, usuario,contraseña,correo FROM public.clientes";
 
         PreparedStatement ps;
         try {
@@ -25,7 +26,7 @@ public class DaoClientes extends DaoGenerico {
             while (rs.next()) {
                 // Creamos cliente
                 Clientes obCliente = new Clientes(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
+                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
                 clientList.add(obCliente);
 
             }
@@ -37,16 +38,15 @@ public class DaoClientes extends DaoGenerico {
     }
 
     // Método para filtrar Clientes
-    public List<Clientes> searchClientes(String cadenaBusqueda) {
-        List<Clientes> lst = new ArrayList<Clientes>();
+    public Clientes searchClientes(String cadenaBusqueda) {
+        Clientes u = new Clientes();
         Connection cnx = getConexion();
-        String sentencia = "cod_cliente, nombres, ape_paterno, ape_materno, dni, celular, direccion FROM public.clientes WHERE dni LIKE ?";
+        String sentencia = "SELECT cod_cliente, nombres, ape_paterno, ape_materno, dni, celular, direccion FROM public.clientes WHERE dni = ?";
         try {
             PreparedStatement stm = cnx.prepareStatement(sentencia);
-            stm.setString(1, "%" + cadenaBusqueda + "%");
+            stm.setString(1, cadenaBusqueda);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                Clientes u = new Clientes();
                 u.setCod(rs.getInt(1));
                 u.setNombres(rs.getString(2));
                 u.setApellidoPaterno(rs.getString(3));
@@ -54,7 +54,6 @@ public class DaoClientes extends DaoGenerico {
                 u.setDni(rs.getString(5));
                 u.setCelular(rs.getString(6));
                 u.setDireccion(rs.getString(7));
-                lst.add(u);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -65,13 +64,13 @@ public class DaoClientes extends DaoGenerico {
                 throw new RuntimeException(e);
             }
         }
-        return lst;
+        return u;
     }
 
     // Método para agregar Clientes
     public void addClientes(Clientes cliente) {
         Connection cnx = getConexion();
-        String sentencia = "INSERT INTO public.clientes (nombres, ape_paterno, ape_materno, dni, celular, direccion, usuario, contraseña) VALUES(?,?,?,?,?,?,?,?)";
+        String sentencia = "INSERT INTO public.clientes (nombres, ape_paterno, ape_materno, dni, celular, direccion, usuario, contraseña,correo) VALUES(?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement stm = cnx.prepareStatement(sentencia);
             stm.setString(1, cliente.getNombres());
@@ -82,6 +81,7 @@ public class DaoClientes extends DaoGenerico {
             stm.setString(6, cliente.getDireccion());
             stm.setString(7, cliente.getUsuario());
             stm.setString(8, cliente.getContraseña());
+            stm.setString(9, cliente.getCorreo());
             stm.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -97,7 +97,7 @@ public class DaoClientes extends DaoGenerico {
     // Método para editar Clientes
     public void editClientes(Clientes cliente) {
         Connection cnx = getConexion();
-        String sentencia = "UPDATE public.clientes SET nombres = ?, ape_paterno = ?, ape_materno = ?, celular = ?, direccion = ?, usuario = ?, contraseña = ?, dni=? WHERE cod_cliente= ?";
+        String sentencia = "UPDATE public.clientes SET nombres = ?, ape_paterno = ?, ape_materno = ?, celular = ?, direccion = ?, usuario = ?, contraseña = ?, dni=?,correo=? WHERE cod_cliente= ?";
         try {
             PreparedStatement stm = cnx.prepareStatement(sentencia);
             stm.setString(1, cliente.getNombres());
@@ -108,7 +108,8 @@ public class DaoClientes extends DaoGenerico {
             stm.setString(6, cliente.getUsuario());
             stm.setString(7, cliente.getContraseña());
             stm.setString(8, cliente.getDni());
-            stm.setInt(9, cliente.getCod());
+            stm.setString(9, cliente.getCorreo());
+            stm.setInt(10, cliente.getCod());
             stm.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -138,6 +139,37 @@ public class DaoClientes extends DaoGenerico {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    public String login(String user, String pass) {
+        String dni = null;
+        Connection co = getConexion();
+        try {
+            String sql = "SELECT dni FROM clientes WHERE usuario = ? AND contraseña = ?";
+            PreparedStatement pst = co.prepareStatement(sql);
+            pst.setString(1, user);
+            pst.setString(2, pass);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                dni = rs.getString(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            try {
+                co.close();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        if (dni != null) {
+            dni = dni;
+        } else {
+            dni = "";
+        }
+
+        return dni;
     }
 
 }
