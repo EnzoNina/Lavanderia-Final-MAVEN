@@ -38,7 +38,7 @@ public class ServletRegister extends HttpServlet {
         String usuario = request.getParameter("usuario");
         String contraseña = request.getParameter("contra");
         // Creamos objeto cliente
-        Clientes ob = new Clientes(nombre, apePaterno, apeMaterno, DNI, celular, direccion, usuario, contraseña, correo);
+        Clientes ob = new Clientes(nombre, apePaterno, apeMaterno, DNI, celular, direccion, usuario, contraseña, correo,true);
         bo.addClientes(ob);
 
         if (tipo == null) {

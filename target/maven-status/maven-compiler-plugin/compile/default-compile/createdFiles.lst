@@ -39,3 +39,4 @@ pe\edu\lavanderia\proc\servlets\ServletCategorias.class
 pe\edu\lavanderia\proc\servlets\ServletEditar.class
 pe\edu\lavanderia\proc\servlets\ServletPedidos.class
 pe\edu\lavanderia\dao\DaoPedidos.class
+pe\edu\lavanderia\entidades\jdbc\Personas.class

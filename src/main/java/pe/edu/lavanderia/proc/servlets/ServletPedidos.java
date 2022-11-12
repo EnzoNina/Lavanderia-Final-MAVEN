@@ -95,7 +95,7 @@ public class ServletPedidos extends HttpServlet {
         dni = cli.getDni();
         int cod = cli.getCod();
         String direccion = cli.getDireccion();
-        String nombres = cli.getNombres();
+        String nombres = cli.getNombre();
         String apellidos = cli.getApellidoPaterno() + cli.getApellidoMaterno();
         cargar(request, response);
         request.setAttribute("DNI", dni);

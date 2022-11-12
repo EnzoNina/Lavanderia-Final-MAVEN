@@ -17,7 +17,7 @@ public class DaoEmpleados extends DaoGenerico {
         Connection conexion = getConexion();// Obtenemos conexion a la base de datos
         // Preparamos sentencia
 
-        String sentencia = "SELECT cod_empleado, dni, nombre, ape_paterno, ape_materno, celular, usuario,contraseña,tipo FROM public.empleado";
+        String sentencia = "SELECT cod_empleado,usuario,tipo,nombre,ape_paterno,ape_materno,dni,celular,contraseña,estado FROM public.empleado WHERE estado = true";
 
         PreparedStatement ps;
         try {
@@ -27,7 +27,7 @@ public class DaoEmpleados extends DaoGenerico {
             while (rs.next()) {
                 // Creamos Empleado
                 Empleados obEmpleado = new Empleados(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
+                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),rs.getBoolean(10));
                 clientList.add(obEmpleado);
 
             }
@@ -41,17 +41,18 @@ public class DaoEmpleados extends DaoGenerico {
     // Método para agregar Empleados
     public void addEmpleado(Empleados empleado) {
         Connection cnx = getConexion();
-        String sentencia = "INSERT INTO public.empleado (dni, nombre, ape_paterno, ape_materno, celular, usuario, contraseña,tipo) VALUES(?, ?, ?, ?, ?, ?, ?,?);";
+        String sentencia = "INSERT INTO public.empleado (dni, nombre, ape_paterno, ape_materno, celular, usuario, contraseña,tipo,estado) VALUES(?, ?, ?, ?, ?, ?, ?,?,?);";
         try {
             PreparedStatement stm = cnx.prepareStatement(sentencia);
             stm.setString(1, empleado.getDni());
             stm.setString(2, empleado.getNombre());
-            stm.setString(3, empleado.getApe_paterno());
-            stm.setString(4, empleado.getApe_materno());
+            stm.setString(3, empleado.getApellidoPaterno());
+            stm.setString(4, empleado.getApellidoMaterno());
             stm.setString(5, empleado.getCelular());
             stm.setString(6, empleado.getUsuario());
             stm.setString(7, empleado.getContraseña());
             stm.setString(8, empleado.getTipo());
+            stm.setBoolean(9, empleado.getEstado());
             stm.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -72,8 +73,8 @@ public class DaoEmpleados extends DaoGenerico {
             PreparedStatement stm = cnx.prepareStatement(sentencia);
             stm.setString(1, empleado.getDni());
             stm.setString(2, empleado.getNombre());
-            stm.setString(3, empleado.getApe_paterno());
-            stm.setString(4, empleado.getApe_materno());
+            stm.setString(3, empleado.getApellidoPaterno());
+            stm.setString(4, empleado.getApellidoMaterno());
             stm.setString(5, empleado.getCelular());
             stm.setString(6, empleado.getUsuario());
             stm.setString(7, empleado.getContraseña());
@@ -92,12 +93,13 @@ public class DaoEmpleados extends DaoGenerico {
     }
 
     // Método para eliminar Empleados
-    public void removeEmpleado(int cod) {
+    public void removeEmpleado(Boolean estado,int cod) {
         Connection cnx = getConexion();
-        String sentencia = "DELETE FROM public.empleado WHERE cod_empleado = ?";
+        String sentencia = "UPDATE public.empleado SET estado=? WHERE cod_empleado = ?";
         try {
             PreparedStatement stm = cnx.prepareStatement(sentencia);
-            stm.setInt(1, cod);
+            stm.setBoolean(1, estado);
+            stm.setInt(2, cod);
             stm.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);

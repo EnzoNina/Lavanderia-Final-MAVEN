@@ -38,7 +38,7 @@
                         <c:forEach items="${clientList}" var="cliente">
                             <tr>
                                 <td id="codigo"><c:out value="${cliente.cod}"></c:out></td>
-                                <td id="nombre"><c:out value="${cliente.nombres}"></c:out></td>
+                                <td id="nombre"><c:out value="${cliente.nombre}"></c:out></td>
                                 <td id="apePaterno"><c:out
                                         value="${cliente.apellidos}"></c:out></td>                            
                                 <td id="dni"><c:out value="${cliente.dni}"></c:out></td>

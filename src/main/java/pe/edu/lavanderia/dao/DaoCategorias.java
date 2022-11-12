@@ -17,7 +17,7 @@ public class DaoCategorias extends DaoGenerico {
     public List<Categorias> getCategorias() {
         List<Categorias> list = new ArrayList<Categorias>();
         Connection conexion = getConexion();
-        String sentencia = "SELECT cod_categoria, nom_categoria, desc_categoria, estado FROM public.categorias";
+        String sentencia = "SELECT cod_categoria, nom_categoria, desc_categoria, estado FROM public.categorias WHERE estado = true";
         PreparedStatement ps;
         try {
             ps = conexion.prepareStatement(sentencia);
@@ -83,10 +83,11 @@ public class DaoCategorias extends DaoGenerico {
     // Remover categorias
     public void remoteCategoria(int codigo) {
         Connection con = getConexion();
-        String sentencia = "DELETE FROM public.categorias WHERE cod_categoria=?";
+        String sentencia = "UPDATE public.categorias SET estado = ? WHERE cod_categoria=?";
         try {
             PreparedStatement ps = con.prepareStatement(sentencia);
-            ps.setInt(1, codigo);
+            ps.setBoolean(1, false);
+            ps.setInt(2, codigo);
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());

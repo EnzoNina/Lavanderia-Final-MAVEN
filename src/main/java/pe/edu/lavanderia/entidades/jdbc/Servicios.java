@@ -7,28 +7,39 @@ public class Servicios {
     private String descripcion;
     private int cod_categoria;
     private double precio;
+    private Boolean estado;
 
     // Constructor
     public Servicios() {
     }
 
-    public Servicios(String nombre, String descripcion, int cod_categoria, double precio) {
+    public Servicios(String nombre, String descripcion, int cod_categoria, double precio, Boolean estado) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.cod_categoria = cod_categoria;
         this.precio = precio;
+        this.estado = estado;
     }
 
-    public Servicios(int cod, String nombre, String descripcion, int cod_categoria, double precio) {
+    public Servicios(int cod, String nombre, String descripcion, int cod_categoria, double precio, Boolean estado) {
         super();
         this.cod = cod;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.cod_categoria = cod_categoria;
         this.precio = precio;
+        this.estado = estado;
     }
 
     // Getter & Setter
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
     public int getCod() {
         return cod;
     }

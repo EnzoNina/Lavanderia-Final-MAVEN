@@ -1,53 +1,38 @@
 package pe.edu.lavanderia.entidades.jdbc;
 
-public class Empleados {
+public class Empleados extends Personas {
 
     private int cod;
-    private String dni;
-    private String nombre;
-    private String ape_paterno;
-    private String ape_materno;
-    private String celular;
     private String usuario;
-    private String contraseña;
     private String tipo;
 
-    // Constructores
     public Empleados() {
     }
 
-    public Empleados(String dni, String nombre, String ape_paterno, String ape_materno, String celular, String usuario, String contraseña) {
-        this.dni = dni;
-        this.nombre = nombre;
-        this.ape_paterno = ape_paterno;
-        this.ape_materno = ape_materno;
-        this.celular = celular;
-        this.usuario = usuario;
-        this.contraseña = contraseña;
-    }
-
-    public Empleados(String dni, String nombre, String ape_paterno, String ape_materno, String celular, String usuario, String contraseña, String tipo) {
-        this.dni = dni;
-        this.nombre = nombre;
-        this.ape_paterno = ape_paterno;
-        this.ape_materno = ape_materno;
-        this.celular = celular;
-        this.usuario = usuario;
-        this.contraseña = contraseña;
-        this.tipo = tipo;
-    }
-
-    public Empleados(int cod, String dni, String nombre, String ape_paterno, String ape_materno, String celular, String usuario, String contraseña, String tipo) {
+    public Empleados(int cod, String usuario, String tipo) {
         this.cod = cod;
-        this.dni = dni;
-        this.nombre = nombre;
-        this.ape_paterno = ape_paterno;
-        this.ape_materno = ape_materno;
-        this.celular = celular;
         this.usuario = usuario;
-        this.contraseña = contraseña;
         this.tipo = tipo;
     }
+    
+    /*public Empleados(String dni, String nombre, String apellidoPaterno, String apellidoMaterno, String celular, String usuario, String contraseña,Boolean estado) {
+        super(nombre, apellidoPaterno, apellidoMaterno, dni, celular, contraseña,estado);
+        this.usuario = usuario;
+    }*/
+    
+    public Empleados(String dni, String nombre, String apellidoPaterno, String apellidoMaterno, String celular, String usuario, String contraseña, String tipo,Boolean estado) {
+        super(nombre, apellidoPaterno, apellidoMaterno, dni, celular, contraseña,estado);
+        this.usuario = usuario;
+        this.tipo = tipo;
+    }
+    
+    public Empleados(int cod, String usuario, String tipo, String nombre, String apellidoPaterno, String apellidoMaterno, String dni, String celular, String contraseña,Boolean estado) {
+        super(nombre, apellidoPaterno, apellidoMaterno, dni, celular, contraseña,estado);
+        this.cod = cod;
+        this.usuario = usuario;
+        this.tipo = tipo;
+    }
+    
 
     public int getCod() {
         return cod;
@@ -55,46 +40,6 @@ public class Empleados {
 
     public void setCod(int cod) {
         this.cod = cod;
-    }
-
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApe_paterno() {
-        return ape_paterno;
-    }
-
-    public void setApe_paterno(String ape_paterno) {
-        this.ape_paterno = ape_paterno;
-    }
-
-    public String getApe_materno() {
-        return ape_materno;
-    }
-
-    public void setApe_materno(String ape_materno) {
-        this.ape_materno = ape_materno;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
     }
 
     public String getUsuario() {
@@ -105,14 +50,6 @@ public class Empleados {
         this.usuario = usuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
-    }
-
     public String getTipo() {
         return tipo;
     }
@@ -120,5 +57,7 @@ public class Empleados {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+    
+    
 
 }

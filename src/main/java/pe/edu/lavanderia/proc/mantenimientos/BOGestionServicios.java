@@ -36,9 +36,9 @@ public class BOGestionServicios {
         dao.editServicios(ob);
     }
 
-    public void removeServicio(int cod) {
+    public void removeServicio(Boolean estado,int cod) {
         DaoServicios dao = new DaoServicios();
-        dao.removeServicios(cod);
+        dao.removeServicios(estado,cod);
     }
 
     public List<DtoServicios> getServiciosDTO() {

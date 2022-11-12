@@ -82,6 +82,7 @@ public class DaoPrendas extends DaoGenerico {
         Connection con = getConexion();
         String cadena = "INSERT INTO public.tipo_telas (nombre_tipo_tela) VALUES(?)";
         PreparedStatement ps;
+
         try {
             ps = con.prepareStatement(cadena);
             ps.setString(1, ob.getTipoTela());

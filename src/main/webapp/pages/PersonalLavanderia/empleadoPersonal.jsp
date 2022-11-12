@@ -36,7 +36,7 @@
                             <tr>
                                 <td id="codigo"><c:out value="${empleado.cod}"></c:out></td>
                                 <td id="dni"><c:out value="${empleado.dni}"></c:out></td>
-                                <td id="nombre"><c:out value="${empleado.nombre}"></c:out></td>
+                                <td id="nombres"><c:out value="${empleado.nombre}"></c:out></td>
                                 <td id="apePaterno"><c:out
                                         value="${empleado.apellidos}"></c:out></td>
                                 <td id="celular"><c:out value="${empleado.celular}"></c:out></td>                                

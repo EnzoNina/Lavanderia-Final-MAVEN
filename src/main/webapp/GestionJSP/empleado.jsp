@@ -31,6 +31,7 @@
                             <th scope="col">Usuario</th>
                             <th scope="col">Contraseña</th>                            
                             <th scope="col">Tipo</th>
+                            <th scope="col">Estado</th>
                             <th scope="col">Accion</th>
                         </tr>
                     </thead>
@@ -40,19 +41,20 @@
                                 <td id="codigo"><c:out value="${empleado.cod}"></c:out></td>
                                 <td id="nombre"><c:out value="${empleado.nombre}"></c:out></td>
                                 <td id="apePaterno"><c:out
-                                        value="${empleado.ape_paterno}"></c:out></td>
+                                        value="${empleado.apellidoPaterno}"></c:out></td>
                                 <td id="apeMaterno"><c:out
-                                        value="${empleado.ape_materno}"></c:out></td>
+                                        value="${empleado.apellidoMaterno}"></c:out></td>
                                 <td id="dni"><c:out value="${empleado.dni}"></c:out></td>
                                 <td id="celular"><c:out value="${empleado.celular}"></c:out></td>
                                 <td id="usuario"><c:out value="${empleado.usuario}"></c:out></td>
                                 <td id="contraseña"><c:out value="${empleado.contraseña}"></c:out></td>
                                 <td id="tipo"><c:out value="${empleado.tipo}"></c:out></td>
+                                <td id="estado"><c:out value="${empleado.estado}"></c:out></td>
                                     <td>
                                         <button class="btn btn-primary" data-target="#editEmpleado"
                                                 data-codi="${empleado.cod}" data-nombres="${empleado.nombre}"
-                                        data-pa="${empleado.ape_paterno}"
-                                        data-ma="${empleado.ape_materno}" data-dni="${empleado.dni}"
+                                        data-pa="${empleado.apellidoPaterno}"
+                                        data-ma="${empleado.apellidoMaterno}" data-dni="${empleado.dni}"
                                         data-celular="${empleado.celular}"
                                         data-usuario="${empleado.usuario}"
                                         data-contra="${empleado.contraseña}"

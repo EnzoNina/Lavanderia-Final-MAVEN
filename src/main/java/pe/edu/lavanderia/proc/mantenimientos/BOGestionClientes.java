@@ -37,9 +37,9 @@ public class BOGestionClientes {
         dao.editClientes(cliente);
     }
 
-    public void removeClientes(int cod) {
+    public void removeClientes(Boolean estado,int cod) {
         DaoClientes dao = new DaoClientes();
-        dao.removeClientes(cod);
+        dao.removeClientes(estado,cod);
     }
 
     public List<DtoClientes> getClientesDTO() {
@@ -49,7 +49,7 @@ public class BOGestionClientes {
         for (Clientes clientes : lst) {
             DtoClientes dto = new DtoClientes();
             dto.setCod(clientes.getCod());
-            dto.setNombres(clientes.getNombres());
+            dto.setNombre(clientes.getNombre());
             dto.setApellidos(clientes.getApellidoPaterno() + " " + clientes.getApellidoMaterno());
             dto.setDni(clientes.getDni());
             dto.setCelular(clientes.getCelular());
