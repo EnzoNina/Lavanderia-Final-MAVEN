@@ -15,7 +15,7 @@ public class DaoServicios extends DaoGenerico {
     public List<Servicios> getServicios() {
         List<Servicios> serviceList = new ArrayList<Servicios>();// Creamos lista
         Connection conexion = getConexion();// Obtenemos conexion
-        String sentencia = "SELECT cod_servicio, nom_servicio, desc_servicio, cod_categoria, precio FROM public.servicios";
+        String sentencia = "SELECT cod_servicio, nom_servicio, desc_servicio, cod_categoria, precio, estado FROM public.servicios WHERE estado = true";
 
         PreparedStatement ps;
         try {
@@ -25,7 +25,7 @@ public class DaoServicios extends DaoGenerico {
             // Recorremos
             while (rs.next()) {
                 Servicios obServicio = new Servicios(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4),
-                        rs.getDouble(5));
+                        rs.getDouble(5),rs.getBoolean(6));
                 serviceList.add(obServicio);
             }
 
@@ -37,13 +37,14 @@ public class DaoServicios extends DaoGenerico {
 
     public void addServicios(Servicios servicio) {
         Connection cnx = getConexion();
-        String sentencia = "INSERT INTO public.servicios (nom_servicio, desc_servicio, cod_categoria, precio) VALUES (?, ?, ?, ?);";
+        String sentencia = "INSERT INTO public.servicios (nom_servicio, desc_servicio, cod_categoria, precio,estado) VALUES (?, ?, ?, ?,?);";
         try {
             PreparedStatement stm = cnx.prepareStatement(sentencia);
             stm.setString(1, servicio.getNombre());
             stm.setString(2, servicio.getDescripcion());
             stm.setInt(3, servicio.getCod_categoria());
             stm.setDouble(4, servicio.getPrecio());
+            stm.setBoolean(5, servicio.getEstado());
             stm.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -65,7 +66,7 @@ public class DaoServicios extends DaoGenerico {
             stm.setString(1, servicio.getNombre());
             stm.setString(2, servicio.getDescripcion());
             stm.setInt(3, servicio.getCod_categoria());
-            stm.setDouble(4, servicio.getPrecio());
+            stm.setDouble(4, servicio.getPrecio());            
             stm.setInt(5, servicio.getCod());
             stm.executeUpdate();
         } catch (Exception e) {
@@ -80,12 +81,13 @@ public class DaoServicios extends DaoGenerico {
     }
 
     // Método para eliminar Servicios
-    public void removeServicios(int cod) {
-        Connection cnx = getConexion();
-        String sentencia = "DELETE FROM public.servicios WHERE cod_servicio = ?";
+    public void removeServicios(Boolean estado,int cod) {
+        Connection cnx = getConexion();        
+        String sentencia = "UPDATE public.servicios SET estado = ? WHERE cod_servicio = ?";
         try {
             PreparedStatement stm = cnx.prepareStatement(sentencia);
-            stm.setInt(1, cod);
+            stm.setBoolean(1, estado);
+            stm.setInt(2, cod);
             stm.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);

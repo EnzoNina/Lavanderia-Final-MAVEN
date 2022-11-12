@@ -15,19 +15,19 @@ public class Empleados extends Personas {
         this.tipo = tipo;
     }
     
-    public Empleados(String dni, String nombre, String apellidoPaterno, String apellidoMaterno, String celular, String usuario, String contraseña) {
-        super(nombre, apellidoPaterno, apellidoMaterno, dni, celular, contraseña);
+    /*public Empleados(String dni, String nombre, String apellidoPaterno, String apellidoMaterno, String celular, String usuario, String contraseña,Boolean estado) {
+        super(nombre, apellidoPaterno, apellidoMaterno, dni, celular, contraseña,estado);
         this.usuario = usuario;
-    }
+    }*/
     
-    public Empleados(String dni, String nombre, String apellidoPaterno, String apellidoMaterno, String celular, String usuario, String contraseña, String tipo) {
-        super(nombre, apellidoPaterno, apellidoMaterno, dni, celular, contraseña);
+    public Empleados(String dni, String nombre, String apellidoPaterno, String apellidoMaterno, String celular, String usuario, String contraseña, String tipo,Boolean estado) {
+        super(nombre, apellidoPaterno, apellidoMaterno, dni, celular, contraseña,estado);
         this.usuario = usuario;
         this.tipo = tipo;
     }
     
-    public Empleados(int cod, String usuario, String tipo, String nombre, String apellidoPaterno, String apellidoMaterno, String dni, String celular, String contraseña) {
-        super(nombre, apellidoPaterno, apellidoMaterno, dni, celular, contraseña);
+    public Empleados(int cod, String usuario, String tipo, String nombre, String apellidoPaterno, String apellidoMaterno, String dni, String celular, String contraseña,Boolean estado) {
+        super(nombre, apellidoPaterno, apellidoMaterno, dni, celular, contraseña,estado);
         this.cod = cod;
         this.usuario = usuario;
         this.tipo = tipo;

@@ -31,6 +31,7 @@
                             <th scope="col">Usuario</th>
                             <th scope="col">Contraseña</th>                            
                             <th scope="col">Tipo</th>
+                            <th scope="col">Estado</th>
                             <th scope="col">Accion</th>
                         </tr>
                     </thead>
@@ -48,6 +49,7 @@
                                 <td id="usuario"><c:out value="${empleado.usuario}"></c:out></td>
                                 <td id="contraseña"><c:out value="${empleado.contraseña}"></c:out></td>
                                 <td id="tipo"><c:out value="${empleado.tipo}"></c:out></td>
+                                <td id="estado"><c:out value="${empleado.estado}"></c:out></td>
                                     <td>
                                         <button class="btn btn-primary" data-target="#editEmpleado"
                                                 data-codi="${empleado.cod}" data-nombres="${empleado.nombre}"

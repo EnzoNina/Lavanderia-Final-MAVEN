@@ -37,9 +37,9 @@ public class BOGestionClientes {
         dao.editClientes(cliente);
     }
 
-    public void removeClientes(int cod) {
+    public void removeClientes(Boolean estado,int cod) {
         DaoClientes dao = new DaoClientes();
-        dao.removeClientes(cod);
+        dao.removeClientes(estado,cod);
     }
 
     public List<DtoClientes> getClientesDTO() {

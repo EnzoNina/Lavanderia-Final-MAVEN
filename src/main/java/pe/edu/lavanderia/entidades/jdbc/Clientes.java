@@ -12,16 +12,16 @@ public class Clientes extends Personas {
     public Clientes() {
     }
     
-    public Clientes(int cod, String nombre, String apellidoPaterno, String apellidoMaterno, String dni, String celular, String direccion, String usuario, String contraseña, String correo) {
-        super(nombre, apellidoPaterno, apellidoMaterno, dni, celular, contraseña);
+    public Clientes(int cod, String nombre, String apellidoPaterno, String apellidoMaterno, String dni, String celular, String direccion, String usuario, String contraseña, String correo,Boolean estado) {
+        super(nombre, apellidoPaterno, apellidoMaterno, dni, celular, contraseña,estado);
         this.cod = cod;
         this.direccion = direccion;
         this.usuario = usuario;
         this.correo = correo;
     }
 
-    public Clientes(String nombre, String apellidoPaterno, String apellidoMaterno, String dni, String celular, String direccion, String usuario, String contraseña, String correo) {
-       super(nombre, apellidoPaterno, apellidoMaterno, dni, celular, contraseña);
+    public Clientes(String nombre, String apellidoPaterno, String apellidoMaterno, String dni, String celular, String direccion, String usuario, String contraseña, String correo,Boolean estado) {
+       super(nombre, apellidoPaterno, apellidoMaterno, dni, celular, contraseña,estado);
         this.direccion = direccion;
         this.usuario = usuario;
         this.correo = correo;

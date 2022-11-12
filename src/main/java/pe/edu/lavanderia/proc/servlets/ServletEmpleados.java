@@ -71,7 +71,7 @@ public class ServletEmpleados extends HttpServlet {
     // Metodos
     private void newEmpleado(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String tipo = request.getParameter("tipo");
         String nombres = request.getParameter("nombres");
         String dni = request.getParameter("dni");
@@ -81,12 +81,12 @@ public class ServletEmpleados extends HttpServlet {
         String usuario = request.getParameter("usuario");
         String contraseña = request.getParameter("contra");
         String empleadoTipo = request.getParameter("empleado");
-
+        
         if (tipo == null) {
             tipo = "administracion";
         }
 
-        Empleados ob = new Empleados(dni, nombres, ape_paterno, ape_materno, celular, usuario, contraseña, empleadoTipo);
+        Empleados ob = new Empleados(dni, nombres, ape_paterno, ape_materno, celular, usuario, contraseña, empleadoTipo, true);
 
         bo.addEmpleado(ob);
 
@@ -109,8 +109,8 @@ public class ServletEmpleados extends HttpServlet {
         String usuario = request.getParameter("usuario");
         String contraseña = request.getParameter("contra");
         String tipoEmpleado = request.getParameter("empleado");
-
-        Empleados o = new Empleados(cod, dni, nombres, ape_paterno, ape_materno, celular, usuario, contraseña, tipoEmpleado);
+        
+        Empleados o = new Empleados(cod, dni, nombres, ape_paterno, ape_materno, celular, usuario, contraseña, tipoEmpleado, true);
         bo.editEmpleado(o);
         response.sendRedirect("ServletEmpleados");
     }
@@ -118,7 +118,7 @@ public class ServletEmpleados extends HttpServlet {
     private void deleteEmpleado(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int cod = Integer.parseInt(request.getParameter("codi"));
-        bo.removeEmpleado(cod);
+        bo.removeEmpleado(false,cod);
         response.sendRedirect("ServletEmpleados");
     }
 

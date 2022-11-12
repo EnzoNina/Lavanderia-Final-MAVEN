@@ -32,9 +32,9 @@ public class BOGestionEmpleados {
         dao.editEmpleado(empleado);
     }
 
-    public void removeEmpleado(int cod) {
+    public void removeEmpleado(Boolean estado, int cod) {
         DaoEmpleados dao = new DaoEmpleados();
-        dao.removeEmpleado(cod);
+        dao.removeEmpleado(estado, cod);
     }
 
     public String[] login(String user, String pass) {
@@ -52,7 +52,7 @@ public class BOGestionEmpleados {
             dto.setCod(empleados.getCod());
             dto.setDni(empleados.getDni());
             dto.setNombre(empleados.getNombre());
-            dto.setApellidos(empleados.getApellidoPaterno()+ " " + empleados.getApellidoMaterno());
+            dto.setApellidos(empleados.getApellidoPaterno() + " " + empleados.getApellidoMaterno());
             dto.setCelular(empleados.getCelular());
             lstDto.add(dto);
         }

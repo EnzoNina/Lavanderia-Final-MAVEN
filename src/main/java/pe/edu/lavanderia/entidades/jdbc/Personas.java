@@ -8,19 +8,29 @@ public class Personas {
     protected String dni;
     protected String celular;
     protected String contraseña;
+    protected Boolean estado;
 
     public Personas() {
     }
 
-    public Personas(String nombre, String apellidoPaterno, String apellidoMaterno, String dni, String celular, String contraseña) {
+    public Personas(String nombre, String apellidoPaterno, String apellidoMaterno, String dni, String celular, String contraseña, Boolean estado) {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.dni = dni;
         this.celular = celular;
         this.contraseña = contraseña;
+        this.estado = estado;
     }
 
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+               
     public String getNombre() {
         return nombre;
     }

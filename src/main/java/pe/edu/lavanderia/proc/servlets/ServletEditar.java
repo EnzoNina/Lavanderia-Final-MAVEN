@@ -43,8 +43,8 @@ public class ServletEditar extends HttpServlet {
         String correo = request.getParameter("correo");
         String celular = request.getParameter("celular");
         String usuario = request.getParameter("usuario");
-        String contra = request.getParameter("contra");
-        Clientes ob = new Clientes(cod, nombres, apePaterno, apeMaterno, dni, celular, direccion, usuario, contra, correo);
+        String contra = request.getParameter("contra");        
+        Clientes ob = new Clientes(cod, nombres, apePaterno, apeMaterno, dni, celular, direccion, usuario, contra, correo,true);
         bo.editClientes(ob);
         response.sendRedirect("ServletListaClientes");
     }

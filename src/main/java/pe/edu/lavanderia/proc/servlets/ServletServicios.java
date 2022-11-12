@@ -86,21 +86,15 @@ public class ServletServicios extends HttpServlet {
         String nombre = request.getParameter("nom");
         String descripcion = request.getParameter("desc");
         int cod_categoria = Integer.parseInt(request.getParameter("cate"));
-        double precio = Double.parseDouble(request.getParameter("prec"));
-
-        Servicios ob = new Servicios(nombre, descripcion, cod_categoria, precio);
+        double precio = Double.parseDouble(request.getParameter("prec"));        
+        
+        Servicios ob = new Servicios(nombre, descripcion, cod_categoria, precio,true);
         bo.addServicio(ob);
         
         if (tipo == null) {
             tipo = "administracion";
         }
-        
-        /*Servicio ob = new Servicio();
-        ob.setNomServicio(nombre);
-        ob.setDescServicio(descripcion);
-        ob.setCodCategoria(cod_categoria);
-        ob.setPrecio(precio);
-        bo.addServicioJPA(ob);*/
+
         if (tipo.equalsIgnoreCase("personal")) {
             response.sendRedirect("ServletServicios?tipo=personal");
         } else {
@@ -115,9 +109,8 @@ public class ServletServicios extends HttpServlet {
         String nombre = request.getParameter("nom");
         String descripcion = request.getParameter("desc");
         int cod_categoria = Integer.parseInt(request.getParameter("cate"));
-        double precio = Double.parseDouble(request.getParameter("prec"));
-
-        Servicios ob = new Servicios(cod, nombre, descripcion, cod_categoria, precio);
+        double precio = Double.parseDouble(request.getParameter("prec"));        
+        Servicios ob = new Servicios(cod, nombre, descripcion, cod_categoria, precio,true);
         bo.editServicio(ob);
         response.sendRedirect("ServletServicios");
     }
@@ -125,7 +118,7 @@ public class ServletServicios extends HttpServlet {
     private void deleteServicio(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int cod = Integer.parseInt(request.getParameter("cod"));
-        bo.removeServicio(cod);
+        bo.removeServicio(false,cod);
         response.sendRedirect("ServletServicios");
     }
 

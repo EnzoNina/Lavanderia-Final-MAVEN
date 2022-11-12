@@ -27,7 +27,7 @@ public class ServletBorrar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int codigo = Integer.parseInt(request.getParameter("codigo"));
-        bo.removeClientes(codigo);
+        bo.removeClientes(false,codigo);
         response.sendRedirect("ServletListaClientes");
     }
 

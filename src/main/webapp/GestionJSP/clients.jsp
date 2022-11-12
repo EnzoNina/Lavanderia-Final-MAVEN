@@ -36,6 +36,7 @@
                             <th scope="col">Usuario</th>
                             <th scope="col">Contraseña</th>
                             <th scope="col">Direccion</th>
+                            <th scope="col">Estado</th>
                             <th scope="col">Accion</th>
                         </tr>
                     </thead>
@@ -54,24 +55,25 @@
                                 <td id="usuario"><c:out value="${cliente.usuario}"></c:out></td>
                                 <td id="contraseña"><c:out value="${cliente.contraseña}"></c:out></td>
                                 <td id="direccion"><c:out value="${cliente.direccion}"></c:out></td>
-                                    <td>
-                                        <button class="btn btn-primary" data-target="#editCliente"
-                                                data-cod="${cliente.cod}" data-nombres="${cliente.nombre}"
-                                        data-pa="${cliente.apellidoPaterno}"
-                                        data-ma="${cliente.apellidoMaterno}" data-dni="${cliente.dni}"
-                                        data-correo="${cliente.correo}"
-                                        data-celular="${cliente.celular}"
-                                        data-usuario="${cliente.usuario}"
-                                        data-contra="${cliente.contraseña}"
-                                        data-direccion="${cliente.direccion}" data-toggle="modal">Editar</button>
+                                <td id="estado"><c:out value="${cliente.estado}"></c:out></td>
+                            <td>
+                                <button class="btn btn-primary" data-target="#editCliente"
+                                        data-cod="${cliente.cod}" data-nombres="${cliente.nombre}"
+                                data-pa="${cliente.apellidoPaterno}"
+                                data-ma="${cliente.apellidoMaterno}" data-dni="${cliente.dni}"
+                                data-correo="${cliente.correo}"
+                                data-celular="${cliente.celular}"
+                                data-usuario="${cliente.usuario}"
+                                data-contra="${cliente.contraseña}"
+                                data-direccion="${cliente.direccion}" data-toggle="modal">Editar</button>
 
-                                    <button class="btn btn-primary editar"
-                                            data-target="#deleteCliente" data-toggle="modal"
-                                            data-cod="${cliente.cod}">Eliminar</button>
-                                </td>
-                            </tr>
+                            <button class="btn btn-primary editar"
+                                    data-target="#deleteCliente" data-toggle="modal"
+                                    data-cod="${cliente.cod}">Eliminar</button>
+                        </td>
+                        </tr>
 
-                        </c:forEach>
+                    </c:forEach>
                     </tbody>
                 </table>
 
