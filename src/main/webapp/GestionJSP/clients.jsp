@@ -16,14 +16,31 @@
           style="background-image: url('http://localhost:8080/lavanderia/images/fondo2.jpg');">
         <%@ include file="../Common/body.html" %>
         <div class="page">
-            <a class="btn btn-primary" href="http://localhost:8080/lavanderia/pages/Lavanderia/menu.jsp">Volver al Menu</a>
+            <div class="container">
+            
+            </div>
             <div style="background: white; color: black;">
-                <a class="btn btn-primary"
-                   href="http://localhost:8080/lavanderia/pages/registrar.jsp">Agregar
-                    cliente</a>
-
-
-                <table class="table">
+                
+            <div class="container">
+                    <!--Contenedor de Barra superior-->
+                    <div class="container">
+                        <div class="row">
+                            <h1 class="col-10">Clientes</h1> 
+                            <div class="col-2 align-self-center">
+                                <a class="btn btn-primary" href="http://localhost:8080/lavanderia/pages/Lavanderia/menu.jsp">Volver al Menu</a>
+                            </div>                           
+                        </div>
+                        
+                    </div>
+                <!--Contenedor de Tabla-->
+                <div class="container">
+                    <div class="row">
+                            <h3 class="col-9">Registros</h3>
+                            <div class="col-3 text-right">
+                                <a class="btn btn-primary " href="http://localhost:8080/lavanderia/pages/registrar.jsp">Agregar cliente</a>
+                            </div>
+                    </div>
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">Codigo</th>
@@ -36,15 +53,16 @@
                             <th scope="col">Usuario</th>
                             <th scope="col">Contraseña</th>
                             <th scope="col">Direccion</th>
-                            <th scope="col">Estado</th>
                             <th scope="col">Accion</th>
                         </tr>
                     </thead>
+                    
                     <tbody>
+                        
                         <c:forEach items="${clientList}" var="cliente">
                             <tr>
                                 <td  style="width: auto;" id="codigo"><c:out value="${cliente.cod}"></c:out></td>
-                                <td style="width: auto;" id="nombre"><c:out value="${cliente.nombre}"></c:out></td>
+                                <td style="width: auto;" id="nombre"><c:out value="${cliente.nombres}"></c:out></td>
                                 <td id="apePaterno"><c:out
                                         value="${cliente.apellidoPaterno}"></c:out></td>
                                 <td id="apeMaterno"><c:out
@@ -55,28 +73,31 @@
                                 <td id="usuario"><c:out value="${cliente.usuario}"></c:out></td>
                                 <td id="contraseña"><c:out value="${cliente.contraseña}"></c:out></td>
                                 <td id="direccion"><c:out value="${cliente.direccion}"></c:out></td>
-                                <td id="estado"><c:out value="${cliente.estado}"></c:out></td>
-                            <td>
-                                <button class="btn btn-primary" data-target="#editCliente"
-                                        data-cod="${cliente.cod}" data-nombres="${cliente.nombre}"
-                                data-pa="${cliente.apellidoPaterno}"
-                                data-ma="${cliente.apellidoMaterno}" data-dni="${cliente.dni}"
-                                data-correo="${cliente.correo}"
-                                data-celular="${cliente.celular}"
-                                data-usuario="${cliente.usuario}"
-                                data-contra="${cliente.contraseña}"
-                                data-direccion="${cliente.direccion}" data-toggle="modal">Editar</button>
+                                
+                                <td class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                                        <button class="btn btn-primary" data-target="#editCliente"
+                                                data-cod="${cliente.cod}" data-nombres="${cliente.nombres}"
+                                        data-pa="${cliente.apellidoPaterno}"
+                                        data-ma="${cliente.apellidoMaterno}" data-dni="${cliente.dni}"
+                                        data-correo="${cliente.correo}"
+                                        data-celular="${cliente.celular}"
+                                        data-usuario="${cliente.usuario}"
+                                        data-contra="${cliente.contraseña}"
+                                        
+                                        data-direccion="${cliente.direccion}" data-toggle="modal">Editar</button>
 
-                            <button class="btn btn-primary editar"
-                                    data-target="#deleteCliente" data-toggle="modal"
-                                    data-cod="${cliente.cod}">Eliminar</button>
-                        </td>
-                        </tr>
+                                        <button class="btn btn-primary editar"
+                                            data-target="#deleteCliente" data-toggle="modal"
+                                            data-cod="${cliente.cod}">Eliminar</button>
+                                </td>
+                                
+                            </tr>
 
-                    </c:forEach>
+                        </c:forEach>
                     </tbody>
-                </table>
-
+                    </table>
+                </div>        
+            </div>
                 <!-- Modal Editar-->
                 <div class="modal fade" id="editCliente" tabindex="-1"
                      aria-labelledby="editCliente" aria-hidden="true">
