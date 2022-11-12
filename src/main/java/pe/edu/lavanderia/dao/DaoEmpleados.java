@@ -17,7 +17,7 @@ public class DaoEmpleados extends DaoGenerico {
         Connection conexion = getConexion();// Obtenemos conexion a la base de datos
         // Preparamos sentencia
 
-        String sentencia = "SELECT cod_empleado, dni, nombre, ape_paterno, ape_materno, celular, usuario,contraseña,tipo,estado FROM public.empleado WHERE estado = true";
+        String sentencia = "SELECT cod_empleado,usuario,tipo,nombre,ape_paterno,ape_materno,dni,celular,contraseña,estado FROM public.empleado WHERE estado = true";
 
         PreparedStatement ps;
         try {
