@@ -43,7 +43,7 @@
                         <c:forEach items="${clientList}" var="cliente">
                             <tr>
                                 <td  style="width: auto;" id="codigo"><c:out value="${cliente.cod}"></c:out></td>
-                                <td style="width: auto;" id="nombre"><c:out value="${cliente.nombres}"></c:out></td>
+                                <td style="width: auto;" id="nombre"><c:out value="${cliente.nombre}"></c:out></td>
                                 <td id="apePaterno"><c:out
                                         value="${cliente.apellidoPaterno}"></c:out></td>
                                 <td id="apeMaterno"><c:out
@@ -56,7 +56,7 @@
                                 <td id="direccion"><c:out value="${cliente.direccion}"></c:out></td>
                                     <td>
                                         <button class="btn btn-primary" data-target="#editCliente"
-                                                data-cod="${cliente.cod}" data-nombres="${cliente.nombres}"
+                                                data-cod="${cliente.cod}" data-nombres="${cliente.nombre}"
                                         data-pa="${cliente.apellidoPaterno}"
                                         data-ma="${cliente.apellidoMaterno}" data-dni="${cliente.dni}"
                                         data-correo="${cliente.correo}"

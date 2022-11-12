@@ -52,7 +52,7 @@ public class BOGestionEmpleados {
             dto.setCod(empleados.getCod());
             dto.setDni(empleados.getDni());
             dto.setNombre(empleados.getNombre());
-            dto.setApellidos(empleados.getApe_paterno() + " " + empleados.getApe_materno());
+            dto.setApellidos(empleados.getApellidoPaterno()+ " " + empleados.getApellidoMaterno());
             dto.setCelular(empleados.getCelular());
             lstDto.add(dto);
         }

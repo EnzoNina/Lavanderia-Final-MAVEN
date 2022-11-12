@@ -49,7 +49,7 @@ public class BOGestionClientes {
         for (Clientes clientes : lst) {
             DtoClientes dto = new DtoClientes();
             dto.setCod(clientes.getCod());
-            dto.setNombres(clientes.getNombres());
+            dto.setNombre(clientes.getNombre());
             dto.setApellidos(clientes.getApellidoPaterno() + " " + clientes.getApellidoMaterno());
             dto.setDni(clientes.getDni());
             dto.setCelular(clientes.getCelular());

@@ -3,7 +3,7 @@ package pe.edu.lavanderia.dto;
 public class DtoClientes {
 
     private int cod;
-    private String nombres;
+    private String nombre;
     private String apellidos;
     private String dni;
     private String celular;
@@ -17,8 +17,8 @@ public class DtoClientes {
         this.cod = cod;
     }
 
-    public String getNombres() {
-        return nombres;
+    public String getNombre() {
+        return nombre;
     }
 
     public String getApellidos() {
@@ -29,8 +29,8 @@ public class DtoClientes {
         this.apellidos = apellidos;
     }
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getDni() {

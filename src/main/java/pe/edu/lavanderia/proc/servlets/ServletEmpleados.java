@@ -73,7 +73,7 @@ public class ServletEmpleados extends HttpServlet {
             throws ServletException, IOException {
         
         String tipo = request.getParameter("tipo");
-        String nombre = request.getParameter("nombres");
+        String nombres = request.getParameter("nombres");
         String dni = request.getParameter("dni");
         String ape_materno = request.getParameter("ma");
         String ape_paterno = request.getParameter("pa");
@@ -86,7 +86,7 @@ public class ServletEmpleados extends HttpServlet {
             tipo = "administracion";
         }
 
-        Empleados ob = new Empleados(dni, nombre, ape_paterno, ape_materno, celular, usuario, contraseña, empleadoTipo);
+        Empleados ob = new Empleados(dni, nombres, ape_paterno, ape_materno, celular, usuario, contraseña, empleadoTipo);
 
         bo.addEmpleado(ob);
 
@@ -101,7 +101,7 @@ public class ServletEmpleados extends HttpServlet {
     private void editEmpleado(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int cod = Integer.parseInt(request.getParameter("codi"));
-        String nombre = request.getParameter("nombres");
+        String nombres = request.getParameter("nombres");
         String dni = request.getParameter("dni");
         String ape_materno = request.getParameter("ma");
         String ape_paterno = request.getParameter("pa");
@@ -110,7 +110,7 @@ public class ServletEmpleados extends HttpServlet {
         String contraseña = request.getParameter("contra");
         String tipoEmpleado = request.getParameter("empleado");
 
-        Empleados o = new Empleados(cod, dni, nombre, ape_paterno, ape_materno, celular, usuario, contraseña, tipoEmpleado);
+        Empleados o = new Empleados(cod, dni, nombres, ape_paterno, ape_materno, celular, usuario, contraseña, tipoEmpleado);
         bo.editEmpleado(o);
         response.sendRedirect("ServletEmpleados");
     }

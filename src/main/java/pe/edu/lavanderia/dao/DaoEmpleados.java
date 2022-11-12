@@ -46,8 +46,8 @@ public class DaoEmpleados extends DaoGenerico {
             PreparedStatement stm = cnx.prepareStatement(sentencia);
             stm.setString(1, empleado.getDni());
             stm.setString(2, empleado.getNombre());
-            stm.setString(3, empleado.getApe_paterno());
-            stm.setString(4, empleado.getApe_materno());
+            stm.setString(3, empleado.getApellidoPaterno());
+            stm.setString(4, empleado.getApellidoMaterno());
             stm.setString(5, empleado.getCelular());
             stm.setString(6, empleado.getUsuario());
             stm.setString(7, empleado.getContraseña());
@@ -72,8 +72,8 @@ public class DaoEmpleados extends DaoGenerico {
             PreparedStatement stm = cnx.prepareStatement(sentencia);
             stm.setString(1, empleado.getDni());
             stm.setString(2, empleado.getNombre());
-            stm.setString(3, empleado.getApe_paterno());
-            stm.setString(4, empleado.getApe_materno());
+            stm.setString(3, empleado.getApellidoPaterno());
+            stm.setString(4, empleado.getApellidoMaterno());
             stm.setString(5, empleado.getCelular());
             stm.setString(6, empleado.getUsuario());
             stm.setString(7, empleado.getContraseña());

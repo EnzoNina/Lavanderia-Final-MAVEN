@@ -48,7 +48,7 @@ public class DaoClientes extends DaoGenerico {
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 u.setCod(rs.getInt(1));
-                u.setNombres(rs.getString(2));
+                u.setNombre(rs.getString(2));
                 u.setApellidoPaterno(rs.getString(3));
                 u.setApellidoMaterno(rs.getString(4));
                 u.setDni(rs.getString(5));
@@ -73,7 +73,7 @@ public class DaoClientes extends DaoGenerico {
         String sentencia = "INSERT INTO public.clientes (nombres, ape_paterno, ape_materno, dni, celular, direccion, usuario, contraseña,correo) VALUES(?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement stm = cnx.prepareStatement(sentencia);
-            stm.setString(1, cliente.getNombres());
+            stm.setString(1, cliente.getNombre());
             stm.setString(2, cliente.getApellidoPaterno());
             stm.setString(3, cliente.getApellidoMaterno());
             stm.setString(4, cliente.getDni());
@@ -100,7 +100,7 @@ public class DaoClientes extends DaoGenerico {
         String sentencia = "UPDATE public.clientes SET nombres = ?, ape_paterno = ?, ape_materno = ?, celular = ?, direccion = ?, usuario = ?, contraseña = ?, dni=?,correo=? WHERE cod_cliente= ?";
         try {
             PreparedStatement stm = cnx.prepareStatement(sentencia);
-            stm.setString(1, cliente.getNombres());
+            stm.setString(1, cliente.getNombre());
             stm.setString(2, cliente.getApellidoPaterno());
             stm.setString(3, cliente.getApellidoMaterno());
             stm.setString(4, cliente.getCelular());
