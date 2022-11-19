@@ -74,7 +74,7 @@ public class ServletServicios extends HttpServlet {
             List<Integer> listCodCategorias = bOGestionCategorias.getCodCategorias();
             request.setAttribute("list", lst);
             request.setAttribute("categoriasCod", listCodCategorias);
-            request.getRequestDispatcher("GestionJSP/servicios.jsp").forward(request, response);
+            request.getRequestDispatcher("pages/Lavanderia/servicios.jsp").forward(request, response);
         }
 
     }

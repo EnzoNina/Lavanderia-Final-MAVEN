@@ -43,7 +43,7 @@ public class ServletGetListaClientes extends HttpServlet {
         } else if (tipo.equalsIgnoreCase("administracion")) {
             List<Clientes> lst = bo.getClientes();
             request.getSession().setAttribute("clientList", lst);
-            request.getRequestDispatcher("GestionJSP/clients.jsp").forward(request, response);
+            request.getRequestDispatcher("pages/Lavanderia/clients.jsp").forward(request, response);
         }
 
     }

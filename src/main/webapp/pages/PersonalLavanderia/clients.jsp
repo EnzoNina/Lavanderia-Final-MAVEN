@@ -1,41 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page import="java.util.List"%>
-<%@page import="pe.edu.lavanderia.proc.mantenimientos.BOGestionClientes"%>
-<%@page import="pe.edu.lavanderia.entidades.jdbc.Clientes"%>
+
 
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
 
     <head>
         <title>Clientes - Lavanderia</title>
-       <%@ include file="../../Common/estilos.html" %>
+       <%@include file="../../Common/estilosAdmin.html" %>
     </head>
-    <body class="m-0 vh-100 row justify-content-center align-items-center"
-          style="background-image: url('http://localhost:8080/lavanderia/images/fondo2.jpg');">
-        <%@ include file="../../Common/body.html" %>
-        <div class="page">
-            <a class="btn btn-primary" href="http://localhost:8080/lavanderia/pages/PersonalLavanderia/menuPersonal.jsp">Volver al Menu</a>
-            <div style="background: white; color: black;">
-                <a class="btn btn-primary"
-                   href="http://localhost:8080/lavanderia/pages/registrar.jsp?tipo=personal">Agregar
-                    cliente</a>
+
+    <body>
+
+         <!-- ======= Header ======= -->
+        <header id="header" class="header fixed-top d-flex align-items-center">
+            <%@include file="../../Common/header.html" %>
+        </header><!-- End Header -->
+
+        <!-- ======= Sidebar ======= -->
+        <aside id="sidebar" class="sidebar">
+            <%@include file="../../Common/asideAdministrador.jsp" %>
+        </aside><!-- End Sidebar-->
 
 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Codigo</th>
-                            <th scope="col">Nombres</th>
-                            <th scope="col">Apellidos</th>
-                            <th scope="col">DNI</th>
-                            <th scope="col">Celular</th>                            
-                            <th scope="col">Direccion</th>                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach items="${clientList}" var="cliente">
+        <main id="main" class="main">
+                    <section class="section dashboard">
+                        <div class="row">
+                            <!-- Left side columns -->
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <!-- Customers Card -->
+                                    <div class="col-xxl-4 col-xl-12">
+                                        <!-- Recent Sales -->
+                                        <div class="col-12">
+                                            <div class="card recent-sales overflow-auto">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Clientes</h5>
+                                                    <a class="btn btn-primary"
+                                                    href="http://localhost:8080/lavanderia/pages/registrar.jsp?tipo=personal">Agregar
+                                                    cliente</a>
+                                                    <table class="table table-borderless datatable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">#</th>
+                                                                <th scope="col">Nombres</th>
+                                                                <th scope="col">Apellidos</th>                                                                                                                                
+                                                                <th scope="col">DNI</th>
+                                                                <th scope="col">Celular</th>                                                                
+                                                                <th scope="col">Direccion</th>                                                                
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <c:forEach items="${clientList}" var="cliente">
                             <tr>
                                 <td id="codigo"><c:out value="${cliente.cod}"></c:out></td>
                                 <td id="nombre"><c:out value="${cliente.nombre}"></c:out></td>
@@ -47,14 +64,26 @@
                                 </tr>
 
                         </c:forEach>
-                    </tbody>
-                </table>
-            </div>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div><!-- End Recent Sales -->
+                                    </div>
+                                </div><!-- End Left side columns -->
+                            </div>
+                        </div>
+                    </section>
 
-        </div>
-        <div class="snackbars" id="form-output-global"></div>
-        <script src="http://localhost:8080/lavanderia/js/core.min.js"></script>
-        <script src="http://localhost:8080/lavanderia/js/script.js"></script>
-        <script src="http://localhost:8080/lavanderia/js/gestionCliente.js"></script>
+                </main><!-- End #main -->
+
+        <footer id="footer" class="footer">
+            <%@include file="../../Common/footer.html" %>
+        </footer><!-- End Footer -->
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+                class="bi bi-arrow-up-short"></i></a>
+
+        <%@include file="../../Common/imports.html" %>
+        
     </body>
 </html>

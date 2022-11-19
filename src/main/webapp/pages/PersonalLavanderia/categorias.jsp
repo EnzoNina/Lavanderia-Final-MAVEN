@@ -8,27 +8,44 @@
 
     <head>
         <title>Categorias - Lavanderia - Personal</title>
-        <%@ include file="../../Common/estilos.html" %>
+        <%@include file="../../Common/estilosAdmin.html" %>
     </head>
-    <body class="m-0 vh-100 row justify-content-center align-items-center"
-          style="background-image: url('http://localhost:8080/lavanderia/images/fondo2.jpg');">
-        <%@ include file="../../Common/body.html" %>
-        <div class="page">
-        <a class="btn btn-primary" href="http://localhost:8080/lavanderia/pages/PersonalLavanderia/menuPersonal.jsp">Volver al Menu</a>
-            <div style="background: white; color: black;">
-                <button type="button" class="btn btn-primary" style="margin: 15px;" data-target="#agregar"
-                        data-toggle="modal">Agregar categoria</button>                
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Codigo</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Descripcion</th>                            
-                        </tr>
-                    </thead>
-                    <tbody>
+    <body>
+        
+        <!-- ======= Header ======= -->
+        <header id="header" class="header fixed-top d-flex align-items-center">
+            <%@include file="../../Common/header.html" %>
+        </header><!-- End Header -->
 
-                        <c:forEach items="${lst}" var="categoria">
+        <!-- ======= Sidebar ======= -->
+        <aside id="sidebar" class="sidebar">
+            <%@include file="../../Common/asideEmpleado.jsp" %>
+        </aside><!-- End Sidebar-->
+
+        <main id="main" class="main">
+            <section class="section dashboard">
+                <div class="row">
+                    <!-- Left side columns -->
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <!-- Customers Card -->
+                            <div class="col-xxl-4 col-xl-12">
+                                <!-- Recent Sales -->
+                                <div class="col-12">
+                                    <div class="card recent-sales overflow-auto">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Categorias</h5>
+
+                                            <table class="table table-borderless datatable">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Nombre</th>
+                                                        <th scope="col">Descripcion</th>                                                        
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach items="${lst}" var="categoria">
                             <tr>
                                 <td id="cod" > <c:out value="${categoria.cod_categoria}" ></c:out> </td>
                                     <td id="nombre">
@@ -38,61 +55,28 @@
                                     </td>
                                     <td id="desc" > <c:out value="${categoria.descripcion}" ></c:out> </td>                                
                                 </tr>
-                        </c:forEach>                                                
-                    </tbody>
-                </table>
-
-                <!-- Agregar Categoria -->
-
-                <div class="modal fade" id="agregar" tabindex="-1" aria-labelledby="agregar" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="agregar">Agregar categoria</h5>
+                        </c:forEach> 
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div><!-- End Recent Sales -->
                             </div>
-                            <div class="modal-body">
-                                <form method="get" action="<%=request.getContextPath()%>/ServletCategorias" >
-                                    <input type="hidden" name="instruccion" value="new"/>
-                                    <input type="hidden" name="tipo" value="personal"/>
-                                    <div class="mb-3 row">
-                                        <label for="text" class="col-sm-2 col-form-label">Categoria</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="nom" required/>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <label for="text" class="col-sm-2 col-form-label">Descripcion</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="desc" required/>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <label for="text" class="col-sm-2 col-form-label">Estado</label>
-                                        <div class="col-sm-10">
-                                            <select class="form-select" name="estado" aria-label="Estado...">                                                
-                                                <option value="true">True</option>
-                                                <option value="false">False</option>                                                
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                            Cerrar
-                                        </button>
-                                        <button type="submit" class="btn btn-primary">
-                                            <a >Agregar</a>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                        </div><!-- End Left side columns -->
                     </div>
                 </div>
-            </div>
-        </div>                
-        <div class="snackbars" id="form-output-global"></div>
-        <script src="http://localhost:8080/lavanderia/js/core.min.js"></script>
-        <script src="http://localhost:8080/lavanderia/js/gestionCategorias.js"></script>
-        <script src="http://localhost:8080/lavanderia/js/script.js"></script>
+            </section>
+
+        </main><!-- End #main -->                
+        <!-- ======= Footer ======= -->
+        <footer id="footer" class="footer">
+            <%@include file="../../Common/footer.html" %>
+        </footer><!-- End Footer -->
+
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+                class="bi bi-arrow-up-short"></i></a>
+
+        <%@include file="../../Common/imports.html" %>        
+        
     </body>
 </html>

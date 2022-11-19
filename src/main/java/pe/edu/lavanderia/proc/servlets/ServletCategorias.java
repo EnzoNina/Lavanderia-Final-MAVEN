@@ -65,7 +65,7 @@ public class ServletCategorias extends HttpServlet {
         } else if (tipo.equalsIgnoreCase("administracion")) {
             List<Categorias> lst = bo.getCategorias();
             request.setAttribute("list", lst);
-            request.getRequestDispatcher("GestionJSP/categorias.jsp").forward(request, response);
+            request.getRequestDispatcher("pages/Lavanderia/categorias.jsp").forward(request, response);
         }
     }
 

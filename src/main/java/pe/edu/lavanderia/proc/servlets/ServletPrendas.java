@@ -60,7 +60,7 @@ public class ServletPrendas extends HttpServlet {
         request.setAttribute("lst", lst);
         request.setAttribute("lstTipoPrenda", lstTipoPrenda);
         request.setAttribute("lstTipoTela", lstTipoTela);
-        request.getRequestDispatcher("GestionJSP/prendas.jsp").forward(request, response);
+        request.getRequestDispatcher("pages/Lavanderia/prendas.jsp").forward(request, response);
     }
 
     // Metodos

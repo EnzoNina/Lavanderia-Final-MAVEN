@@ -24,6 +24,9 @@ import pe.edu.lavanderia.proc.mantenimientos.BOGestionServicios;
 public class ServletPedidos extends HttpServlet {
 
     @EJB
+    private BOGestionClientes bOGestionClientes;
+
+    @EJB
     private BOGestionPedidos bo;
 
     List<String> lstRopa = new ArrayList<String>();
@@ -37,9 +40,13 @@ public class ServletPedidos extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String instruccion = request.getParameter("instruccion");
+                       
         if (instruccion == null) {
             instruccion = "listar";
         }
+        
+        String a = (String) request.getSession().getAttribute("DNI");
+        System.out.println("aaaaaaaa " + a);
 
         switch (instruccion) {
             case "listar":
@@ -88,31 +95,24 @@ public class ServletPedidos extends HttpServlet {
 
     private void buscarCliente(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String dni = request.getParameter("DNI");
-
-        BOGestionClientes bo = new BOGestionClientes();
-        Clientes cli = bo.buscarClientePorDNI(dni);
+        String dni = request.getParameter("DNI");        
+        Clientes cli = bOGestionClientes.buscarClientePorDNI(dni);
         dni = cli.getDni();
         int cod = cli.getCod();
         String direccion = cli.getDireccion();
         String nombres = cli.getNombre();
-        String apellidos = cli.getApellidoPaterno() + cli.getApellidoMaterno();
+        String apellidos = cli.getApellidoPaterno() + cli.getApellidoMaterno();        
         cargar(request, response);
-        request.setAttribute("DNI", dni);
-        request.setAttribute("cod", cod);
-        request.setAttribute("direccion", direccion);
-        request.setAttribute("nombres", nombres);
-        request.setAttribute("apellidos", apellidos);
+        request.getSession().setAttribute("DNI", dni);
+        request.getSession().setAttribute("cod", cod);
+        request.getSession().setAttribute("direccion", direccion);
+        request.getSession().setAttribute("nombres", nombres);
+        request.getSession().setAttribute("apellidos", apellidos);        
         request.getRequestDispatcher("pages/Lavanderia/nuevoPedido.jsp").forward(request, response);
     }
 
     private void agregarRopa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Datos del cliente
-        String dni = request.getParameter("DNI");
-        int cod = Integer.parseInt(request.getParameter("cod"));
-        String direccion = request.getParameter("dire");
-        String nombres = request.getParameter("nombre");
-        String apellidos = request.getParameter("apellido");
 
         String ropa = request.getParameter("prenda");
         int cantidad = Integer.parseInt(request.getParameter("cantidad"));
@@ -130,12 +130,7 @@ public class ServletPedidos extends HttpServlet {
         lstRopaCant.add(cantidad);
         lstRopaServicio.add(arr[0]);
         lstRopaTotal.add("Codigo de Ropa:" + ropa + "-" + "Cantidad: " + cantidad + "-" + "Servicio:" + arr[1]);
-        cargar(request, response);
-        request.setAttribute("DNI", dni);
-        request.setAttribute("cod", cod);
-        request.setAttribute("direccion", direccion);
-        request.setAttribute("nombres", nombres);
-        request.setAttribute("apellidos", apellidos);
+        cargar(request, response);        
         request.setAttribute("monto", total);
         request.setAttribute("lstRopaTotal", lstRopaTotal);
         request.getRequestDispatcher("pages/Lavanderia/nuevoPedido.jsp").forward(request, response);
@@ -144,9 +139,9 @@ public class ServletPedidos extends HttpServlet {
     private void newPedido(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //Obtenemos el codigo del empleado
-        int cod_empleado = Integer.parseInt((String) request.getSession().getAttribute("codemple"));
+        int cod_empleado = Integer.parseInt((request.getSession().getAttribute("cod_empleado")).toString());
         String tipo = request.getParameter("tipo");
-        int cod_cliente = Integer.parseInt(request.getParameter("cod"));
+        int cod_cliente = Integer.parseInt(( request.getSession().getAttribute("cod")).toString());
         String observacion = request.getParameter("observacion");
         String fecha_entrega = request.getParameter("fecha_entrega");
 

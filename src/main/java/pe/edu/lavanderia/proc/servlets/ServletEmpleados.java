@@ -64,7 +64,7 @@ public class ServletEmpleados extends HttpServlet {
         } else if (tipo.equalsIgnoreCase("administracion")) {
             List<Empleados> lst = bo.getEmpleados();
             request.setAttribute("lst", lst);
-            request.getRequestDispatcher("GestionJSP/empleado.jsp").forward(request, response);
+            request.getRequestDispatcher("pages/Lavanderia/empleado.jsp").forward(request, response);
         }
     }
 
