@@ -84,7 +84,8 @@
                 </div>
             </section>
 
-        </main><!-- End #main -->        
+        </main><!-- End #main -->   
+             
         <!-- Modal Agregar Servicio -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
@@ -250,6 +251,7 @@
             class="bi bi-arrow-up-short"></i></a>
 
     <%@include file="../../Common/imports.html" %>
+    <script src="http://localhost:8080/lavanderia/js/gestionServicios.js"></script>
 </body>
 
 </html>

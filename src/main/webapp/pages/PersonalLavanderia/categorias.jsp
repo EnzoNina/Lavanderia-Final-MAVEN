@@ -35,7 +35,9 @@
                                     <div class="card recent-sales overflow-auto">
                                         <div class="card-body">
                                             <h5 class="card-title">Categorias</h5>
-
+                                            <button type="button" class="btn btn-primary" style="margin: 15px;" data-target="#agregar"
+                                                data-toggle="modal">Agregar categoria
+                                            </button>
                                             <table class="table table-borderless datatable">
                                                 <thead>
                                                     <tr>
@@ -67,7 +69,56 @@
                 </div>
             </section>
 
-        </main><!-- End #main -->                
+        </main><!-- End #main -->
+
+        <!-- Agregar Categoria -->
+        <div class="modal fade" id="agregar" tabindex="-1" aria-labelledby="agregar" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="agregar">Agregar categoria</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form method="get" action="<%=request.getContextPath()%>/ServletCategorias" >
+                            <input type="hidden" name="instruccion" value="new"/>
+                            <input type="hidden" name="tipo" value="personal"/>
+                            <div class="mb-3 row">
+                                <label for="text" class="col-sm-2 col-form-label">Categoria</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="nom" required/>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="text" class="col-sm-2 col-form-label">Descripcion</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="desc" required/>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="text" class="col-sm-2 col-form-label">Estado</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" name="estado" aria-label="Estado...">                                                
+                                        <option value="true">True</option>
+                                        <option value="false">False</option>                                                
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    Cerrar
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    <a >Agregar</a>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+
         <!-- ======= Footer ======= -->
         <footer id="footer" class="footer">
             <%@include file="../../Common/footer.html" %>

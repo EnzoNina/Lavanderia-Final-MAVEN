@@ -37,8 +37,8 @@
                                         <div class="col-12">
                                             <div class="card recent-sales overflow-auto">
                                                 <div class="card-body">
-                                                    <h5 class="card-title">Pedidos Recientes</h5>
-
+                                                    <h5 class="card-title">Clientes</h5>
+                                                    <a class="btn btn-primary " href="http://localhost:8080/lavanderia/pages/registrar.jsp">Agregar cliente</a>
                                                     <table class="table table-borderless datatable">
                                                         <thead>
                                                             <tr>
@@ -115,7 +115,7 @@
                     </section>
 
                 </main><!-- End #main -->
-                
+
                 <!-- Modal Editar-->
                 <div class="modal fade" id="editCliente" tabindex="-1"
                      aria-labelledby="editCliente" aria-hidden="true">
@@ -243,14 +243,15 @@
             </div>
 
         </div>
-        
+
         <footer id="footer" class="footer">
             <%@include file="../../Common/footer.html" %>
         </footer><!-- End Footer -->
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
                 class="bi bi-arrow-up-short"></i></a>
-
+        
         <%@include file="../../Common/imports.html" %>
+        <script src="http://localhost:8080/lavanderia/js/gestionCliente.js"></script>
     </body>
 </html>
 

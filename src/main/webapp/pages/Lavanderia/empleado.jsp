@@ -12,6 +12,7 @@
         <title>Empleados - Lavanderia</title>
         <%@include file="../../Common/estilosAdmin.html" %>
     </head>
+
     <body>        
         <div>            
             <div >                
@@ -309,6 +310,7 @@
             </div>
 
         </div>
+        
         <footer id="footer" class="footer">
             <%@include file="../../Common/footer.html" %>
         </footer><!-- End Footer -->
@@ -316,5 +318,6 @@
                 class="bi bi-arrow-up-short"></i></a>
 
         <%@include file="../../Common/imports.html" %>
+        <script src="http://localhost:8080/lavanderia/js/gestionEmpleado.js"></script>
     </body>
 </html>
