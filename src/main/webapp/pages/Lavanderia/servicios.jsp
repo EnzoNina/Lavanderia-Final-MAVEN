@@ -33,7 +33,9 @@
                                     <div class="card recent-sales overflow-auto">
                                         <div class="card-body">
                                             <h5 class="card-title">Pedidos Recientes</h5>
-
+                                            <button type="button" class="btn btn-primary" style="margin: 15px;" data-target="#exampleModal"
+                                                    data-toggle="modal">Agregar Servicio
+                                            </button>
                                             <table class="table table-borderless datatable">
                                                 <thead>
                                                     <tr>

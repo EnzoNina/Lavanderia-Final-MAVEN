@@ -39,7 +39,7 @@
                                             <div class="card recent-sales overflow-auto">
                                                 <div class="card-body">
                                                     <h5 class="card-title">Empleados</h5>
-
+                                                    <a class="btn btn-primary" data-target="#nuevoEmpleado" data-toggle="modal" >Agregar Empleado</a>
                                                     <table class="table table-borderless datatable">
                                                         <thead>
                                                             <tr>
