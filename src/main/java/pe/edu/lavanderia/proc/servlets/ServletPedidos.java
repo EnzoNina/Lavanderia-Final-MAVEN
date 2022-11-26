@@ -43,11 +43,7 @@ public class ServletPedidos extends HttpServlet {
                        
         if (instruccion == null) {
             instruccion = "listar";
-        }
-        
-        String a = (String) request.getSession().getAttribute("DNI");
-        System.out.println("aaaaaaaa " + a);
-
+        }                
         switch (instruccion) {
             case "listar":
                 cargarServicios(request, response);
@@ -74,13 +70,18 @@ public class ServletPedidos extends HttpServlet {
     }
 
     private void cargarServicios(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException {                                 
         BOGestionServicios bo = new BOGestionServicios();
         BOGestionPrendas boPrendas = new BOGestionPrendas();
         List<Servicios> lst = bo.getServicios();
         List<DtoPrendasLista> lstPrendas = boPrendas.getPrendasList();
         request.setAttribute("list", lst);
         request.setAttribute("lstPrendas", lstPrendas);
+        
+        request.getSession().setAttribute("DNI", "DNI");
+        request.getSession().setAttribute("nombres", "Nombres");
+        request.getSession().setAttribute("apellidos", "Apellidos");
+        request.getSession().setAttribute("direccion", "Direccion");
         request.getRequestDispatcher("pages/Lavanderia/nuevoPedido.jsp").forward(request, response);
     }
 
@@ -115,7 +116,7 @@ public class ServletPedidos extends HttpServlet {
         //Datos del cliente
 
         String ropa = request.getParameter("prenda");
-        int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+        int cantidadRopa = Integer.parseInt(request.getParameter("cantidad"));
 
         String servicioTotal = request.getParameter("servicio");
 
@@ -123,13 +124,13 @@ public class ServletPedidos extends HttpServlet {
         String[] arr = servicioTotal.split("-");
         //Calculamos costo
         double costoServicio = Double.parseDouble(arr[2]);
-        double montotemp = costoServicio * cantidad;
+        double montotemp = costoServicio;
         lstSubTotal.add(montotemp);
         total += montotemp;
         lstRopa.add(ropa);
-        lstRopaCant.add(cantidad);
+        lstRopaCant.add(cantidadRopa);
         lstRopaServicio.add(arr[0]);
-        lstRopaTotal.add("Codigo de Ropa:" + ropa + "-" + "Cantidad: " + cantidad + "-" + "Servicio:" + arr[1]);
+        lstRopaTotal.add("Codigo de Ropa:" + ropa + "-" + "Cantidad de Ropa: " + cantidadRopa + "-" + "Servicio:" + arr[1]);
         cargar(request, response);        
         request.setAttribute("monto", total);
         request.setAttribute("lstRopaTotal", lstRopaTotal);
@@ -148,26 +149,20 @@ public class ServletPedidos extends HttpServlet {
         Date fecha_entregaSQL = Date.valueOf(fecha_entrega);
         Pedidos ob = new Pedidos(cod_cliente, cod_empleado, fecha_entregaSQL, observacion, tipo, total);
         System.out.println(ob.toString());
+        
         bo.addPedido(ob);
-        bo.addDetallePedido(lstRopaServicio, lstRopaCant, lstSubTotal);
-        response.sendRedirect("pages/Lavanderia/menu.jsp");        
+        
+        //bo.addDetallePedido(lstRopaServicio, lstRopaCant, lstSubTotal);
+        response.sendRedirect("ServletLoadPedidos");        
     }
 
     private void editPedido(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        BOGestionPedidos bo = new BOGestionPedidos();
-        int cod = Integer.parseInt(request.getParameter("cod"));
-        String nombre = request.getParameter("nom");
-        String descripcion = request.getParameter("desc");
-        int cod_categoria = Integer.parseInt(request.getParameter("cate"));
-        double precio = Double.parseDouble(request.getParameter("prec"));
+        
     }
 
     private void deletePedido(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        BOGestionPedidos bo = new BOGestionPedidos();
-        int cod = Integer.parseInt(request.getParameter("codigo"));
-
+            throws ServletException, IOException {        
     }
 
     @Override

@@ -6,6 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.management.RuntimeErrorException;
+
+import pe.edu.lavanderia.dto.DtoPrendaListaMostrar;
+import pe.edu.lavanderia.dto.DtoServicios;
 import pe.edu.lavanderia.entidades.jdbc.Pedidos;
 import pe.edu.lavanderia.entidades.jdbc.VisitaDomiciliaria;
 
@@ -23,7 +28,8 @@ public class DaoPedidos extends DaoGenerico {
             ResultSet rs = ps.executeQuery();
             // Recorremos
             while (rs.next()) {
-                Pedidos obpedido = new Pedidos(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getString(5), rs.getString(6), rs.getDouble(7));
+                Pedidos obpedido = new Pedidos(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getString(5),
+                        rs.getString(6), rs.getDouble(7));
                 serviceList.add(obpedido);
             }
 
@@ -136,18 +142,17 @@ public class DaoPedidos extends DaoGenerico {
         }
     }
 
-    public void addDetallePedido(List<String> lstRopaServicio, List<Integer> lstRopaCant, List<Double> lstSubTotal) {
+    public void addDetallePedido(List<DtoServicios> lstServicio, List<Double> lstSubTotal) {
         int cod_pedido = getUltimoCodigo();
         Connection conexion = getConexion();// Obtenemos conexion
 
-        for (int i = 0; i < lstRopaCant.size(); i++) {
-            String sql = "INSERT INTO public.detalle_pedido (cod_pedido, cod_servicio, cantidad, subtotal) VALUES( ?, ?, ?, ?)";
+        for (int i = 0; i < lstServicio.size(); i++) {
+            String sql = "INSERT INTO public.detalle_pedido (cod_pedido, cod_servicio, subtotal) VALUES( ?, ?, ?)";
             try {
                 PreparedStatement stm = conexion.prepareStatement(sql);
                 stm.setInt(1, cod_pedido);
-                stm.setInt(2, Integer.parseInt(lstRopaServicio.get(i)));
-                stm.setInt(3, lstRopaCant.get(i));
-                stm.setDouble(4, lstSubTotal.get(i));
+                stm.setInt(2, lstServicio.get(i).getCod());
+                stm.setDouble(3, lstSubTotal.get(i));
                 stm.executeUpdate();
             } catch (Exception e) {
                 System.out.println(e);
@@ -155,5 +160,23 @@ public class DaoPedidos extends DaoGenerico {
             }
         }
 
+    }
+
+    public void addPrendas(List<DtoPrendaListaMostrar> lstRopaMandar) {
+        Connection conexion = getConexion();
+        int codPedido = getUltimoCodigo();
+        for (int i = 0; i < lstRopaMandar.size(); i++) {
+            String sql = "INSERT INTO public.pedido_prenda (cod_pedido, cod_prenda, cantidad_prenda) VALUES(?, ?, ?)";
+            try {
+                PreparedStatement stm = conexion.prepareStatement(sql);
+                stm.setInt(1, codPedido);
+                stm.setInt(2, lstRopaMandar.get(i).getCod());
+                stm.setInt(3, lstRopaMandar.get(i).getCantidad());
+                stm.executeUpdate();
+            } catch (Exception e) {
+                System.out.println(e);
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

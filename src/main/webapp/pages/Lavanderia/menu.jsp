@@ -48,15 +48,15 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>                                                                                                      
-                                                    <c:forEach items="${lstUltimosPedidos}" var="lst">
+                                                    <c:forEach items="${lst}" var="pedido">
                                                         <tr>
-                                                            <td id="cod"> <c:out value="${lst.cod_pedido}"></c:out> </td>
-                                                            <td id="cod_cliente"> <c:out value="${lst.cod_cliente}"></c:out> </td>
-                                                            <td id="obs"> <c:out value="${lst.observaciones}"></c:out> </td>
-                                                            <td id="fecha"> <c:out value="${lst.fecha_entrega}"></c:out ></td>
-                                                            <td id="tipo"> <c:out value="${lst.tipo}"></c:out ></td>
-                                                            <td id="cod_empleado"> <c:out value="${lst.cod_empleado}"></c:out ></td>
-                                                            <td id="total"> <c:out value="${lst.total}"></c:out ></td>
+                                                            <td id="cod"> <c:out value="${pedido.cod_pedido}"></c:out> </td>
+                                                            <td id="cod_cliente"> <c:out value="${pedido.cod_cliente}"></c:out> </td>
+                                                            <td id="obs"> <c:out value="${pedido.observaciones}"></c:out> </td>
+                                                            <td id="fecha"> <c:out value="${pedido.fecha_entrega}"></c:out ></td>
+                                                            <td id="tipo"> <c:out value="${pedido.tipo}"></c:out ></td>
+                                                            <td id="cod_empleado"> <c:out value="${pedido.cod_empleado}"></c:out ></td>
+                                                            <td id="total"> <c:out value="${pedido.total}"></c:out ></td>
                                                             </tr>
                                                     </c:forEach>
                                                 </tbody>

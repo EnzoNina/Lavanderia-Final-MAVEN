@@ -1,14 +1,12 @@
 package pe.edu.lavanderia.proc.servlets;
 
 import java.io.IOException;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import pe.edu.lavanderia.entidades.jdbc.Pedidos;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionEmpleados;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionPedidos;
 
@@ -29,19 +27,14 @@ public class loginEmpleado extends HttpServlet {
         String user = request.getParameter("user");
         String pass = request.getParameter("pass");
 
-        String[] datosEmpleado = bOGestionEmpleados.login(user, pass);
-
-        List<Pedidos> lst = boPedidos.getPedidos();
-        request.getSession().setAttribute("lstUltimosPedidos", lst);
-
+        String[] datosEmpleado = bOGestionEmpleados.login(user, pass);                
         if (datosEmpleado[1].equalsIgnoreCase("administrador")) {
             System.out.println("Cod empleado: " + datosEmpleado[0]);
             request.getSession().setAttribute("cod_empleado", datosEmpleado[0]);
-
-            request.getRequestDispatcher("pages/Lavanderia/menu.jsp").forward(request, response);
+            response.sendRedirect("ServletLoadPedidos");            
         } else if (datosEmpleado[1].equalsIgnoreCase("personal")) {
             request.getSession().setAttribute("cod_empleado", datosEmpleado[0]);
-            request.getRequestDispatcher("pages/PersonalLavanderia/menuPersonal.jsp").forward(request, response);            
+            response.sendRedirect("ServletLoadPedidos?tipo=personal");
         } else {
             response.sendRedirect("pages/login.jsp");
         }

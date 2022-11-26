@@ -4,6 +4,8 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import pe.edu.lavanderia.dao.DaoPedidos;
+import pe.edu.lavanderia.dto.DtoPrendaListaMostrar;
+import pe.edu.lavanderia.dto.DtoServicios;
 import pe.edu.lavanderia.entidades.jdbc.Pedidos;
 import pe.edu.lavanderia.entidades.jdbc.VisitaDomiciliaria;
 
@@ -37,8 +39,12 @@ public class BOGestionPedidos {
         dao.programarVisita(ob);
     }
 
-    public void addDetallePedido(List<String> lstRopaServicio, List<Integer> lstRopaCant,List<Double>lstSubTotal) {
-        dao.addDetallePedido(lstRopaServicio, lstRopaCant,lstSubTotal);
+    public void addDetallePedido(List<DtoServicios> lstRopaServicio,List<Double>lstSubTotal) {
+        dao.addDetallePedido(lstRopaServicio,lstSubTotal);
+    }
+
+    public void addPrendas(List<DtoPrendaListaMostrar> lstRopaMandar) {
+        dao.addPrendas(lstRopaMandar);
     }
 
 }

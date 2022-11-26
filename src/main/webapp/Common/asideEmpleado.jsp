@@ -4,7 +4,7 @@
 <ul class="sidebar-nav" id="sidebar-nav">
 
     <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="<%=request.getContextPath()%>/ServletLoadPedidos?tipo=personal">
             <i class="bi bi-grid"></i>
             <span>Inicio</span>
         </a>

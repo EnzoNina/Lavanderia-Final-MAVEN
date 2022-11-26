@@ -10,6 +10,21 @@ public class DtoServicios {
     public DtoServicios() {
     }
 
+    
+
+    /**
+     * @param cod
+     * @param nombre
+     * @param precio
+     */
+    public DtoServicios(int cod, String nombre, double precio) {
+        this.cod = cod;
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+
+
+
     public int getCod() {
         return cod;
     }
@@ -41,5 +56,9 @@ public class DtoServicios {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-
+    
+    @Override
+    public String toString() {
+        return "DtoServicios [cod=" + cod + ", nombre=" + nombre + ", precio=" + precio + "]";
+    }    
 }

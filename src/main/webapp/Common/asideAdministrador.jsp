@@ -4,7 +4,7 @@
 <ul class="sidebar-nav" id="sidebar-nav">
 
     <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="<%=request.getContextPath()%>/ServletLoadPedidos">
             <i class="bi bi-grid"></i>
             <span>Inicio</span>
         </a>
@@ -15,7 +15,14 @@
           <i class="bi bi-cart-plus"></i>
           <span>Nuevo Pedido</span>
         </a>
-      </li><!-- End Dashboard Nav -->
+    </li><!-- End Dashboard Nav -->
+    
+    <li class="nav-item">
+        <a class="nav-link " href="<%=request.getContextPath()%>/ServletConfirmacionVisita">
+          <i class="bi bi-cart-plus"></i>
+          <span>Confirmar Visita Domiciliaria</span>
+        </a>
+    </li><!-- End Dashboard Nav -->
     
     <li class="nav-heading">Pages</li>
 

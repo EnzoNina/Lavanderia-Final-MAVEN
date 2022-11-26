@@ -103,6 +103,7 @@
 .dataTable-table > thead > tr > th {
 	vertical-align: top;
 	padding: 8px 10px;
+	text-align: center !important;
 }
 
 .dataTable-table > thead > tr > th {

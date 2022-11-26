@@ -8,118 +8,166 @@
 
     <head>
         <title>Prendas - Lavanderia - Personal</title>
-        <%@ include file="../Common/estilos.html" %>
+        <%@include file="../../Common/estilosAdmin.html" %>
     </head>
 
-    <body class="m-0 vh-100 row justify-content-center align-items-center"
-          style="background-image: url('http://localhost:8080/lavanderia/images/fondo2.jpg');">
-        <%@ include file="../Common/body.html" %>
+    <body>
 
-        <div class="page">            
-            <div class=" container col-auto bg-danger p-5 text-center" style="background: white; color: black;" >
-                <div class="row row-cols-1 row-cols-md-2 g-4">                    
-                    <!-- Tabla Tipo Prenda -->
-                    <div class="col-lg-6 col-sm-12">
-                        <h3>Tabla Tipo Prenda</h3>
-                        <button type="button" class="btn btn-primary" style="margin: 15px;" data-target="#agregarTP"
-                                data-toggle="modal">Agregar Tipo Prenda</button>
-                        <table class="table table-sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Cod Tipo Prenda</th>
-                                    <th scope="col">Tipo Prenda</th>
-                                    <th scope="col">Accion</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+        <!-- ======= Header ======= -->
+        <header id="header" class="header fixed-top d-flex align-items-center">
+            <%@include file="../../Common/header.html" %>
+        </header><!-- End Header -->
 
-                                <c:forEach items="${lstTipoPrenda}" var="tipoPrenda">
-                                    <tr>
-                                        <td id="codTP" ><c:out value="${tipoPrenda.codTipoPrenda}" ></c:out> </td>
-                                        <td id="tipoPrenda"><c:out value="${tipoPrenda.tipoPrenda}" >  </c:out></td>
-                                            <td>
-                                                <button class="btn btn-primary" data-toggle="modal" data-target="#editarTP" 
-                                                        data-cod="${tipoPrenda.codTipoPrenda}" 
-                                                data-tipo="${tipoPrenda.tipoPrenda}">
-                                                Editar</button>
-                                            <button class="btn btn-primary" data-toggle="modal" data-target="#deleteTP" data-cod="${tipoPrenda.codTipoPrenda}" >Eliminar</button>
-                                        </td>
-                                    </tr>
-                                </c:forEach>                                                
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- Tabla Tipo Tela -->
-                    <div class="col-lg-6 col-sm-12">
-                        <h3>Tabla Tipo Tela</h3>
-                        <button type="button" class="btn btn-primary" style="margin: 15px;" data-target="#agregarTT"
-                                data-toggle="modal">Agregar Tipo Tela</button>
-                        <table class="table table-sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Cod Tipo Tela</th>
-                                    <th scope="col">Tipo Tela</th>
-                                    <th scope="col">Accion</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+        <!-- ======= Sidebar ======= -->
+        <aside id="sidebar" class="sidebar">
+            <%@include file="../../Common/asideAdministrador.jsp" %>
+        </aside><!-- End Sidebar-->
 
-                                <c:forEach items="${lstTipoTela}" var="tela">
-                                    <tr>
-                                        <td id="codTT" > <c:out value="${tela.cod_tipoTela}" ></c:out> </td>
-                                        <td id="tipoTela"><c:out value="${tela.tipoTela}" >  </c:out></td>
-                                            <td>
-                                                <button class="btn btn-primary" data-toggle="modal" data-target="#editarTP" data-cod="${tela.cod_tipoTela}" 
-                                                    data-tipo="${tela.tipoTela}">
-                                                Editar</button>
-                                            <button class="btn btn-primary" data-toggle="modal" data-target="#deleteTP" data-cod="${tela.cod_tipoTela}" >Eliminar</button>
-                                        </td>
-                                    </tr>
-                                </c:forEach>                                                
-                            </tbody>
-                        </table>
+
+        <main id="main" class="main">
+            <section class="section dashboard">
+                <div class="row">
+                    <!-- Left side columns -->
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <!-- Customers Card -->
+                            <div class="col-xxl-4 col-xl-12">
+                                <!-- Recent Sales -->
+                                <div class="col-12">
+                                    <div class="card recent-sales overflow-auto">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Tipo Prenda</h5>
+                                            <button type="button" class="btn btn-primary" style="margin: 15px;" data-target="#agregarTP"
+                                                    data-toggle="modal">Agregar Tipo Prenda</button>
+                                            <table class="table table-borderless datatable">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Tipo Prenda</th>
+                                                        <th scope="col">Accion</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach items="${lstTipoPrenda}" var="tipoPrenda">
+                                                        <tr>
+                                                            <td id="codTP" ><c:out value="${tipoPrenda.codTipoPrenda}" ></c:out> </td>
+                                                            <td id="tipoPrenda"><c:out value="${tipoPrenda.tipoPrenda}" >  </c:out></td>
+                                                                <td>
+                                                                    <button class="btn btn-primary" data-toggle="modal" data-target="#editarTP" 
+                                                                            data-cod="${tipoPrenda.codTipoPrenda}" 
+                                                                    data-tipo="${tipoPrenda.tipoPrenda}">
+                                                                    Editar</button>
+                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#deleteTP" data-cod="${tipoPrenda.codTipoPrenda}" >Eliminar</button>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach> 
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div><!-- End Recent Sales -->
+                            </div>
+                        </div><!-- End Left side columns -->
                     </div>
 
-                    <!-- Tabla Prendas -->
-                    <div class="col-lg-12 col-sm-12">
-                        <h3>Tabla Prendas</h3>
-                        <button type="button" class="btn btn-primary" style="margin: 15px;" data-target="#agregar"
-                                data-toggle="modal">Agregar Prenda</button>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Codigo</th>
-                                    <th scope="col">Cod - Tipo Prenda</th>
-                                    <th scope="col">Cod - Tipo Tela</th>
-                                    <th scope="col">Color</th>
-                                    <th scope="col">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <c:forEach items="${lst}" var="prenda">
-                                    <tr>
-                                        <td id="cod" > <c:out value="${prenda.cod}" ></c:out> </td>
-                                        <td id="tipoPrenda"><c:out value="${prenda.cod_tipoPrenda}" >  </c:out></td>
-                                        <td id="tipoTela" > <c:out value="${prenda.cod_tipoTela}" ></c:out> </td>
-                                        <td id="color" > <c:out value="${prenda.color}" ></c:out> </td>
-                                            <td>
-                                                <button class="btn btn-primary" data-toggle="modal" data-target="#editar"
-                                                        data-cod="${prenda.cod}"                                                     
-                                                data-color="${prenda.color}"
-                                                >
-                                                Editar</button>
-                                            <button class="btn btn-primary" data-toggle="modal" data-target="#delete" data-cod="${prenda.cod}" >Eliminar</button>
-                                        </td>
-                                    </tr>
-                                </c:forEach>                                                
-                            </tbody>
-                        </table>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <!-- Customers Card -->
+                            <div class="col-xxl-4 col-xl-12">
+                                <!-- Recent Sales -->
+                                <div class="col-12">
+                                    <div class="card recent-sales overflow-auto">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Tipo Tela</h5>
+                                            <button type="button" class="btn btn-primary" style="margin: 15px;" data-target="#agregarTT"
+                                                    data-toggle="modal">Agregar Tipo Tela</button>
+                                            <table class="table table-borderless datatable">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Tipo Tela</th>
+                                                        <th scope="col">Accion</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach items="${lstTipoTela}" var="tela">
+                                                        <tr>
+                                                            <td id="codTT" > <c:out value="${tela.cod_tipoTela}" ></c:out> </td>
+                                                            <td id="tipoTela"><c:out value="${tela.tipoTela}" >  </c:out></td>
+                                                                <td>
+                                                                    <button class="btn btn-primary" data-toggle="modal" data-target="#editarTP" data-cod="${tela.cod_tipoTela}" 
+                                                                        data-tipo="${tela.tipoTela}">
+                                                                    Editar</button>
+                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#deleteTP" data-cod="${tela.cod_tipoTela}" >Eliminar</button>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach> 
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div><!-- End Recent Sales -->
+                            </div>
+                        </div><!-- End Left side columns -->
                     </div>
-
                 </div>
-            </div>
-        </div>
+
+            </section>
+
+            <section class="section dashboard">
+                <div class="row">
+                    <!-- Left side columns -->
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <!-- Customers Card -->
+                            <div class="col-xxl-4 col-xl-12">
+                                <!-- Recent Sales -->
+                                <div class="col-12">
+                                    <div class="card recent-sales overflow-auto">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Prendas</h5>
+                                            <button type="button" class="btn btn-primary" style="margin: 15px;" data-target="#agregar"
+                                                    data-toggle="modal">Agregar Prenda</button>
+                                            <table class="table table-borderless datatable">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Codigo</th>
+                                                        <th scope="col">Tipo Prenda</th>
+                                                        <th scope="col">Tipo Tela</th>
+                                                        <th scope="col">Color</th>
+                                                        <th scope="col">Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach items="${lst}" var="prenda">
+                                                        <tr>
+                                                            <td id="cod" > <c:out value="${prenda.cod}" ></c:out> </td>
+                                                            <td id="tipoPrenda"><c:out value="${prenda.tipoPrenda}" >  </c:out></td>
+                                                            <td id="tipoTela" > <c:out value="${prenda.tipoTela}" ></c:out> </td>
+                                                            <td id="color" > <c:out value="${prenda.color}" ></c:out> </td>
+                                                                <td>
+                                                                    <button class="btn btn-primary" data-toggle="modal" data-target="#editar"
+                                                                            data-cod="${prenda.cod}"                                                     
+                                                                    data-color="${prenda.color}"
+                                                                    >
+                                                                    Editar</button>
+                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#delete" data-cod="${prenda.cod}" >Eliminar</button>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach> 
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div><!-- End Recent Sales -->
+                            </div>
+                        </div><!-- End Left side columns -->
+                    </div>
+                </div>
+            </section>
+
+
+        </main><!-- End #main -->
 
         <!-- MODALES -->
         <!-- Agregar Prenda -->
@@ -482,10 +530,13 @@
             </div>
         </div>
 
-
-        <div class="snackbars" id="form-output-global"></div>
-        <script src="http://localhost:8080/lavanderia/js/core.min.js"></script>
-        <script src="http://localhost:8080/lavanderia/js/gestionPrendas.js"></script>
-        <script src="http://localhost:8080/lavanderia/js/script.js"></script>
+        <!-- ======= Footer ======= -->
+        <footer id="footer" class="footer">
+            <%@include file="../../Common/footer.html" %>
+        </footer><!-- End Footer -->
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+                class="bi bi-arrow-up-short"></i></a>
+            <%@include file="../../Common/imports.html" %>       
+        <script src="http://localhost:8080/lavanderia/js/gestionPrendas.js"></script>        
     </body>
 </html>

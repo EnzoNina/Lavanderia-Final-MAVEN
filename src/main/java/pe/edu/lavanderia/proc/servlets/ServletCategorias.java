@@ -14,13 +14,13 @@ import pe.edu.lavanderia.dto.DtoCategorias;
 import pe.edu.lavanderia.entidades.jdbc.Categorias;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionCategorias;
 
-@WebServlet(name = "ServletCategorias", urlPatterns = {"/ServletCategorias"})
+@WebServlet(name = "ServletCategorias", urlPatterns = { "/ServletCategorias" })
 public class ServletCategorias extends HttpServlet {
 
     @EJB
     private BOGestionCategorias bo;
 
-    //final static BOGestionCategorias bo = new BOGestionCategorias();
+    // final static BOGestionCategorias bo = new BOGestionCategorias();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -57,12 +57,13 @@ public class ServletCategorias extends HttpServlet {
         if (tipo == null) {
             tipo = "administracion";
         }
-
+        // Si el tipo es un personal de lavanderia, no dirige al menu del personal
         if (tipo.equalsIgnoreCase("personal")) {
             List<DtoCategorias> lst = bo.getCategoriasDTO();
             request.setAttribute("lst", lst);
             request.getRequestDispatcher("pages/PersonalLavanderia/categorias.jsp").forward(request, response);
-        } else if (tipo.equalsIgnoreCase("administracion")) {
+
+        } else if (tipo.equalsIgnoreCase("administracion")) {// Sino, nos dirige al menu del administrador
             List<Categorias> lst = bo.getCategorias();
             request.setAttribute("list", lst);
             request.getRequestDispatcher("pages/Lavanderia/categorias.jsp").forward(request, response);

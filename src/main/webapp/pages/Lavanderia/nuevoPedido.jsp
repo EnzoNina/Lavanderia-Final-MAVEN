@@ -28,8 +28,6 @@
                     <div class="card-body">
                         <h5 class="card-title">Nuevo Pedido</h5>
 
-
-
                         <!-- Bordered Tabs -->
                         <ul class="nav nav-tabs nav-tabs-bordered" id="borderedTab" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -56,25 +54,27 @@
 
                                 <input type="hidden" id="instruccion" name="instruccion" value="buscar" />
                                 <input type="hidden" id="instruccion" name="tipo" value="confirmacion" />
-                                <input type="hidden" class="form-control" name="cod" required value="<%=request.getSession().getAttribute("cod") %>">
+                                <input type="hidden" class="form-control" name="cod" required value="<%=request.getSession().getAttribute("cod")%>">
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" name="DNI" required
                                                value="<%=request.getSession().getAttribute("DNI")%>">
                                     </div>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" readonly name="dire" required
-                                               value="<%=request.getSession().getAttribute("direccion")%>" >
-                                    </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
+                                        <input type="submit" value="Buscar Cliente" class="btn btn-primary botonRegistrar">
+                                    </div>                                    
+                                    <div class="col-md-12">
                                         <input type="text" class="form-control" id="disableInput" name="nombre" required
                                                readonly value="<%=request.getSession().getAttribute("nombres")%>" >
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <input type="text" class="form-control" id="disableInput" name="apellido" required
                                                readonly value="<%=request.getSession().getAttribute("apellidos")%>" >
                                     </div>
-                                    <input type="submit" value="Buscar Cliente" class="btn btn-primary botonRegistrar">
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" readonly name="dire" required
+                                               value="<%=request.getSession().getAttribute("direccion")%>" >
+                                    </div>
                                 </div>
                             </div>
 
@@ -82,23 +82,48 @@
                             <div class="tab-pane fade" id="bordered-prendas" role="tabpanel" aria-labelledby="prendas-tab">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <div>
-                                            <label>Prenda:</label>
-                                            <select class="form-select" aria-label="Prenda" name="prenda">
-                                                <option selected>Seleccione una prenda</option>
-                                                <c:forEach items="${lstPrendas}" var="prenda">
-                                                    <option value="${prenda.cod}">
-                                                        <c:out
-                                                            value="${prenda.cod}-${prenda.tipoPrenda}-${prenda.tipoTela}-${prenda.color}">
-                                                        </c:out>
-                                                    </option>
-                                                </c:forEach>
-                                            </select>
+                                        <!-- Customers Card -->
+                                        <div class="col-xxl-4 col-xl-12">
+                                            <!-- Recent Sales -->
+                                            <div class="col-12">
+                                                <div class="card recent-sales overflow-auto">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Prendas</h5>                                                        
+                                                        <table class="table table-borderless datatable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">Codigo</th>
+                                                                    <th scope="col">Tipo Prenda</th>
+                                                                    <th scope="col">Tipo Tela</th>
+                                                                    <th scope="col">Color</th>
+                                                                    <th scope="col">Cantidad</th>
+                                                                    <th scope="col">Acciones</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <c:forEach items="${lst}" var="prenda">
+                                                                    <tr>
+                                                                        <td id="cod" > <c:out value="${prenda.cod}" ></c:out> </td>
+                                                                        <td id="tipoPrenda"><c:out value="${prenda.tipoPrenda}" >  </c:out></td>
+                                                                        <td id="tipoTela" > <c:out value="${prenda.tipoTela}" ></c:out> </td>
+                                                                        <td id="color" > <c:out value="${prenda.color}" ></c:out> </td>
+                                                                            <td>
+                                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#editar"
+                                                                                        data-cod="${prenda.cod}"                                                     
+                                                                                data-color="${prenda.color}"
+                                                                                >
+                                                                                Editar</button>
+                                                                            <button class="btn btn-primary" data-toggle="modal" data-target="#delete" data-cod="${prenda.cod}" >Eliminar</button>
+                                                                        </td>
+                                                                    </tr>
+                                                                </c:forEach> 
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div><!-- End Recent Sales -->
                                         </div>
-                                        <div>
-                                            <input type="number" class="form-control" name="cantidad"
-                                                   placeholder="Cantidad">
-                                        </div>
+
                                         <h6>Servicio</h6>
                                         <div class="row g-3">
                                             <select class="form-select" aria-label="Servicios" name="servicio">
@@ -106,7 +131,7 @@
                                                 <c:forEach items="${list}" var="servicio">
                                                     <option value="${servicio.cod}-${servicio.nombre}-${servicio.precio}">
                                                         <c:out
-                                                            value="${servicio.cod}-${servicio.nombre}-${servicio.precio}">
+                                                            value="Codigo:${servicio.cod}-Servicio:${servicio.nombre}-Precio:${servicio.precio}">
                                                         </c:out>
                                                     </option>
                                                 </c:forEach>
@@ -152,7 +177,7 @@
                             </div>
 
                         </div><!-- End Bordered Tabs -->
-            </form>
+                        </form>
                     </div>
                 </div>
         </main><!-- End #main -->

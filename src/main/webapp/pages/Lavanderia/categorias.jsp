@@ -6,6 +6,7 @@
 <html lang="en">
 
     <head>
+    <title>Mantenimiento Categorias</title>
         <%@include file="../../Common/estilosAdmin.html" %>
     </head>
 

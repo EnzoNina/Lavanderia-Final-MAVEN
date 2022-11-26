@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pe.edu.lavanderia.dto.DtoPrendasLista;
 
 import pe.edu.lavanderia.entidades.jdbc.Prendas;
 import pe.edu.lavanderia.entidades.jdbc.TipoPrenda;
@@ -53,7 +54,7 @@ public class ServletPrendas extends HttpServlet {
     private void getPrendas(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Prendas> lst = bo.getPrendas();
+        List<DtoPrendasLista> lst = bo.getPrendasList();
         List<TipoPrenda> lstTipoPrenda = bo.getTipoPrendas();
         List<TipoTela> lstTipoTela = bo.getTipoTela();
 
