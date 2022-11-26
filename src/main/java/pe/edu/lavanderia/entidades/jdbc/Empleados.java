@@ -14,25 +14,23 @@ public class Empleados extends Personas {
         this.usuario = usuario;
         this.tipo = tipo;
     }
-    
+
     /*public Empleados(String dni, String nombre, String apellidoPaterno, String apellidoMaterno, String celular, String usuario, String contraseña,Boolean estado) {
         super(nombre, apellidoPaterno, apellidoMaterno, dni, celular, contraseña,estado);
         this.usuario = usuario;
     }*/
-    
-    public Empleados(String dni, String nombre, String apellidoPaterno, String apellidoMaterno, String celular, String usuario, String contraseña, String tipo,Boolean estado) {
-        super(nombre, apellidoPaterno, apellidoMaterno, dni, celular, contraseña,estado);
+    public Empleados(String dni, String nombre, String apellidoPaterno, String apellidoMaterno, String celular, String usuario, String contraseña, String tipo, Boolean estado) {
+        super(nombre, apellidoPaterno, apellidoMaterno, dni, celular, contraseña, estado);
         this.usuario = usuario;
         this.tipo = tipo;
     }
-    
-    public Empleados(int cod, String usuario, String tipo, String nombre, String apellidoPaterno, String apellidoMaterno, String dni, String celular, String contraseña,Boolean estado) {
-        super(nombre, apellidoPaterno, apellidoMaterno, dni, celular, contraseña,estado);
+
+    public Empleados(int cod, String usuario, String tipo, String nombre, String apellidoPaterno, String apellidoMaterno, String dni, String celular, String contraseña, Boolean estado) {
+        super(nombre, apellidoPaterno, apellidoMaterno, dni, celular, contraseña, estado);
         this.cod = cod;
         this.usuario = usuario;
         this.tipo = tipo;
     }
-    
 
     public int getCod() {
         return cod;
@@ -57,7 +55,13 @@ public class Empleados extends Personas {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
-    
+
+    public String getEstadoString() {
+        return this.estado ? "Activo" : "Inactivo";
+    }
+
+    public String getNombresCompletos() {
+        return this.nombre + " " + this.apellidoPaterno + " " + this.apellidoMaterno;
+    }
 
 }

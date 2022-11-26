@@ -28,3 +28,16 @@ $("#deleteEmpleado").on("show.bs.modal", function (e) {
     var cod = $(e.relatedTarget).data("codi");
     $(e.currentTarget).find('input[name="codi"]').val(cod);
 });
+
+//AGREGADO 
+function reporte(accion) {
+    $.get('../ServletEmpleados?instruccion=listar', function (r) {
+        if (r) {
+            $('#accion').val(accion);
+            $('#lista').val(JSON.stringify(r));
+            $('#frmReporte').submit();
+        } else {
+            alert('ERROR: El reporte no se pudo generar: ' + r);
+        }
+    });
+}

@@ -1,15 +1,29 @@
 package pe.edu.lavanderia.proc.servlets;
 
 //import entidades.Empleado;
-import java.io.IOException;
-import java.util.List;
 import javax.ejb.EJB;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+
 import pe.edu.lavanderia.dto.DtoEmpleados;
 import pe.edu.lavanderia.entidades.jdbc.Empleados;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionEmpleados;
@@ -41,6 +55,9 @@ public class ServletEmpleados extends HttpServlet {
                 break;
             case "delete":
                 deleteEmpleado(request, response);
+                break;
+            case "exportarReporteEmpleado":
+                exportReportEmployees(request, response);
                 break;
             default:
                 throw new AssertionError();
@@ -81,7 +98,7 @@ public class ServletEmpleados extends HttpServlet {
         String usuario = request.getParameter("usuario");
         String contraseña = request.getParameter("contra");
         String empleadoTipo = request.getParameter("empleado");
-        
+
         if (tipo == null) {
             tipo = "administracion";
         }
@@ -109,7 +126,7 @@ public class ServletEmpleados extends HttpServlet {
         String usuario = request.getParameter("usuario");
         String contraseña = request.getParameter("contra");
         String tipoEmpleado = request.getParameter("empleado");
-        
+
         Empleados o = new Empleados(cod, dni, nombres, ape_paterno, ape_materno, celular, usuario, contraseña, tipoEmpleado, true);
         bo.editEmpleado(o);
         response.sendRedirect("ServletEmpleados");
@@ -118,7 +135,7 @@ public class ServletEmpleados extends HttpServlet {
     private void deleteEmpleado(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int cod = Integer.parseInt(request.getParameter("codi"));
-        bo.removeEmpleado(false,cod);
+        bo.removeEmpleado(false, cod);
         response.sendRedirect("ServletEmpleados");
     }
 
@@ -126,5 +143,55 @@ public class ServletEmpleados extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    //AGREGADO
+    private void exportReportEmployees(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        ServletOutputStream out = response.getOutputStream();
+        try {
+            InputStream logoEmpresa = this.getServletConfig()
+                    .getServletContext()
+                    .getResourceAsStream("jasperReports/img/lavanderia.png"),
+                    imagenAlternativa = this.getServletConfig()
+                            .getServletContext()
+                            .getResourceAsStream("jasperReports/img/lavanderia-login.png"),
+                    reportEmployees = this.getServletConfig()
+                            .getServletContext()
+                            .getResourceAsStream("jasperReports/ReporteEmpleados.jasper");
+            if (logoEmpresa != null && imagenAlternativa != null && reportEmployees != null) {
+                String jsonEmpleados = request.getParameter("lista"); //OJO
+                Gson gson = new Gson();
+                List<Empleados> reportesEmpleados = new ArrayList<>();
+                List<Empleados> reportesEmpleados2 = new ArrayList<>();
+
+                reportesEmpleados.add(new Empleados());
+                reportesEmpleados2 = gson.fromJson(jsonEmpleados, new TypeToken<List<Empleados>>() {
+                }.getType());
+                reportesEmpleados.addAll(reportesEmpleados2);
+
+                JasperReport report = (JasperReport) JRLoader.loadObject(reportEmployees);
+                JRBeanArrayDataSource ds = new JRBeanArrayDataSource(reportesEmpleados.toArray());
+
+                Map<String, Object> parameters = new HashMap();
+                parameters.put("ds", ds);
+                parameters.put("logoEmpresa", logoEmpresa);
+                parameters.put("imagenAlternativa", imagenAlternativa);
+                response.setContentType("application/pdf");
+                response.addHeader("Content-disposition", "inline; filename=ReportesEmpleados.pdf");
+                JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, ds);
+                JasperExportManager.exportReportToPdfStream(jasperPrint, out);
+                out.flush();
+                out.close();
+            } else {
+                response.setContentType("text/plain");
+                out.println("ERROR: No se pudo generar el reporte");
+                out.println("ERROR: Esto puede debrse a que la lista de datos no fue recibida o el archivo plantilla del reporte no se ha encontrado");
+            }
+        } catch (Exception e) {
+            response.setContentType("text/plain");
+            out.print("ERROR: Al intentar generar el reporte: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
 }

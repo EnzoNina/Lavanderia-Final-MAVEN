@@ -39,6 +39,13 @@
                                             <div class="card recent-sales overflow-auto">
                                                 <div class="card-body">
                                                     <h5 class="card-title">Empleados</h5>
+                                                    //AGREGADO<
+                                                    <form target="_blank" action="../ServletEmpleados" id="frmReporte" method="post">
+                                                        <input type="hidden" name="accion" id="accion">
+                                                        <button onclick="reporte('exportarReporteEmpleado')" type="button" class="btn btn-primary"><i class="fas fa-file-pdf"></i> EXPORTAR PDF </button>
+                                                        <input type="hidden" name="lista" id="lista">
+                                                    //AGREGADO>
+                                                    </form>
                                                     <a class="btn btn-primary" data-target="#nuevoEmpleado" data-toggle="modal" >Agregar Empleado</a>
                                                     <table class="table table-borderless datatable">
                                                         <thead>
@@ -310,7 +317,7 @@
             </div>
 
         </div>
-        
+
         <footer id="footer" class="footer">
             <%@include file="../../Common/footer.html" %>
         </footer><!-- End Footer -->
