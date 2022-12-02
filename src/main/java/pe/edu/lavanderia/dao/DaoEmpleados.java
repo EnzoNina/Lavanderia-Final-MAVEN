@@ -115,17 +115,19 @@ public class DaoEmpleados extends DaoGenerico {
     public String[] login(String user, String pass) {
         String tipo = null;
         String cod_empleado = "";
+        String nom_empleado = "";
         Connection co = getConexion();
-        String[] arr = new String[2];
+        String[] arr = new String[3];
         try {
-            String sql = "SELECT cod_empleado,tipo FROM empleado WHERE usuario = ? AND contraseña = ?";
+            String sql = "SELECT cod_empleado,tipo,nombre FROM empleado WHERE usuario = ? AND contraseña = ?";
             PreparedStatement pst = co.prepareStatement(sql);
             pst.setString(1, user);
-            pst.setString(2, pass);
+            pst.setString(2, pass);            
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 cod_empleado = rs.getString(1);
                 tipo = rs.getString(2);
+                nom_empleado=rs.getString(3);
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -143,6 +145,7 @@ public class DaoEmpleados extends DaoGenerico {
 
         arr[0] = cod_empleado;
         arr[1] = tipo;
+        arr[2] = nom_empleado;
 
         return arr;
     }

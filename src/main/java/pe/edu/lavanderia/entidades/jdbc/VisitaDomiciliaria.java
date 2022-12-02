@@ -11,18 +11,21 @@ public class VisitaDomiciliaria {
     private Date fecha_recojo;
     private int cod_horario;
     private String distrito;
+    private Integer[] servicios;
 
-    //Constructor
-    public VisitaDomiciliaria(int cod_cliente, String[] prendas, Integer[] cantidad, Date fecha_recojo, int cod_horario, String distrito) {
+    // Constructor
+    public VisitaDomiciliaria(int cod_cliente, String[] prendas, Integer[] cantidad, Date fecha_recojo, int cod_horario,
+            String distrito, Integer[] servicios) {
         this.cod_cliente = cod_cliente;
         this.prendas = prendas;
         this.cantidad = cantidad;
         this.fecha_recojo = fecha_recojo;
         this.cod_horario = cod_horario;
         this.distrito = distrito;
+        this.servicios = servicios;
     }
 
-    //Getter and Setter
+    // Getter and Setter
     public int getCod_visitaDomiciliaria() {
         return cod_visitaDomiciliaria;
     }
@@ -77,6 +80,20 @@ public class VisitaDomiciliaria {
 
     public void setCod_horario(int cod_horario) {
         this.cod_horario = cod_horario;
+    }
+
+    /**
+     * @return the servicios
+     */
+    public Integer[] getServicios() {
+        return servicios;
+    }
+
+    /**
+     * @param servicios the servicios to set
+     */
+    public void setServicios(Integer[] servicios) {
+        this.servicios = servicios;
     }
 
 }

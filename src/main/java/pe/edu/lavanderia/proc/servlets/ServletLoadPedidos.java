@@ -57,9 +57,7 @@ public class ServletLoadPedidos extends HttpServlet {
         request.setAttribute("lst", lst);
 
         if (tipo.equalsIgnoreCase("personal")) {
-
-            request.getRequestDispatcher("pages/PersonalLavanderia/menu.jsp").forward(request, response);
-
+            request.getRequestDispatcher("pages/PersonalLavanderia/menuPersonal.jsp").forward(request, response);
         } else if (tipo.equalsIgnoreCase("administracion")) {// Sino, nos dirige al menu del administrador
 
             request.getRequestDispatcher("pages/Lavanderia/menu.jsp").forward(request, response);

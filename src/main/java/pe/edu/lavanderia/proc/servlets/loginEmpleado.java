@@ -27,10 +27,14 @@ public class loginEmpleado extends HttpServlet {
         String user = request.getParameter("user");
         String pass = request.getParameter("pass");
 
-        String[] datosEmpleado = bOGestionEmpleados.login(user, pass);                
+        String[] datosEmpleado = bOGestionEmpleados.login(user, pass);
+
+        request.getSession().setAttribute("tipoLogin", datosEmpleado[1]);
+        request.getSession().setAttribute("nombrePerfil", datosEmpleado[2]);
+
         if (datosEmpleado[1].equalsIgnoreCase("administrador")) {
             System.out.println("Cod empleado: " + datosEmpleado[0]);
-            request.getSession().setAttribute("cod_empleado", datosEmpleado[0]);
+            request.getSession().setAttribute("cod_empleado", datosEmpleado[0]);            
             response.sendRedirect("ServletLoadPedidos");            
         } else if (datosEmpleado[1].equalsIgnoreCase("personal")) {
             request.getSession().setAttribute("cod_empleado", datosEmpleado[0]);

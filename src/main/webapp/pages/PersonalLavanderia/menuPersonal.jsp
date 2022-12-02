@@ -6,6 +6,7 @@
 <html lang="en">
 
     <head>
+    <title>Menu Personal</title>
         <%@include file="../../Common/estilosAdmin.html" %>
     </head>
 
@@ -13,7 +14,7 @@
 
         <!-- ======= Header ======= -->
         <header id="header" class="header fixed-top d-flex align-items-center">
-            <%@include file="../../Common/header.html" %>
+            <%@include file="../../Common/header.jsp" %>
         </header><!-- End Header -->
 
         <!-- ======= Sidebar ======= -->

@@ -31,7 +31,7 @@ public class ServletConfirmacionVisita extends HttpServlet {
 
     @EJB
     private BOGestionPedidos bo;
-    
+
     List<Integer> lstRopaCant = new ArrayList<Integer>();
     List<Double> lstSubTotal = new ArrayList<Double>();
     List<DtoPrendaListaMostrar> lstRopaMandar = new ArrayList<DtoPrendaListaMostrar>();
@@ -84,23 +84,28 @@ public class ServletConfirmacionVisita extends HttpServlet {
         List<Servicios> lst = bo.getServicios();
         List<DtoPrendasLista> lstPrendasDTO = boPrendas.getPrendasList();
 
-        //Mandamos la lista de servicios y la lista de prendas
+        // Mandamos la lista de servicios y la lista de prendas
         request.getSession().setAttribute("list", lst);
         request.getSession().setAttribute("lstPrendas", lstPrendasDTO);
-        //Establecemos valores defectos a los datos del cliente
+        // Establecemos valores defectos a los datos del cliente
         request.getSession().setAttribute("DNI", "DNI");
         request.getSession().setAttribute("nombres", "Nombres");
         request.getSession().setAttribute("apellidos", "Apellidos");
         request.getSession().setAttribute("direccion", "Direccion");
 
-        //Establecemos valores por defecto de las prendas y el servicio
-        
+        // Establecemos valores por defecto de las prendas y el servicio
+
         request.getSession().setAttribute("monto", "0.00");// Establecemos el total
-        
-                
-        request.getRequestDispatcher("pages/Lavanderia/confirmaVisitaDomiciliaria.jsp").forward(request, response);
+
+        String tipoLogin = (String) request.getSession().getAttribute("tipoLogin");        
+
+        if (tipoLogin.equalsIgnoreCase("personal")) {
+            request.getRequestDispatcher("sales/confirmaVisitaDomiciliariaPersonal.jsp").forward(request, response);
+        } else if(tipoLogin.equalsIgnoreCase("administrador")){
+            request.getRequestDispatcher("sales/confirmaVisitaDomiciliaria.jsp").forward(request, response);
+        }
     }
-    
+
     private void buscarCliente(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String dni = request.getParameter("DNI");
@@ -110,14 +115,20 @@ public class ServletConfirmacionVisita extends HttpServlet {
         String direccion = cli.getDireccion();
         String nombres = cli.getNombre();
         String apellidos = cli.getApellidoPaterno() + cli.getApellidoMaterno();
-        
+
         request.getSession().setAttribute("DNI", dni);
         request.getSession().setAttribute("cod", cod);
         request.getSession().setAttribute("direccion", direccion);
         request.getSession().setAttribute("nombres", nombres);
         request.getSession().setAttribute("apellidos", apellidos);
 
-        request.getRequestDispatcher("pages/Lavanderia/confirmaVisitaDomiciliaria.jsp").forward(request, response);
+        String tipoLogin = (String) request.getSession().getAttribute("tipoLogin");
+
+        if (tipoLogin.equalsIgnoreCase("personal")) {
+            request.getRequestDispatcher("sales/confirmaVisitaDomiciliariaPersonal.jsp").forward(request, response);
+        } else {
+            request.getRequestDispatcher("sales/confirmaVisitaDomiciliaria.jsp").forward(request, response);
+        }
     }
 
     private void addRopa(HttpServletRequest request, HttpServletResponse response)
@@ -142,13 +153,17 @@ public class ServletConfirmacionVisita extends HttpServlet {
 
         request.getSession().setAttribute("listaRopa", lstRopaMandar);
 
-        request.getRequestDispatcher("pages/Lavanderia/confirmaVisitaDomiciliaria.jsp").forward(request, response);
+        String tipoLogin = (String) request.getSession().getAttribute("tipoLogin");
+
+        if (tipoLogin.equalsIgnoreCase("personal")) {
+            request.getRequestDispatcher("sales/confirmaVisitaDomiciliariaPersonal.jsp").forward(request, response);
+        } else {
+            request.getRequestDispatcher("sales/confirmaVisitaDomiciliaria.jsp").forward(request, response);
+        }
     }
 
     private void addServicio(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // Datos del cliente
-
+            throws ServletException, IOException {        
         String servicioTotal = request.getParameter("servicio");
 
         // Creamos array con los datos del servicio
@@ -169,27 +184,41 @@ public class ServletConfirmacionVisita extends HttpServlet {
 
         request.getSession().setAttribute("monto", total);// Establecemos el total
         request.getSession().setAttribute("listaServicio", lstServicio); // Establecemos la lista de servicio
-        request.getRequestDispatcher("pages/Lavanderia/confirmaVisitaDomiciliaria.jsp").forward(request, response);
+
+        String tipoLogin = (String) request.getSession().getAttribute("tipoLogin");
+
+        if (tipoLogin.equalsIgnoreCase("personal")) {
+            request.getRequestDispatcher("sales/confirmaVisitaDomiciliariaPersonal.jsp").forward(request, response);
+        } else {
+            request.getRequestDispatcher("sales/confirmaVisitaDomiciliaria.jsp").forward(request, response);
+        }
     }
 
     private void newPedido(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Obtenemos el codigo del empleado
-        int cod_empleado = Integer.parseInt((request.getSession().getAttribute("cod_empleado")).toString());        
+        int cod_empleado = Integer.parseInt((request.getSession().getAttribute("cod_empleado")).toString());
         int cod_cliente = Integer.parseInt((request.getSession().getAttribute("cod")).toString());
         String observacion = request.getParameter("observacion");
         String fecha_entrega = request.getParameter("fecha_entrega");
         Date fecha_entregaSQL = Date.valueOf(fecha_entrega);
 
         Pedidos ob = new Pedidos(cod_cliente, cod_empleado, fecha_entregaSQL, observacion, "confirmacion", total);
-        
+
         bo.addPedido(ob);
         bo.addPrendas(lstRopaMandar);
         bo.addDetallePedido(lstServicio, lstSubTotal);
 
         request.getSession().setAttribute("listaServicio", null); // Establecemos la lista de servicio
         request.getSession().setAttribute("listaRopa", null);
-        response.sendRedirect("ServletLoadPedidos");
+
+        String tipoLogin = (String) request.getSession().getAttribute("tipoLogin");
+
+        if (tipoLogin.equalsIgnoreCase("personal")) {
+            request.getRequestDispatcher("sales/confirmaVisitaDomiciliariaPersonal.jsp").forward(request, response);
+        } else {
+            request.getRequestDispatcher("sales/confirmaVisitaDomiciliaria.jsp").forward(request, response);
+        }
     }
 
     private void editPedido(HttpServletRequest request, HttpServletResponse response)

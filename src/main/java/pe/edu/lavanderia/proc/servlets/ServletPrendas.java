@@ -61,7 +61,14 @@ public class ServletPrendas extends HttpServlet {
         request.setAttribute("lst", lst);
         request.setAttribute("lstTipoPrenda", lstTipoPrenda);
         request.setAttribute("lstTipoTela", lstTipoTela);
-        request.getRequestDispatcher("pages/Lavanderia/prendas.jsp").forward(request, response);
+
+        String tipoLogin = (String) request.getSession().getAttribute("tipoLogin");
+
+        if (tipoLogin.equalsIgnoreCase("personal")) {
+            request.getRequestDispatcher("pages/PersonalLavanderia/prendas.jsp").forward(request, response);
+        } else if (tipoLogin.equalsIgnoreCase("administrador")) {
+            request.getRequestDispatcher("pages/Lavanderia/prendas.jsp").forward(request, response);
+        }
     }
 
     // Metodos
@@ -82,7 +89,13 @@ public class ServletPrendas extends HttpServlet {
             bo.addTipoTela(new TipoTela(TT));
         }
 
-        response.sendRedirect("ServletPrendas");
+        String tipoLogin = (String) request.getSession().getAttribute("tipoLogin");
+
+        if (tipoLogin.equalsIgnoreCase("personal")) {
+            request.getRequestDispatcher("pages/PersonalLavanderia/prendas.jsp").forward(request, response);
+        } else if (tipoLogin.equalsIgnoreCase("administrador")) {
+            request.getRequestDispatcher("pages/Lavanderia/prendas.jsp").forward(request, response);
+        }
     }
 
     private void editPrenda(HttpServletRequest request, HttpServletResponse response)
@@ -104,7 +117,13 @@ public class ServletPrendas extends HttpServlet {
             String TT = request.getParameter("TT");
             bo.editTipoTela(new TipoTela(cod, TT));
         }
-        response.sendRedirect("ServletPrendas");
+        String tipoLogin = (String) request.getSession().getAttribute("tipoLogin");
+
+        if (tipoLogin.equalsIgnoreCase("personal")) {
+            request.getRequestDispatcher("pages/PersonalLavanderia/prendas.jsp").forward(request, response);
+        } else if (tipoLogin.equalsIgnoreCase("administrador")) {
+            request.getRequestDispatcher("pages/Lavanderia/prendas.jsp").forward(request, response);
+        }
     }
 
     private void deletePrenda(HttpServletRequest request, HttpServletResponse response)
