@@ -34,8 +34,7 @@
                                     <img src="../images/lavanderia-login.png" alt="Login Lavanderia" />
                                 </div>
                                 <a class="button button-190 button-circle btn-rounded-outline" data-toggle="modal"
-                                   data-target="#modalLavanderia">Login</a>
-                                <a href="register.html">¿No tiene una cuenta? <strong style="color:#404044;">Cree una ahora</strong></a>
+                                   data-target="#modalLavanderia">Login</a>                                
                             </div>
                         </div>
                     </div>

@@ -15,7 +15,6 @@ public class loginUsuario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         // LLamar el id del cliente y la contraseña
         BOGestionClientes bo = new BOGestionClientes();
 
@@ -23,14 +22,15 @@ public class loginUsuario extends HttpServlet {
         String user = request.getParameter("user");
         String pass = request.getParameter("pass");
 
-        String dni = bo.login(user, pass);
+        String arra[] = bo.login(user, pass);
 
-        if (!dni.isEmpty()) {
-            request.getSession().setAttribute("DNI", dni);
-            System.out.println("EL DNI SE ESTABLECIO EN " + dni);
+        request.getSession().setAttribute("cod_cliente", arra[0]);
+
+        if (!arra[0].isEmpty()) {
+            request.getSession().setAttribute("DNI", arra[1]);
+            System.out.println("EL DNI SE ESTABLECIO EN " + arra[1]);
             response.sendRedirect("pages/User/menuUser.jsp");
-        } else {
-            System.out.println("El dni es :" + dni);
+        } else {            
             response.sendRedirect("pages/login.jsp");
         }
 

@@ -21,15 +21,16 @@ import pe.edu.lavanderia.proc.mantenimientos.BOGestionPedidos;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionPrendas;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionServicios;
 
-@WebServlet(name = "ServletVisitaDomiciliaria", urlPatterns = { "/ServletVisitaDomiciliaria" })
+@WebServlet(name = "ServletVisitaDomiciliaria", urlPatterns = {"/ServletVisitaDomiciliaria"})
 public class ServletVisitaDomiciliaria extends HttpServlet {
 
     // Atributos
-    List<String> listaPrendas = new ArrayList<String>();
-    List<DtoPrendaListaMostrar> lstRopaMandar = new ArrayList<DtoPrendaListaMostrar>();
+    //List<String> listaPrendas = new ArrayList<String>();
     List<Integer> listaCantidad = new ArrayList<Integer>();
+    //List<Integer> codServicios = new ArrayList<Integer>();
+    //List<Integer> lstRopaCant = new ArrayList<Integer>();
+    List<DtoPrendaListaMostrar> lstRopaMandar = new ArrayList<DtoPrendaListaMostrar>();
     List<DtoServicios> lstServicio = new ArrayList<DtoServicios>();
-    List<Integer> codServicios = new ArrayList<Integer>();
 
     @EJB
     private BOGestionServicios boServicios;
@@ -55,6 +56,12 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
             case "addRopa":
                 addRopa(request, response);
                 break;
+            case "deleteRopa":
+                deleteRopa(request, response);
+                break;
+            case "deleteServicio":
+                deleteServicio(request, response);
+                break;
             case "agregarServicio":
                 addServicio(request, response);
                 break;
@@ -67,7 +74,9 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
 
     }
 
-    private void addRopa(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+    private void addRopa(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Obtenemos el codigo de la ropa
         int codRopa = Integer.parseInt(request.getParameter("codigoPrenda"));
         String tipoPrenda = request.getParameter("tp");
         String tipoTela = request.getParameter("tt");
@@ -80,11 +89,28 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
                 cantidadRopa);
 
         // Agregamos ropa y cantidad
-        listaCantidad.add(cantidadRopa);
-        listaPrendas.add( String.valueOf(codRopa));
+        //lstRopaCant.add(cantidadRopa);
+        //listaPrendas.add(String.valueOf(codRopa));
         lstRopaMandar.add(obDtoMostrar);
 
         request.getSession().setAttribute("listaRopa", lstRopaMandar);
+
+        request.getRequestDispatcher("pages/User/visitaDomiciliaria.jsp").forward(request, response);
+    }
+
+    private void deleteRopa(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int codRopa = Integer.parseInt(request.getParameter("codPrenda"));
+        int cantidadRopa = Integer.parseInt(request.getParameter("cantidad"));
+
+        for (DtoPrendaListaMostrar ropa : lstRopaMandar) {
+            if (ropa.getCod() == codRopa) {
+                lstRopaMandar.remove(ropa);
+                //listaPrendas.remove(String.valueOf(codRopa));
+                //lstRopaCant.remove(cantidadRopa);
+                break;
+            }
+        }
         request.getRequestDispatcher("pages/User/visitaDomiciliaria.jsp").forward(request, response);
     }
 
@@ -97,7 +123,28 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
         request.getSession().setAttribute("list", lst);
         request.getSession().setAttribute("lstPrendas", lstPrendasDTO);
 
+        request.getSession().setAttribute("DNI", "DNI");
+        request.getSession().setAttribute("nombres", "Nombres");
+        request.getSession().setAttribute("apellidos", "Apellidos");
+        request.getSession().setAttribute("direccion", "Direccion");
+
         request.getRequestDispatcher("pages/User/visitaDomiciliaria.jsp").forward(request, response);
+    }
+
+    private void deleteServicio(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        int codServicio = Integer.parseInt(request.getParameter("codServicio"));
+
+        for (DtoServicios servicio : lstServicio) {
+            if (servicio.getCod() == codServicio) {
+                lstServicio.remove(servicio);
+                //codServicios.remove(codServicio);
+                break;
+            }
+        }
+        request.getRequestDispatcher("pages/User/visitaDomiciliaria.jsp").forward(request, response);
+
     }
 
     private void addServicio(HttpServletRequest request, HttpServletResponse response)
@@ -105,46 +152,61 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
         String servicioTotal = request.getParameter("servicio");
         // Creamos array con los datos del servicio
         String[] arrPartes = servicioTotal.split("-");
-
         // Creamos objeto de servicio
         DtoServicios obServicio = new DtoServicios(Integer.parseInt(arrPartes[0]), arrPartes[1],
                 Double.parseDouble(arrPartes[2]));
+
         // Agregamos el objeto a la lista
         lstServicio.add(obServicio);
-        codServicios.add(Integer.parseInt(arrPartes[0]));
-
+        //codServicios.add(Integer.parseInt(arrPartes[0]));
         request.getSession().setAttribute("listaServicio", lstServicio); // Establecemos la lista de servicio
         request.getRequestDispatcher("pages/User/visitaDomiciliaria.jsp").forward(request, response);
+
     }
 
     private void newVisita(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Obtenemos el codigo del cliente
-        int codCliente = Integer.parseInt((String) request.getSession().getAttribute("DNI"));
+        int codCliente = Integer.parseInt((String) request.getSession().getAttribute("cod_cliente"));
         // Creamos el array de la cantida
         // Obtenemos fecha
         String fecha = request.getParameter("fecha_recojo");
+
         int cod_hora = Integer.parseInt(request.getParameter("hora"));
+
         Date fecha_recojo = Date.valueOf(fecha);
         // Obtenemos distrito
         String distrito = request.getParameter("distrito");
 
-        // Creamos el array de las prendas
-        String[] arrPrendas = new String[listaPrendas.size()];
-        arrPrendas = listaPrendas.toArray(arrPrendas);
+        //Creamos array de prendas
+        String[] arrPrendas = new String[lstRopaMandar.size()];
 
-        // Creamos el array de la cantidad de prendas
-        Integer[] arrCantidad = new Integer[listaCantidad.size()];
-        arrCantidad = listaCantidad.toArray(arrCantidad);
+        for (int i = 0; i < lstRopaMandar.size(); i++) {
+            arrPrendas[i] = String.valueOf(lstRopaMandar.get(i).getCod());
+        }
 
-        // Creamos el array de los codigos de servicios
-        Integer[] arrServicios = new Integer[codServicios.size()];
-        arrServicios = codServicios.toArray(arrServicios);
+        Integer[] arrCantidad = new Integer[lstRopaMandar.size()];
+
+        for (int i = 0; i < lstRopaMandar.size(); i++) {
+            arrCantidad[i] = lstRopaMandar.get(i).getCantidad();
+        }
+
+        Integer[] arrServicios = new Integer[lstServicio.size()];
+
+        for (int i = 0; i < lstServicio.size(); i++) {
+            arrServicios[i] = lstServicio.get(i).getCod();
+        }
 
         VisitaDomiciliaria visita = new VisitaDomiciliaria(codCliente, arrPrendas, arrCantidad, fecha_recojo, cod_hora,
                 distrito, arrServicios);
 
         boPedidos.programarVisita(visita);
+        request.getSession().setAttribute("listaServicio", null); // Establecemos la lista de servicio
+        request.getSession().setAttribute("listaRopa", null);
+        request.getSession().setAttribute("DNI", "DNI");
+        request.getSession().setAttribute("nombres", "Nombres");
+        request.getSession().setAttribute("apellidos", "Apellidos");
+        request.getSession().setAttribute("direccion", "Direccion");
 
         request.getRequestDispatcher("pages/User/menuUser.jsp").forward(request, response);
     }

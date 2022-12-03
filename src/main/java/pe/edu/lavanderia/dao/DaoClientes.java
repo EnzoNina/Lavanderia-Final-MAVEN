@@ -26,7 +26,8 @@ public class DaoClientes extends DaoGenerico {
             while (rs.next()) {
                 // Creamos cliente
                 Clientes obCliente = new Clientes(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getBoolean(11));
+                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),
+                        rs.getString(10), rs.getBoolean(11));
                 clientList.add(obCliente);
 
             }
@@ -109,7 +110,7 @@ public class DaoClientes extends DaoGenerico {
             stm.setString(6, cliente.getUsuario());
             stm.setString(7, cliente.getContraseña());
             stm.setString(8, cliente.getDni());
-            stm.setString(9, cliente.getCorreo());            
+            stm.setString(9, cliente.getCorreo());
             stm.setInt(10, cliente.getCod());
             stm.executeUpdate();
         } catch (Exception e) {
@@ -143,17 +144,22 @@ public class DaoClientes extends DaoGenerico {
         }
     }
 
-    public String login(String user, String pass) {
+    public String[] login(String user, String pass) {
+
         String dni = null;
+        String[] array = new String[2];
+        String cod = null;
+
         Connection co = getConexion();
         try {
-            String sql = "SELECT dni FROM clientes WHERE usuario = ? AND contraseña = ?";
+            String sql = "SELECT dni,cod_cliente FROM clientes WHERE usuario = ? AND contraseña = ?";
             PreparedStatement pst = co.prepareStatement(sql);
             pst.setString(1, user);
             pst.setString(2, pass);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 dni = rs.getString(1);
+                cod = rs.getString(2);
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -171,7 +177,10 @@ public class DaoClientes extends DaoGenerico {
             dni = "";
         }
 
-        return dni;
+        array[0] = cod;
+        array[1] = dni;
+
+        return array;
     }
 
 }

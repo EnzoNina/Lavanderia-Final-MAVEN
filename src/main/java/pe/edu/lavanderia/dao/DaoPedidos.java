@@ -121,7 +121,7 @@ public class DaoPedidos extends DaoGenerico {
 
     public void programarVisita(VisitaDomiciliaria ob) {
         Connection cnx = getConexion();
-        String sql = "INSERT INTO public.visita_domiciliaria (cod_cliente, prendas, cantidad,fecha_recojo,cod_hora,distrito) VALUES(?, ?, ?,?,?,?)";
+        String sql = "INSERT INTO public.visita_domiciliaria (cod_cliente, prendas, cantidad,fecha_recojo,cod_hora,distrito,servicios) VALUES(?, ?, ?,?,?,?,?)";
         try {
             PreparedStatement stm = cnx.prepareStatement(sql);
             stm.setInt(1, ob.getCod_cliente());
@@ -130,6 +130,7 @@ public class DaoPedidos extends DaoGenerico {
             stm.setDate(4, ob.getFecha_recojo());
             stm.setInt(5, ob.getCod_horario());
             stm.setString(6, ob.getDistrito());
+            stm.setArray(7, cnx.createArrayOf("int4", ob.getServicios()));
             stm.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);

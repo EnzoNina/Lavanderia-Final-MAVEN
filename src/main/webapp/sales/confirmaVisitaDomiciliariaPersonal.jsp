@@ -11,7 +11,7 @@
     <body>
         <!-- ======= Header ======= -->
         <header id="header" class="header fixed-top d-flex align-items-center">
-            <%@include file="../Common/header.html" %>
+            <%@include file="../Common/header.jsp" %>
         </header><!-- End Header -->
 
 
@@ -84,7 +84,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <!-- Customers Card -->
-                                        <div class="col-xxl-4 col-xl-12">
+                                        <div class="col-xl-12">
                                             <!-- Recent Sales -->
                                             <div class="col-12">
                                                 <div class="card recent-sales overflow-auto">
@@ -127,7 +127,7 @@
                                     <div class="col-lg-6">
                                         <div class="row">
                                             <!-- Customers Card -->
-                                            <div class="col-xxl-4 col-xl-12">
+                                            <div class="col-xl-12">
                                                 <!-- Recent Sales -->
                                                 <div class="col-12">
                                                     <div class="card recent-sales overflow-auto">
@@ -151,7 +151,7 @@
                                                                                 <c:out value="${ropa.cantidad}"></c:out>
                                                                                 </td>
                                                                                 <td>                                                                                    
-                                                                                    <a class="btn btn-primary" data-toggle="modal" data-target="#deleteTP" data-cod="${tela.cod_tipoTela}" >Eliminar</a>
+                                                                                    <a class="btn btn-primary" data-toggle="modal" data-target="#deletePrenda" data-cod="${ropa.cod}" >Eliminar</a>
                                                                             </td>
                                                                         </tr>
                                                                     </c:forEach> 
@@ -183,7 +183,7 @@
                                         </div>
                                         <p> Monto total:
                                             <strong>
-                                                <%=request.getAttribute("monto")%>
+                                                <%=request.getSession().getAttribute("monto")%>
                                             </strong>
                                         </p>
                                         <input id="agregarServicio" value="Agregar Servicio"
@@ -193,7 +193,7 @@
 
                                     <div class="col-lg-6">
                                         <!-- Customers Card -->
-                                        <div class="col-xxl-4 col-xl-12">
+                                        <div class="col-xl-12">
                                             <!-- Recent Sales -->
                                             <div class="col-12">
                                                 <div class="card recent-sales overflow-auto">
@@ -221,7 +221,7 @@
                                                                             <c:out value="${servicio.precio}"></c:out>
                                                                             </td>
                                                                             <td>                                                                                    
-                                                                                <a class="btn btn-primary" data-toggle="modal" data-target="#deleteSV" data-cod="${servicio.cod}" >Eliminar</a>
+                                                                                <a class="btn btn-primary" data-toggle="modal" data-target="#deleteSV" data-cod="${servicio.cod}" data-precio="${servicio.precio}" >Eliminar</a>
                                                                         </td>
                                                                     </tr>
                                                                 </c:forEach> 
@@ -237,10 +237,6 @@
                             </div>                                                                        
                         </div>
                     </div>
-
-
-
-
                     <!-- Bordered Entrega -->
 
                     <div class="tab-pane fade" id="bordered-entrega" role="tabpanel" aria-labelledby="entrega-tab">
@@ -251,10 +247,10 @@
                         </div>
                         <div class="mb-3 row imput-group">
                             <label class="form-label">Fecha de Entrega</label>
-                            <input type="date" name="fecha_entrega" id="fecha_entrega">
+                            <input type="date" name="fecha_recojo" id="fecha_recojo">
                         </div>
 
-                        <input class="btn btn-primary" type="submit" value="Registrar Ingreso de Prendas"
+                        <input class="btn btn-primary" type="submit" value="Registrar Visita Domiciliaria"
                                onclick=completarIngreso()>
 
                     </div>
@@ -316,6 +312,74 @@
                                 </button>
                                 <button type="submit" class="btn btn-primary">
                                     <a >Agregar</a>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%-- Borrar Prenda Modal --%>        
+        <div class="modal fade" id="deletePrenda" tabindex="-1" aria-labelledby="deletePrenda" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deletePrenda">Borrar Prenda</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form method="get" action="<%=request.getContextPath()%>/ServletConfirmacionVisita">
+                            <input type="hidden" name="instruccion" value="deleteRopa"/>
+                            <h4>¿Esta seguro que desea borrar la prenda?</h4>
+                            <div class="mb-3 row"  style="display:none;">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="codPrenda" value="" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    Cerrar
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    <a >Borrar</a>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%-- Borrar Servicio Modal --%>        
+        <div class="modal fade" id="deleteSV" tabindex="-1" aria-labelledby="deleteSV" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteSV">Borrar Servicio</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form method="get" action="<%=request.getContextPath()%>/ServletConfirmacionVisita" >
+                            <input type="hidden" name="instruccion" value="deleteServicio"/>
+                            <h4>¿Esta seguro que desea borrar el servicio?</h4>
+                            <div class="mb-3 row" style="display:none;" >
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="codServicio" value="" />
+                                </div>
+                            </div>
+                            <div class="mb-3 row" style="display:none;" >
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Precio</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="precio" value="" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    Cerrar
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    <a >Borrar</a>
                                 </button>
                             </div>
                         </form>

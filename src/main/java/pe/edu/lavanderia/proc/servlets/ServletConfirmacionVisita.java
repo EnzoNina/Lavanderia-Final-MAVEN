@@ -23,7 +23,7 @@ import pe.edu.lavanderia.proc.mantenimientos.BOGestionPedidos;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionPrendas;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionServicios;
 
-@WebServlet(name = "ServletConfirmacionVisita", urlPatterns = { "/ServletConfirmacionVisita" })
+@WebServlet(name = "ServletConfirmacionVisita", urlPatterns = {"/ServletConfirmacionVisita"})
 public class ServletConfirmacionVisita extends HttpServlet {
 
     @EJB
@@ -38,6 +38,11 @@ public class ServletConfirmacionVisita extends HttpServlet {
     List<DtoServicios> lstServicio = new ArrayList<DtoServicios>();
 
     double total = 0.00;
+    String tipoLogin = "";
+
+    public ServletConfirmacionVisita() {
+        tipoLogin = "";
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -56,6 +61,12 @@ public class ServletConfirmacionVisita extends HttpServlet {
                 break;
             case "addRopa":
                 addRopa(request, response);
+                break;
+            case "deleteRopa":
+                deleteRopa(request, response);
+                break;
+            case "deleteServicio":
+                deleteServicio(request, response);
                 break;
             case "agregarServicio":
                 addServicio(request, response);
@@ -94,14 +105,17 @@ public class ServletConfirmacionVisita extends HttpServlet {
         request.getSession().setAttribute("direccion", "Direccion");
 
         // Establecemos valores por defecto de las prendas y el servicio
-
         request.getSession().setAttribute("monto", "0.00");// Establecemos el total
 
-        String tipoLogin = (String) request.getSession().getAttribute("tipoLogin");        
+        tipoLogin = (String) request.getSession().getAttribute("tipoLogin");
+
+        System.out.println("Tipo de Usuario: " + tipoLogin);
 
         if (tipoLogin.equalsIgnoreCase("personal")) {
+            System.out.println("Ingresando a Personal");
             request.getRequestDispatcher("sales/confirmaVisitaDomiciliariaPersonal.jsp").forward(request, response);
-        } else if(tipoLogin.equalsIgnoreCase("administrador")){
+        } else {
+            System.out.println("Ingresando a Adminstrador");
             request.getRequestDispatcher("sales/confirmaVisitaDomiciliaria.jsp").forward(request, response);
         }
     }
@@ -122,11 +136,11 @@ public class ServletConfirmacionVisita extends HttpServlet {
         request.getSession().setAttribute("nombres", nombres);
         request.getSession().setAttribute("apellidos", apellidos);
 
-        String tipoLogin = (String) request.getSession().getAttribute("tipoLogin");
-
         if (tipoLogin.equalsIgnoreCase("personal")) {
+            System.out.println("Ingresando a Personal");
             request.getRequestDispatcher("sales/confirmaVisitaDomiciliariaPersonal.jsp").forward(request, response);
         } else {
+            System.out.println("Ingresando a Adminstrador");
             request.getRequestDispatcher("sales/confirmaVisitaDomiciliaria.jsp").forward(request, response);
         }
     }
@@ -146,24 +160,23 @@ public class ServletConfirmacionVisita extends HttpServlet {
                 cantidadRopa);
 
         // Agregamos ropa y cantidad
-
         lstRopaCant.add(cantidadRopa);
 
         lstRopaMandar.add(obDtoMostrar);
 
         request.getSession().setAttribute("listaRopa", lstRopaMandar);
 
-        String tipoLogin = (String) request.getSession().getAttribute("tipoLogin");
-
         if (tipoLogin.equalsIgnoreCase("personal")) {
+            System.out.println("Ingresando a Personal");
             request.getRequestDispatcher("sales/confirmaVisitaDomiciliariaPersonal.jsp").forward(request, response);
         } else {
+            System.out.println("Ingresando a Adminstrador");
             request.getRequestDispatcher("sales/confirmaVisitaDomiciliaria.jsp").forward(request, response);
         }
     }
 
     private void addServicio(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {        
+            throws ServletException, IOException {
         String servicioTotal = request.getParameter("servicio");
 
         // Creamos array con los datos del servicio
@@ -176,6 +189,7 @@ public class ServletConfirmacionVisita extends HttpServlet {
         lstSubTotal.add(montotemp);
         // Calculamos el total
         total += montotemp;
+        request.getSession().setAttribute("monto", total);
         // Creamos objeto de servicio
         DtoServicios obServicio = new DtoServicios(Integer.parseInt(arrPartes[0]), arrPartes[1],
                 Double.parseDouble(arrPartes[2]));
@@ -185,11 +199,57 @@ public class ServletConfirmacionVisita extends HttpServlet {
         request.getSession().setAttribute("monto", total);// Establecemos el total
         request.getSession().setAttribute("listaServicio", lstServicio); // Establecemos la lista de servicio
 
-        String tipoLogin = (String) request.getSession().getAttribute("tipoLogin");
-
         if (tipoLogin.equalsIgnoreCase("personal")) {
+            System.out.println("Ingresando a Personal");
             request.getRequestDispatcher("sales/confirmaVisitaDomiciliariaPersonal.jsp").forward(request, response);
         } else {
+            System.out.println("Ingresando a Adminstrador");
+            request.getRequestDispatcher("sales/confirmaVisitaDomiciliaria.jsp").forward(request, response);
+        }
+    }
+
+    private void deleteServicio(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        int codServicio = Integer.parseInt(request.getParameter("codServicio"));
+        double precioServicio = Double.parseDouble(request.getParameter("precio"));
+
+        for (DtoServicios servicio : lstServicio) {
+            if (servicio.getCod() == codServicio) {
+                lstServicio.remove(servicio);
+                total -= precioServicio;
+                lstSubTotal.remove(precioServicio);
+                request.getSession().setAttribute("monto", total);
+                break;
+            }
+        }
+
+        if (tipoLogin.equalsIgnoreCase("personal")) {
+            System.out.println("Ingresando a Personal");
+            request.getRequestDispatcher("sales/confirmaVisitaDomiciliariaPersonal.jsp").forward(request, response);
+        } else {
+            System.out.println("Ingresando a Adminstrador");
+            request.getRequestDispatcher("sales/confirmaVisitaDomiciliaria.jsp").forward(request, response);
+        }
+    }
+
+    private void deleteRopa(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        int codRopa = Integer.parseInt(request.getParameter("codPrenda"));
+
+        for (DtoPrendaListaMostrar ropa : lstRopaMandar) {
+            if (ropa.getCod() == codRopa) {
+                lstRopaMandar.remove(ropa);
+                break;
+            }
+        }
+
+        if (tipoLogin.equalsIgnoreCase("personal")) {
+            System.out.println("Ingresando a Personal");
+            request.getRequestDispatcher("sales/confirmaVisitaDomiciliariaPersonal.jsp").forward(request, response);
+        } else {
+            System.out.println("Ingresando a Adminstrador");
             request.getRequestDispatcher("sales/confirmaVisitaDomiciliaria.jsp").forward(request, response);
         }
     }
@@ -211,12 +271,16 @@ public class ServletConfirmacionVisita extends HttpServlet {
 
         request.getSession().setAttribute("listaServicio", null); // Establecemos la lista de servicio
         request.getSession().setAttribute("listaRopa", null);
-
-        String tipoLogin = (String) request.getSession().getAttribute("tipoLogin");
+        request.getSession().setAttribute("DNI", "DNI");
+        request.getSession().setAttribute("nombres", "Nombres");
+        request.getSession().setAttribute("apellidos", "Apellidos");
+        request.getSession().setAttribute("direccion", "Direccion");
 
         if (tipoLogin.equalsIgnoreCase("personal")) {
+            System.out.println("Ingresando a Personal");
             request.getRequestDispatcher("sales/confirmaVisitaDomiciliariaPersonal.jsp").forward(request, response);
         } else {
+            System.out.println("Ingresando a Adminstrador");
             request.getRequestDispatcher("sales/confirmaVisitaDomiciliaria.jsp").forward(request, response);
         }
     }
