@@ -18,8 +18,7 @@ public class BOGestionPedidos {
 
     final static DaoPedidos dao = new DaoPedidos();
 
-    public List<Pedidos> getPedidos() {
-        DaoPedidos dao = new DaoPedidos();
+    public List<Pedidos> getPedidos() {        
         return dao.getPedidos();
     }
 
@@ -45,6 +44,10 @@ public class BOGestionPedidos {
 
     public void addPrendas(List<DtoPrendaListaMostrar> lstRopaMandar) {
         dao.addPrendas(lstRopaMandar);
+    }
+
+    public List<VisitaDomiciliaria> getVisitas(int codCliente) {
+        return dao.getVisitas(codCliente);
     }
 
 }

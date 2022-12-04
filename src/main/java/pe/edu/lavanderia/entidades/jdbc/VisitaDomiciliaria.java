@@ -11,11 +11,38 @@ public class VisitaDomiciliaria {
     private Date fecha_recojo;
     private int cod_horario;
     private String distrito;
-    private Integer[] servicios;
+    private String[] servicios;
+
+    private String arrPrendaString;
+    private String arrCantString;
+    private String arrCodString;
 
     // Constructor
+    public VisitaDomiciliaria(int cod_visitaDomiciliaria, int cod_cliente, Date fecha_recojo, int cod_horario, String distrito, String arrPrendaString, String arrCantString, String arrCodString) {
+        this.cod_visitaDomiciliaria = cod_visitaDomiciliaria;
+        this.cod_cliente = cod_cliente;
+        this.fecha_recojo = fecha_recojo;
+        this.cod_horario = cod_horario;
+        this.distrito = distrito;
+        this.arrPrendaString = arrPrendaString;
+        this.arrCantString = arrCantString;
+        this.arrCodString = arrCodString;
+    }
+
     public VisitaDomiciliaria(int cod_cliente, String[] prendas, Integer[] cantidad, Date fecha_recojo, int cod_horario,
-            String distrito, Integer[] servicios) {
+            String distrito, String[] servicios) {
+        this.cod_cliente = cod_cliente;
+        this.prendas = prendas;
+        this.cantidad = cantidad;
+        this.fecha_recojo = fecha_recojo;
+        this.cod_horario = cod_horario;
+        this.distrito = distrito;
+        this.servicios = servicios;
+    }
+
+    public VisitaDomiciliaria(int cod_visitaDomiciliaria, int cod_cliente, String[] prendas, Integer[] cantidad,
+            Date fecha_recojo, int cod_horario, String distrito, String[] servicios) {
+        this.cod_visitaDomiciliaria = cod_visitaDomiciliaria;
         this.cod_cliente = cod_cliente;
         this.prendas = prendas;
         this.cantidad = cantidad;
@@ -82,18 +109,47 @@ public class VisitaDomiciliaria {
         this.cod_horario = cod_horario;
     }
 
+    public String getArrPrendaString() {
+        return arrPrendaString;
+    }
+
+    public void setArrPrendaString(String arrPrendaString) {
+        this.arrPrendaString = arrPrendaString;
+    }
+
+    public String getArrCantString() {
+        return arrCantString;
+    }
+
+    public void setArrCantString(String arrCantString) {
+        this.arrCantString = arrCantString;
+    }
+
+    public String getArrCodString() {
+        return arrCodString;
+    }
+
+    public void setArrCodString(String arrCodString) {
+        this.arrCodString = arrCodString;
+    }
+
     /**
      * @return the servicios
      */
-    public Integer[] getServicios() {
+    public String[] getServicios() {
         return servicios;
     }
 
     /**
      * @param servicios the servicios to set
      */
-    public void setServicios(Integer[] servicios) {
+    public void setServicios(String[] servicios) {
         this.servicios = servicios;
+    }
+
+    @Override
+    public String toString() {
+        return "VisitaDomiciliaria{" + "cod_visitaDomiciliaria=" + cod_visitaDomiciliaria + ", cod_cliente=" + cod_cliente + ", prendas=" + prendas + ", cantidad=" + cantidad + ", fecha_recojo=" + fecha_recojo + ", cod_horario=" + cod_horario + ", distrito=" + distrito + ", servicios=" + servicios + '}';
     }
 
 }

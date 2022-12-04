@@ -31,7 +31,7 @@
                     <div class="col-lg-12">
                         <div class="row">
                             <!-- Customers Card -->
-                            <div class="col-xxl-4 col-xl-12">
+                            <div class="col-xl-12">
                                 <!-- Recent Sales -->
                                 <div class="col-12">
                                     <div class="card recent-sales overflow-auto">

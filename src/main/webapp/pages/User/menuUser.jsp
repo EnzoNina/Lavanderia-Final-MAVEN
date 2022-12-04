@@ -11,7 +11,7 @@
 
     <body>
 
-      <!-- ======= Header ======= -->
+        <!-- ======= Header ======= -->
         <header id="header" class="header fixed-top d-flex align-items-center">
             <%@include file="../../Common/header.jsp" %>
         </header><!-- End Header -->  
@@ -34,25 +34,25 @@
                                 <div class="col-12">
                                     <div class="card recent-sales overflow-auto">
                                         <div class="card-body">
-                                            <h5 class="card-title">Visitas Domiciliarias<span></h5>
+                                            <h5 class="card-title">Visitas Domiciliarias<span></h5>                                            
                                             <table class="table table-borderless datatable">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col">#</th>                                                        
-                                                        <th scope="col">Codigo de prendas</th>
-                                                        <th scope="col">Cantidad de prenda</th>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Codigo de Prendas</th>
+                                                        <th scope="col">Cantidad de Prendas</th>
                                                         <th scope="col">Codigo de Servicios</th>
-                                                        <th scope="col">Fecha de recojo</th>                                                        
+                                                        <th scope="col">Fecha de Recojo</th>                                                        
                                                     </tr>
                                                 </thead>
                                                 <tbody>                                                                                                      
-                                                    <c:forEach items="${lstVisitas}" var="lst">
+                                                    <c:forEach items="${lst}" var="lst">
                                                         <tr>
-                                                            <td ><c:out value="${lst.cod_visitaDomiciliaria}"></c:out> </td>
-                                                            <td > <c:out value="${lst.prendas}"></c:out> </td>
-                                                            <td > <c:out value="${lst.cantidad}"></c:out> </td>
-                                                            <td > <c:out value="${lst.fecha_recojo}"></c:out ></td>
-                                                            <td > <c:out value="${lst.servicios}"></c:out ></td>                                                            
+                                                            <td id="cod"> <c:out value="${lst.cod_visitaDomiciliaria}"></c:out> </td>
+                                                            <td id="prendas"> <c:out value="${lst.arrPrendaString}"></c:out> </td>
+                                                            <td id="cantidad"> <c:out value="${lst.arrCantString}"></c:out> </td>
+                                                            <td id="servicios"> <c:out value="${lst.arrCodString}"></c:out ></td>                                                            
+                                                            <td id="fecha"> <c:out value="${lst.fecha_recojo}"></c:out ></td>
                                                             </tr>
                                                     </c:forEach>
                                                 </tbody>

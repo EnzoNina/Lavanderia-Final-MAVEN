@@ -191,10 +191,10 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
             arrCantidad[i] = lstRopaMandar.get(i).getCantidad();
         }
 
-        Integer[] arrServicios = new Integer[lstServicio.size()];
+        String[] arrServicios = new String[lstServicio.size()];
 
         for (int i = 0; i < lstServicio.size(); i++) {
-            arrServicios[i] = lstServicio.get(i).getCod();
+            arrServicios[i] = String.valueOf(lstServicio.get(i).getCod());
         }
 
         VisitaDomiciliaria visita = new VisitaDomiciliaria(codCliente, arrPrendas, arrCantidad, fecha_recojo, cod_hora,

@@ -38,6 +38,7 @@ pe\edu\lavanderia\proc\mantenimientos\BOGestionEmpleados.class
 pe\edu\lavanderia\entidades\jdbc\Categorias.class
 pe\edu\lavanderia\entidades\jdbc\Prendas.class
 pe\edu\lavanderia\proc\mantenimientos\BOGestionPedidos.class
+pe\edu\lavanderia\proc\servlets\ServletLoadVisitas.class
 pe\edu\lavanderia\proc\servlets\ServletPrendas.class
 pe\edu\lavanderia\proc\servlets\ServletCategorias.class
 pe\edu\lavanderia\proc\servlets\ServletEditar.class

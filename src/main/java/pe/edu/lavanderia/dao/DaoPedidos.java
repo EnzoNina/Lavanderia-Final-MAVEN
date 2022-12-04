@@ -6,9 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.management.RuntimeErrorException;
-
 import pe.edu.lavanderia.dto.DtoPrendaListaMostrar;
 import pe.edu.lavanderia.dto.DtoServicios;
 import pe.edu.lavanderia.entidades.jdbc.Pedidos;
@@ -179,5 +176,30 @@ public class DaoPedidos extends DaoGenerico {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    public List<VisitaDomiciliaria> getVisitas(int codCliente) {
+        List<VisitaDomiciliaria> lst = new ArrayList<VisitaDomiciliaria>();// Creamos lista
+        Connection conexion = getConexion();// Obtenemos conexion
+        String sentencia = "SELECT cod_visita, cod_cliente, prendas, cantidad, fecha_recojo, cod_hora, distrito, servicios FROM public.visita_domiciliaria where cod_cliente = ?";
+        PreparedStatement ps;
+        try {
+            ps = conexion.prepareStatement(sentencia);
+            ps.setInt(1, codCliente);
+            ResultSet rs = ps.executeQuery();
+            // Recorremos
+            while (rs.next()) {
+
+                String prendas = rs.getString(3);
+                String cantidad = rs.getString(4);
+                String codServicios = rs.getString(8);                
+                VisitaDomiciliaria ob = new VisitaDomiciliaria(rs.getInt(1), rs.getInt(2), rs.getDate(5), rs.getInt(6), rs.getString(7), prendas, cantidad, codServicios);
+                lst.add(ob);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lst;
     }
 }

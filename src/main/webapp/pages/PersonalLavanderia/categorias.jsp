@@ -11,7 +11,7 @@
         <%@include file="../../Common/estilosAdmin.html" %>
     </head>
     <body>
-        
+
         <!-- ======= Header ======= -->
         <header id="header" class="header fixed-top d-flex align-items-center">
             <%@include file="../../Common/header.jsp" %>
@@ -29,14 +29,14 @@
                     <div class="col-lg-12">
                         <div class="row">
                             <!-- Customers Card -->
-                            <div class="col-xxl-4 col-xl-12">
+                            <div class="col-xl-12">
                                 <!-- Recent Sales -->
                                 <div class="col-12">
                                     <div class="card recent-sales overflow-auto">
                                         <div class="card-body">
                                             <h5 class="card-title">Categorias</h5>
                                             <button type="button" class="btn btn-primary" style="margin: 15px;" data-target="#agregar"
-                                                data-toggle="modal">Agregar categoria
+                                                    data-toggle="modal">Agregar categoria
                                             </button>
                                             <table class="table table-borderless datatable">
                                                 <thead>
@@ -48,16 +48,16 @@
                                                 </thead>
                                                 <tbody>
                                                     <c:forEach items="${lst}" var="categoria">
-                            <tr>
-                                <td id="cod" > <c:out value="${categoria.cod_categoria}" ></c:out> </td>
-                                    <td id="nombre">
-                                        <a href="ServletServiciosXCategoria?cod_categoria=${categoria.cod_categoria}">
-                                        <c:out value="${categoria.nombre}" ></c:out> 
-                                        </a>
-                                    </td>
-                                    <td id="desc" > <c:out value="${categoria.descripcion}" ></c:out> </td>                                
-                                </tr>
-                        </c:forEach> 
+                                                        <tr>
+                                                            <td id="cod" > <c:out value="${categoria.cod_categoria}" ></c:out> </td>
+                                                                <td id="nombre">
+                                                                    <a href="ServletServiciosXCategoria?cod_categoria=${categoria.cod_categoria}">
+                                                                    <c:out value="${categoria.nombre}" ></c:out> 
+                                                                    </a>
+                                                                </td>
+                                                                <td id="desc" > <c:out value="${categoria.descripcion}" ></c:out> </td>                                
+                                                            </tr>
+                                                    </c:forEach> 
                                                 </tbody>
                                             </table>
                                         </div>
@@ -116,7 +116,7 @@
                 </div>
             </div>
         </div>
-        
+
 
 
         <!-- ======= Footer ======= -->
@@ -128,6 +128,6 @@
                 class="bi bi-arrow-up-short"></i></a>
 
         <%@include file="../../Common/imports.html" %>        
-        
+
     </body>
 </html>
