@@ -18,7 +18,7 @@
         <!-- Reemplazar por import -->
         <!-- ======= Sidebar ======= -->
         <aside id="sidebar" class="sidebar">
-            <%@include file="../Common/asideAdministrador.jsp" %>
+            <%@include file="../Common/asideEmpleado.jsp" %>
         </aside><!-- End Sidebar-->
 
         <main id="main" class="main">

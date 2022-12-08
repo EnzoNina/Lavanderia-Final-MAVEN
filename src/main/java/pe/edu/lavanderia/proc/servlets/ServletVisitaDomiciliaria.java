@@ -21,14 +21,11 @@ import pe.edu.lavanderia.proc.mantenimientos.BOGestionPedidos;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionPrendas;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionServicios;
 
-@WebServlet(name = "ServletVisitaDomiciliaria", urlPatterns = {"/ServletVisitaDomiciliaria"})
+@WebServlet(name = "ServletVisitaDomiciliaria", urlPatterns = { "/ServletVisitaDomiciliaria" })
 public class ServletVisitaDomiciliaria extends HttpServlet {
 
     // Atributos
-    //List<String> listaPrendas = new ArrayList<String>();
     List<Integer> listaCantidad = new ArrayList<Integer>();
-    //List<Integer> codServicios = new ArrayList<Integer>();
-    //List<Integer> lstRopaCant = new ArrayList<Integer>();
     List<DtoPrendaListaMostrar> lstRopaMandar = new ArrayList<DtoPrendaListaMostrar>();
     List<DtoServicios> lstServicio = new ArrayList<DtoServicios>();
 
@@ -89,8 +86,8 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
                 cantidadRopa);
 
         // Agregamos ropa y cantidad
-        //lstRopaCant.add(cantidadRopa);
-        //listaPrendas.add(String.valueOf(codRopa));
+        // lstRopaCant.add(cantidadRopa);
+        // listaPrendas.add(String.valueOf(codRopa));
         lstRopaMandar.add(obDtoMostrar);
 
         request.getSession().setAttribute("listaRopa", lstRopaMandar);
@@ -101,13 +98,12 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
     private void deleteRopa(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int codRopa = Integer.parseInt(request.getParameter("codPrenda"));
-        int cantidadRopa = Integer.parseInt(request.getParameter("cantidad"));
 
         for (DtoPrendaListaMostrar ropa : lstRopaMandar) {
             if (ropa.getCod() == codRopa) {
                 lstRopaMandar.remove(ropa);
-                //listaPrendas.remove(String.valueOf(codRopa));
-                //lstRopaCant.remove(cantidadRopa);
+                // listaPrendas.remove(String.valueOf(codRopa));
+                // lstRopaCant.remove(cantidadRopa);
                 break;
             }
         }
@@ -116,6 +112,7 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
 
     private void cargarServicios(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         List<Servicios> lst = boServicios.getServicios();
         List<DtoPrendasLista> lstPrendasDTO = boPrendas.getPrendasList();
 
@@ -139,7 +136,7 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
         for (DtoServicios servicio : lstServicio) {
             if (servicio.getCod() == codServicio) {
                 lstServicio.remove(servicio);
-                //codServicios.remove(codServicio);
+                // codServicios.remove(codServicio);
                 break;
             }
         }
@@ -158,7 +155,7 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
 
         // Agregamos el objeto a la lista
         lstServicio.add(obServicio);
-        //codServicios.add(Integer.parseInt(arrPartes[0]));
+        // codServicios.add(Integer.parseInt(arrPartes[0]));
         request.getSession().setAttribute("listaServicio", lstServicio); // Establecemos la lista de servicio
         request.getRequestDispatcher("pages/User/visitaDomiciliaria.jsp").forward(request, response);
 
@@ -178,7 +175,7 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
         // Obtenemos distrito
         String distrito = request.getParameter("distrito");
 
-        //Creamos array de prendas
+        // Creamos array de prendas
         String[] arrPrendas = new String[lstRopaMandar.size()];
 
         for (int i = 0; i < lstRopaMandar.size(); i++) {

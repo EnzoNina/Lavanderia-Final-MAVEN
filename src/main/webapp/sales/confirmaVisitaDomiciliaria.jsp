@@ -367,13 +367,13 @@
                             <input type="hidden" name="instruccion" value="deleteServicio"/>
                             <h4>¿Esta seguro que desea borrar el servicio?</h4>
                             <div class="mb-3 row" style="display:none;" >
-                                 <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="codServicio" value="" />
                                 </div>
                             </div>
                             <div class="mb-3 row" style="display:none;">
-                                 <label for="staticEmail" class="col-sm-2 col-form-label">Precio</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Precio</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="precio" value="" />
                                 </div>

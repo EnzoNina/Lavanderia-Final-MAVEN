@@ -23,7 +23,7 @@ import pe.edu.lavanderia.proc.mantenimientos.BOGestionPedidos;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionPrendas;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionServicios;
 
-@WebServlet(name = "ServletConfirmacionVisita", urlPatterns = {"/ServletConfirmacionVisita"})
+@WebServlet(name = "ServletConfirmacionVisita", urlPatterns = { "/ServletConfirmacionVisita" })
 public class ServletConfirmacionVisita extends HttpServlet {
 
     @EJB
@@ -73,12 +73,6 @@ public class ServletConfirmacionVisita extends HttpServlet {
                 break;
             case "new":
                 newPedido(request, response);
-                break;
-            case "edit":
-                editPedido(request, response);
-                break;
-            case "delete":
-                deletePedido(request, response);
                 break;
             default:
                 throw new AssertionError();
@@ -283,15 +277,6 @@ public class ServletConfirmacionVisita extends HttpServlet {
             System.out.println("Ingresando a Adminstrador");
             request.getRequestDispatcher("sales/confirmaVisitaDomiciliaria.jsp").forward(request, response);
         }
-    }
-
-    private void editPedido(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
-
-    private void deletePedido(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
     }
 
     @Override
