@@ -104,10 +104,10 @@ public class ServletPedidos extends HttpServlet {
 
         if (tipoLogin.equalsIgnoreCase("personal")) {
             System.out.println("Ingresando a Personal");
-            request.getRequestDispatcher("sales/confirmaVisitaDomiciliariaPersonal.jsp").forward(request, response);
+            request.getRequestDispatcher("sales/nuevoPedidoPersonal.jsp").forward(request, response);
         } else {
             System.out.println("Ingresando a Adminstrador");
-            request.getRequestDispatcher("sales/confirmaVisitaDomiciliaria.jsp").forward(request, response);
+            request.getRequestDispatcher("sales/nuevoPedido.jsp").forward(request, response);
         }
     }
 
