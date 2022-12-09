@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -75,11 +76,31 @@ public class ServletEmpleados extends HttpServlet {
         }
 
         if (tipo.equalsIgnoreCase("personal")) {
+
             List<DtoEmpleados> lst = bo.getEmpleadosDTO();
+            PrintWriter out = response.getWriter();
+            try {
+                System.out.println("aasaaaa");
+                Gson gson = new Gson();
+                String json = gson.toJson(lst);
+                out.print(json);
+                System.out.println(json);
+            } catch (Exception e) {
+                System.out.println("Error: " + e);
+            }
             request.setAttribute("lst", lst);
             request.getRequestDispatcher("pages/PersonalLavanderia/empleadoPersonal.jsp").forward(request, response);
         } else if (tipo.equalsIgnoreCase("administracion")) {
+            PrintWriter out = response.getWriter();
             List<Empleados> lst = bo.getEmpleados();
+            try {
+                Gson gson = new Gson();
+                String json = gson.toJson(lst);
+                out.print(json);
+                System.out.println(json);
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
             request.setAttribute("lst", lst);
             request.getRequestDispatcher("pages/Lavanderia/empleado.jsp").forward(request, response);
         }
@@ -159,7 +180,9 @@ public class ServletEmpleados extends HttpServlet {
                             .getServletContext()
                             .getResourceAsStream("jasperReports/ReporteEmpleados.jasper");
             if (logoEmpresa != null && imagenAlternativa != null && reportEmployees != null) {
+
                 String jsonEmpleados = request.getParameter("lista"); //OJO
+
                 Gson gson = new Gson();
                 List<Empleados> reportesEmpleados = new ArrayList<>();
                 List<Empleados> reportesEmpleados2 = new ArrayList<>();
