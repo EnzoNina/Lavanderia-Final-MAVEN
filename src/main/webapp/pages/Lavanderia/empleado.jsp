@@ -39,12 +39,11 @@
                                             <div class="card recent-sales overflow-auto">
                                                 <div class="card-body">
                                                     <h5 class="card-title">Empleados</h5>
-                                                    //AGREGADO<
-                                                    <form target="_blank" action="../ServletEmpleados" id="frmReporte" method="post">
-                                                        <input type="hidden" name="accion" id="accion">
-                                                        <button onclick="reporte('exportarReporteEmpleado')" type="button" class="btn btn-primary"><i class="fas fa-file-pdf"></i> EXPORTAR PDF </button>
+
+                                                    <form target="_blank" action="<%=request.getContextPath()%>/ServletEmpleados" id="frmReporte" method="get">
+                                                        <input type="hidden" name="instruccion" id="instruccion">
+                                                        <button onclick="reporte('exportarReporteEmpleado')" type="button" class="btn btn-primary">EXPORTAR PDF </button>
                                                         <input type="hidden" name="lista" id="lista">
-                                                    //AGREGADO>
                                                     </form>
                                                     <a class="btn btn-primary" data-target="#nuevoEmpleado" data-toggle="modal" >Agregar Empleado</a>
                                                     <table class="table table-borderless datatable">
@@ -325,6 +324,21 @@
                 class="bi bi-arrow-up-short"></i></a>
 
         <%@include file="../../Common/imports.html" %>
+        <script>
+            function reporte(instruccion) {
+                console.log('aaabbbcc');
+                $.get('ServletEmpleados?instruccion=listar', function (r) {
+                    if (r) {
+                        $('#instruccion').val(instruccion);
+                        $('#lista').val(JSON.stringify(r));
+                        $('#frmReporte').submit();
+                    } else {
+                        alert('ERROR: El reporte no se pudo generar: ' + r);
+                    }
+                });
+            }
+
+        </script>
         <script src="http://localhost:8080/lavanderia/js/gestionEmpleado.js"></script>
     </body>
 </html>

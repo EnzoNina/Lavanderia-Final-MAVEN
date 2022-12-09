@@ -1,3 +1,17 @@
+//AGREGADO 
+function reporte(instruccion) {
+    console.log('aaa');
+    $.get('../ServletEmpleados?instruccion=listar', function (r) {
+        if (r) {
+            $('#instruccion').val(instruccion);
+            $('#lista').val(JSON.stringify(r));
+            $('#frmReporte').submit();
+        } else {
+            alert('ERROR: El reporte no se pudo generar: ' + r);
+        }
+    });
+}
+
 // Modal Editar Cliente
 $("#editEmpleado").on("show.bs.modal", function (e) {
     var cod = $(e.relatedTarget).data("codi");
@@ -29,15 +43,3 @@ $("#deleteEmpleado").on("show.bs.modal", function (e) {
     $(e.currentTarget).find('input[name="codi"]').val(cod);
 });
 
-//AGREGADO 
-function reporte(accion) {
-    $.get('../ServletEmpleados?instruccion=listar', function (r) {
-        if (r) {
-            $('#accion').val(accion);
-            $('#lista').val(JSON.stringify(r));
-            $('#frmReporte').submit();
-        } else {
-            alert('ERROR: El reporte no se pudo generar: ' + r);
-        }
-    });
-}
