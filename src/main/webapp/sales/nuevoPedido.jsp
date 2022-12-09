@@ -25,7 +25,7 @@
                   name="formulario" id="formulario" >
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Confirmacion de Visita Domiciliaria</h5>
+                        <h5 class="card-title">Nuevo Pedido</h5>
                         <!-- Bordered Tabs -->
                         <ul class="nav nav-tabs nav-tabs-bordered" id="borderedTab" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -110,7 +110,7 @@
                                                                                 <a class="btn btn-primary" data-toggle="modal" data-target="#addRopa" data-cod="${prenda.cod}"
                                                                                data-tp="${prenda.tipoPrenda}" data-tt="${prenda.tipoTela}" data-color="${prenda.color}"
                                                                                >
-                                                                                Agregar Prenda
+                                                                                <i class="bi bi-plus-square"></i>
                                                                             </a>
                                                                         </td>
                                                                     </tr>

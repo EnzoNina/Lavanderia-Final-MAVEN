@@ -56,8 +56,8 @@
                                                                     <button class="btn btn-primary" data-toggle="modal" data-target="#editarTP" 
                                                                             data-cod="${tipoPrenda.codTipoPrenda}" 
                                                                     data-tipo="${tipoPrenda.tipoPrenda}">
-                                                                    Editar</button>
-                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#deleteTP" data-cod="${tipoPrenda.codTipoPrenda}" >Eliminar</button>
+                                                                    <i class="bi bi-pencil-square"></i></button>
+                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#deleteTP" data-cod="${tipoPrenda.codTipoPrenda}" ><i class="bi bi-trash3"></i></button>
                                                             </td>
                                                         </tr>
                                                     </c:forEach> 
@@ -97,8 +97,8 @@
                                                                 <td>
                                                                     <button class="btn btn-primary" data-toggle="modal" data-target="#editarTP" data-cod="${tela.cod_tipoTela}" 
                                                                         data-tipo="${tela.tipoTela}">
-                                                                    Editar</button>
-                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#deleteTP" data-cod="${tela.cod_tipoTela}" >Eliminar</button>
+                                                                    <i class="bi bi-pencil-square"></i></button>
+                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#deleteTP" data-cod="${tela.cod_tipoTela}" ><i class="bi bi-trash3"></i></button>
                                                             </td>
                                                         </tr>
                                                     </c:forEach> 
@@ -150,8 +150,8 @@
                                                                             data-cod="${prenda.cod}"                                                     
                                                                     data-color="${prenda.color}"
                                                                     >
-                                                                    Editar</button>
-                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#delete" data-cod="${prenda.cod}" >Eliminar</button>
+                                                                    <i class="bi bi-pencil-square"></i></button>
+                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#delete" data-cod="${prenda.cod}" ><i class="bi bi-trash3"></i></button>
                                                             </td>
                                                         </tr>
                                                     </c:forEach> 
@@ -183,7 +183,7 @@
                             <input type="hidden" name="tipo" value="prenda"/>
                             <div class="mb-3 row">
                                 <label for="text" class="col-sm-4 col-form-label">Tipo Prenda</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-8">
                                     <select class="form-select" name="tipoPrenda" aria-label="Tipo Prenda" >
                                         <c:forEach items="${lstTipoPrenda}" var="tipoPrenda">
                                             <option value="${tipoPrenda.codTipoPrenda}" > 
@@ -194,8 +194,8 @@
                                 </div>                                
                             </div>
                             <div class="mb-3 row">
-                                <label for="text" class="col-sm-3 col-form-label">Tipo Tela</label>
-                                <div class="col-sm-10">
+                                <label for="text" class="col-sm-4 col-form-label">Tipo Tela</label>
+                                <div class="col-sm-8">
                                     <select class="form-select" name="tipoTela" aria-label="Tipo Tela" >
                                         <c:forEach items="${lstTipoTela}" var="tipoTela">
                                             <option value="${tipoTela.cod_tipoTela}" > 
@@ -206,8 +206,8 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="text" class="col-sm-2 col-form-label">Color</label>
-                                <div class="col-sm-10">
+                                <label for="text" class="col-sm-4 col-form-label">Color</label>
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="color" required/>
                                 </div>
                             </div>                                    
@@ -277,7 +277,7 @@
                                     Cerrar
                                 </button>
                                 <button type="submit" class="btn btn-primary">
-                                    <a >Editar</a>
+                                    <a ><i class="bi bi-pencil-square"></i></a>
                                 </button>
                             </div>
                         </form>
@@ -309,7 +309,7 @@
                                     Cerrar
                                 </button>
                                 <button type="submit" class="btn btn-primary">
-                                    <a >Borrar</a>
+                                    <a ><i class="bi bi-trash3"></i></a>
                                 </button>
                             </div>
                         </form>
@@ -330,8 +330,8 @@
                             <input type="hidden" name="instruccion" value="new"/>
                             <input type="hidden" name="tipo" value="tipoPrenda"/>                            
                             <div class="mb-3 row">
-                                <label for="text" class="col-sm-2 col-form-label">Tipo Prenda</label>
-                                <div class="col-sm-10">
+                                <label for="text" class="col-sm-4 col-form-label">Tipo Prenda</label>
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="TP" required/>
                                 </div>
                             </div>                                    

@@ -21,9 +21,6 @@
             <aside id="sidebar" class="sidebar">
                 <%@include file="../../Common/asideAdministrador.jsp" %>
             </aside><!-- End Sidebar-->
-
-            <div class="container">
-                <a class="btn btn-primary" href="http://localhost:8080/lavanderia/pages/Lavanderia/menu.jsp">Volver al Menu</a>
                 <!--Contenedor de Tabla-->
                 <main id="main" class="main">
                     <section class="section dashboard">
@@ -89,15 +86,15 @@
                                                                         <c:out value="${cliente.direccion}"></c:out>
                                                                         </td>
 
-                                                                        <td class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                                                                        <td>
                                                                             <button class="btn btn-primary" data-target="#editCliente" data-cod="${cliente.cod}"
                                                                                 data-nombres="${cliente.nombre}" data-pa="${cliente.apellidoPaterno}"
                                                                                 data-ma="${cliente.apellidoMaterno}" data-dni="${cliente.dni}" data-correo="${cliente.correo}"
                                                                                 data-celular="${cliente.celular}" data-usuario="${cliente.usuario}" data-contra="${cliente.contraseña}"
-                                                                                data-direccion="${cliente.direccion}" data-toggle="modal">Editar</button>
+                                                                                data-direccion="${cliente.direccion}" data-toggle="modal"><i class="bi bi-pencil-square"></i></button>
 
                                                                         <button class="btn btn-primary editar" data-target="#deleteCliente" data-toggle="modal"
-                                                                                data-cod="${cliente.cod}">Eliminar</button>
+                                                                                data-cod="${cliente.cod}"><i class="bi bi-trash3"></i></button>
                                                                     </td>
 
                                                                 </tr>
@@ -240,7 +237,7 @@
                     </div>
                 </div>
 
-            </div>
+            
 
         </div>
 

@@ -86,11 +86,11 @@
                                                                             data-celular="${empleado.celular}"
                                                                             data-usuario="${empleado.usuario}"
                                                                             data-contra="${empleado.contraseña}"
-                                                                            data-toggle="modal">Editar</button>
+                                                                            data-toggle="modal"><i class="bi bi-pencil-square"></i></button>
 
                                                                         <button class="btn btn-primary editar"
                                                                                 data-target="#deleteEmpleado" data-toggle="modal"
-                                                                                data-codi="${empleado.cod}">Eliminar</button>
+                                                                                data-codi="${empleado.cod}"><i class="bi bi-trash3"></i></button>
                                                                     </td>
                                                                 </tr>
 
@@ -121,13 +121,13 @@
                                 <form action="<%=request.getContextPath()%>/ServletEmpleados"
                                       method="get">
                                     <input type="hidden" name="instruccion" value="new" />
-
-                                    <select class="form-select" name="empleado"
+                                    <div class="mb-3 row">
+                                        <select class="form-select" name="empleado"
                                             aria-label="Tipo Empleado">
                                         <option value="empleado">empleado</option>
                                         <option value="administrador">administrador</option>
-                                    </select> 
-
+                                        </select> 
+                                    </div>
                                     <div class="mb-3 row" style="display: none;">
                                         <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
                                         <div class="col-sm-10">
@@ -179,8 +179,8 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="inputPassword" class="col-sm-2 col-form-label">Contraseña</label>
-                                        <div class="col-sm-10">
+                                        <label for="inputPassword" class="col-sm-4 col-form-label">Contraseña</label>
+                                        <div class="col-sm-8">
                                             <input type="text" class="form-control" name="contra" value="" required/>
                                         </div>
                                     </div>

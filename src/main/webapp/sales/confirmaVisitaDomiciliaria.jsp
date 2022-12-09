@@ -242,23 +242,34 @@
 
 
                     <!-- Bordered Entrega -->
-
-                    <div class="tab-pane fade" id="bordered-entrega" role="tabpanel" aria-labelledby="entrega-tab">
+                    <div class="card-body">
+                    <div class="container tab-pane fade " id="bordered-entrega" role="tabpanel" aria-labelledby="entrega-tab">
                         <h6>Datos de Entrada y Salida</h6>
-                        <div class="mb-3 row">
-                            <label class="form-label">Observacion</label>
-                            <input type="text" class="form-control" name="observacion" id="observacion" placeholder="Observacion">
-                        </div>
-                        <div class="mb-3 row imput-group">
-                            <label class="form-label">Fecha de Entrega</label>
-                            <input type="date" name="fecha_entrega" id="fecha_entrega">
-                        </div>
+                        <div class="row">
+                            
+                         <div class="form-floating my-5 col-md-8">
+                            <textarea
+                              name="observacion"
+                              id="observacion"
+                              style="height: 150px"
+                              class="form-control"
+                              placeholder="Observacion"
+                            ></textarea>
 
+                             <label for="observacion" style="padding: 20px;">Observacion</label>
+                          </div>
+                        </div>
+                        <div class="container row">
+                        <div class="mb-3 imput-group col-md-6">
+                            <label class="form-label">Fecha de Entrega</label>
+                            <input  class="col-md-6" type="date" name="fecha_entrega" id="fecha_entrega">
+                        </div>
+                        </div>
                         <input class="btn btn-primary" type="submit" value="Registrar Ingreso de Prendas"
                                onclick=completarIngreso()>
 
                     </div>
-
+                    </div>
                 </div><!-- End Bordered Tabs -->
                 </div>
                 </div>

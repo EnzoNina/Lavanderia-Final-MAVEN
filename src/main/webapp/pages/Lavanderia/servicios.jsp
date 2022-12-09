@@ -32,7 +32,7 @@
                                 <div class="col-12">
                                     <div class="card recent-sales overflow-auto">
                                         <div class="card-body">
-                                            <h5 class="card-title">Pedidos Recientes</h5>
+                                            <h5 class="card-title">Servicios</h5>
                                             <button type="button" class="btn btn-primary" style="margin: 15px;" data-target="#exampleModal"
                                                     data-toggle="modal">Agregar Servicio
                                             </button>
@@ -69,9 +69,9 @@
                                                                     <button class="btn btn-primary" data-toggle="modal" data-target="#editar"
                                                                             data-cod="${servicio.cod}" data-nom="${servicio.nombre}"
                                                                     data-desc="${servicio.descripcion}" data-cate="${servicio.cod_categoria}"
-                                                                    data-prec="${servicio.precio}">Editar</button>
+                                                                    data-prec="${servicio.precio}"><i class="bi bi-pencil-square"></i></button>
                                                                 <button class="btn btn-primary" data-toggle="modal" data-target="#delete"
-                                                                        data-cod="${servicio.cod}">Eliminar</button>
+                                                                        data-cod="${servicio.cod}"><i class="bi bi-trash3"></i></button>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>
@@ -101,22 +101,22 @@
                         <form method="get" action="<%=request.getContextPath()%>/ServletServicios">
                             <input type="hidden" name="instruccion" value="new" />
                             <div class="mb-3 row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Servicio</label>
-                                <div class="col-sm-10">
+                                <label for="staticEmail" class="col-sm-4 col-form-label">Servicio</label>
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="nom" required/>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="staticEmail"
-                                       class="col-sm-2 col-form-label">Descripcion</label>
-                                <div class="col-sm-10">
+                                       class="col-sm-4 col-form-label">Descripcion</label>
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="desc" required/>
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Codigo
+                                <label for="staticEmail" class="col-sm-4 col-form-label">Codigo
                                     - Categoria</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-8">
 
                                     <select class="form-select" name="cate"
                                             aria-label="Codigo Categoria...">
@@ -129,8 +129,8 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Precio</label>
-                                <div class="col-sm-10">
+                                <label for="staticEmail" class="col-sm-6 col-form-label">Precio</label>
+                                <div class="col-sm-6">
                                     <input type="number" step=".01" class="form-control" name="prec" required/>
                                 </div>
                             </div>

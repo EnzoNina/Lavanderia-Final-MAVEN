@@ -34,7 +34,7 @@
                                 <div class="col-12">
                                     <div class="card recent-sales overflow-auto">
                                         <div class="card-body">
-                                            <h5 class="card-title">Pedidos Recientes</h5>
+                                            <h5 class="card-title">Categoria</h5>
                                             <button type="button" class="btn btn-primary" style="margin: 15px;" data-target="#agregar"
                                             data-toggle="modal">Agregar categoria</button>
                                             <table class="table table-borderless datatable">
@@ -68,9 +68,9 @@
                                                                     <button class="btn btn-primary" data-toggle="modal" data-target="#categoria"
                                                                             data-cod="${categoria.cod_categoria}" data-nom="${categoria.nombre}"
                                                                     data-desc="${categoria.descripcion}"
-                                                                    data-estado="${categoria.estado}">Editar</button>
+                                                                    data-estado="${categoria.estado}"><i class="bi bi-pencil-square"></i></button>
                                                                 <button class="btn btn-primary" data-toggle="modal" data-target="#delete"
-                                                                        data-cod="${categoria.cod_categoria}">Eliminar</button>
+                                                                        data-cod="${categoria.cod_categoria}"><i class="bi bi-trash3"></i></button>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>
@@ -99,20 +99,20 @@
                                 <input type="hidden" name="instruccion" value="new"/>
                                 <input type="hidden" name="tipo" value="personal"/>
                                 <div class="mb-3 row">
-                                    <label for="text" class="col-sm-2 col-form-label">Categoria</label>
-                                    <div class="col-sm-10">
+                                    <label for="text" class="col-sm-4 col-form-label">Categoria</label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" name="nom" required/>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label for="text" class="col-sm-2 col-form-label">Descripcion</label>
-                                    <div class="col-sm-10">
+                                    <label for="text" class="col-sm-4 col-form-label">Descripcion</label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" name="desc" required/>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label for="text" class="col-sm-2 col-form-label">Estado</label>
-                                    <div class="col-sm-10">
+                                    <label for="text" class="col-sm-4 col-form-label">Estado</label>
+                                    <div class="col-sm-8">
                                         <select class="form-select" name="estado" aria-label="Estado...">                                                
                                             <option value="true">True</option>
                                             <option value="false">False</option>                                                
