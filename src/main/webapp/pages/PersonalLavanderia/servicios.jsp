@@ -103,15 +103,14 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Codigo
-                                    - Categoria</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Categoria</label>
                                 <div class="col-sm-10">
 
                                     <select class="form-select" name="cate"
                                             aria-label="Codigo Categoria...">
-                                        <c:forEach items="${categoriasCod}" var="codCategoria">
-                                            <option value="${codCategoria}">
-                                                <c:out value="${codCategoria}"></c:out>
+                                        <c:forEach items="${lstCategorias}" var="catego">
+                                            <option value="${catego.cod_categoria}">
+                                                <c:out value="${catego.nombre}"></c:out>
                                                 </option>
                                         </c:forEach>
                                     </select>                                               

@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pe.edu.lavanderia.dto.DtoCategorias;
 import pe.edu.lavanderia.dto.DtoServicios;
 import pe.edu.lavanderia.entidades.jdbc.Servicios;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionCategorias;
@@ -63,17 +64,17 @@ public class ServletServicios extends HttpServlet {
 
         if (tipo.equalsIgnoreCase("personal")) {
             List<DtoServicios> lst = bo.getServiciosDTO();
-            List<Integer> listCodCategorias = bOGestionCategorias.getCodCategorias();
+            List<DtoCategorias> lstCategorias = bOGestionCategorias.getCategoriasDTO();
 
             request.setAttribute("lst", lst);
-            request.setAttribute("categoriasCod", listCodCategorias);
+            request.setAttribute("lstCategorias", lstCategorias);
             request.getRequestDispatcher("pages/PersonalLavanderia/servicios.jsp").forward(request, response);
 
         } else if (tipo.equalsIgnoreCase("administracion")) {
             List<Servicios> lst = bo.getServicios();
-            List<Integer> listCodCategorias = bOGestionCategorias.getCodCategorias();
-            request.setAttribute("list", lst);
-            request.setAttribute("categoriasCod", listCodCategorias);
+            List<DtoCategorias> lstCategorias = bOGestionCategorias.getCategoriasDTO();
+            request.setAttribute("lst", lst);
+            request.setAttribute("lstCategorias", lstCategorias);
             request.getRequestDispatcher("pages/Lavanderia/servicios.jsp").forward(request, response);
         }
 
@@ -86,11 +87,11 @@ public class ServletServicios extends HttpServlet {
         String nombre = request.getParameter("nom");
         String descripcion = request.getParameter("desc");
         int cod_categoria = Integer.parseInt(request.getParameter("cate"));
-        double precio = Double.parseDouble(request.getParameter("prec"));        
-        
-        Servicios ob = new Servicios(nombre, descripcion, cod_categoria, precio,true);
+        double precio = Double.parseDouble(request.getParameter("prec"));
+
+        Servicios ob = new Servicios(nombre, descripcion, cod_categoria, precio, true);
         bo.addServicio(ob);
-        
+
         if (tipo == null) {
             tipo = "administracion";
         }
@@ -109,8 +110,8 @@ public class ServletServicios extends HttpServlet {
         String nombre = request.getParameter("nom");
         String descripcion = request.getParameter("desc");
         int cod_categoria = Integer.parseInt(request.getParameter("cate"));
-        double precio = Double.parseDouble(request.getParameter("prec"));        
-        Servicios ob = new Servicios(cod, nombre, descripcion, cod_categoria, precio,true);
+        double precio = Double.parseDouble(request.getParameter("prec"));
+        Servicios ob = new Servicios(cod, nombre, descripcion, cod_categoria, precio, true);
         bo.editServicio(ob);
         response.sendRedirect("ServletServicios");
     }
@@ -118,7 +119,7 @@ public class ServletServicios extends HttpServlet {
     private void deleteServicio(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int cod = Integer.parseInt(request.getParameter("cod"));
-        bo.removeServicio(false,cod);
+        bo.removeServicio(false, cod);
         response.sendRedirect("ServletServicios");
     }
 

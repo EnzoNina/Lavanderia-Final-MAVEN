@@ -8,8 +8,7 @@ public class DtoCategorias {
     private int cod_categoria;
     private String nombre;
     private String descripcion;
-    //Datos de categorias
-    //private Categorias categorias;
+    //Datos de categorias    
     private List<DtoServicios> lstServicios;
 
     public int getCod_categoria() {

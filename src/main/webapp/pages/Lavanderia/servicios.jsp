@@ -120,12 +120,12 @@
 
                                     <select class="form-select" name="cate"
                                             aria-label="Codigo Categoria...">
-                                        <c:forEach items="${categoriasCod}" var="codCategoria">
-                                            <option value="${codCategoria}">
-                                                <c:out value="${codCategoria}"></c:out>
+                                        <c:forEach items="${lstCategorias}" var="catego">
+                                            <option value="${catego.cod_categoria}">
+                                                <c:out value="${catego.nombre}"></c:out>
                                                 </option>
                                         </c:forEach>
-                                    </select>                                               
+                                    </select>                                                
                                 </div>
                             </div>
                             <div class="mb-3 row">
