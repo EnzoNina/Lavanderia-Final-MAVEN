@@ -24,7 +24,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
-
+import pe.edu.lavanderia.dao.DaoEmpleados;
 import pe.edu.lavanderia.dto.DtoEmpleados;
 import pe.edu.lavanderia.entidades.jdbc.Empleados;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionEmpleados;
@@ -74,33 +74,16 @@ public class ServletEmpleados extends HttpServlet {
         if (tipo == null) {
             tipo = "administracion";
         }
-
         if (tipo.equalsIgnoreCase("personal")) {
 
             List<DtoEmpleados> lst = bo.getEmpleadosDTO();
-            PrintWriter out = response.getWriter();
-            try {
-                System.out.println("aasaaaa");
-                Gson gson = new Gson();
-                String json = gson.toJson(lst);
-                out.print(json);
-                System.out.println(json);
-            } catch (Exception e) {
-                System.out.println("Error: " + e);
-            }
+
             request.setAttribute("lst", lst);
             request.getRequestDispatcher("pages/PersonalLavanderia/empleadoPersonal.jsp").forward(request, response);
         } else if (tipo.equalsIgnoreCase("administracion")) {
-            PrintWriter out = response.getWriter();
+
             List<Empleados> lst = bo.getEmpleados();
-            try {
-                Gson gson = new Gson();
-                String json = gson.toJson(lst);
-                out.print(json);
-                System.out.println(json);
-            } catch (Exception e) {
-                System.out.println("Error: " + e.getMessage());
-            }
+
             request.setAttribute("lst", lst);
             request.getRequestDispatcher("pages/Lavanderia/empleado.jsp").forward(request, response);
         }
@@ -168,28 +151,23 @@ public class ServletEmpleados extends HttpServlet {
     //AGREGADO
     private void exportReportEmployees(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        DaoEmpleados daoEmpleado = new DaoEmpleados();
         ServletOutputStream out = response.getOutputStream();
         try {
             InputStream logoEmpresa = this.getServletConfig()
                     .getServletContext()
                     .getResourceAsStream("jasperReports/img/lavanderia.png"),
-                    imagenAlternativa = this.getServletConfig()
-                            .getServletContext()
-                            .getResourceAsStream("jasperReports/img/lavanderia-login.png"),
                     reportEmployees = this.getServletConfig()
                             .getServletContext()
-                            .getResourceAsStream("jasperReports/ReporteEmpleados.jasper");
-            if (logoEmpresa != null && imagenAlternativa != null && reportEmployees != null) {
+                            .getResourceAsStream("jasperReports/Empleado.jasper");
+            if (logoEmpresa != null && reportEmployees != null) {
 
-                String jsonEmpleados = request.getParameter("lista"); //OJO
-
-                Gson gson = new Gson();
                 List<Empleados> reportesEmpleados = new ArrayList<>();
                 List<Empleados> reportesEmpleados2 = new ArrayList<>();
 
                 reportesEmpleados.add(new Empleados());
-                reportesEmpleados2 = gson.fromJson(jsonEmpleados, new TypeToken<List<Empleados>>() {
-                }.getType());
+
+                reportesEmpleados2 = daoEmpleado.getEmpleados();
                 reportesEmpleados.addAll(reportesEmpleados2);
 
                 JasperReport report = (JasperReport) JRLoader.loadObject(reportEmployees);
@@ -198,7 +176,6 @@ public class ServletEmpleados extends HttpServlet {
                 Map<String, Object> parameters = new HashMap();
                 parameters.put("ds", ds);
                 parameters.put("logoEmpresa", logoEmpresa);
-                parameters.put("imagenAlternativa", imagenAlternativa);
                 response.setContentType("application/pdf");
                 response.addHeader("Content-disposition", "inline; filename=ReportesEmpleados.pdf");
                 JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, ds);

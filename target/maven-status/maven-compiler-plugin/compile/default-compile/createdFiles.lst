@@ -29,7 +29,6 @@ pe\edu\lavanderia\proc\servlets\ServletRegister.class
 pe\edu\lavanderia\entidades\jdbc\TipoPrenda.class
 pe\edu\lavanderia\dao\DaoCategorias.class
 pe\edu\lavanderia\proc\servlets\ServletVisitaDomiciliaria.class
-pe\edu\lavanderia\proc\servlets\ServletEmpleados$1.class
 pe\edu\lavanderia\dao\DaoServicios.class
 pe\edu\lavanderia\proc\mantenimientos\BOGestionPrendas.class
 pe\edu\lavanderia\proc\servlets\ServletServiciosXCategoria.class
