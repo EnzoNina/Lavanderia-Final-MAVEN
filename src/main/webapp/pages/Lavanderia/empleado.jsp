@@ -323,22 +323,7 @@
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
                 class="bi bi-arrow-up-short"></i></a>
 
-        <%@include file="../../Common/imports.html" %>
-        <script>
-            function reporte(instruccion) {
-                console.log('aaabbbcc');
-                $.get('ServletEmpleados?instruccion=listar', function (r) {
-                    if (r) {
-                        $('#instruccion').val(instruccion);
-                        $('#lista').val(JSON.stringify(r));
-                        $('#frmReporte').submit();
-                    } else {
-                        alert('ERROR: El reporte no se pudo generar: ' + r);
-                    }
-                });
-            }
-
-        </script>
+        <%@include file="../../Common/imports.html" %>        
         <script src="http://localhost:8080/lavanderia/js/gestionEmpleado.js"></script>
     </body>
 </html>

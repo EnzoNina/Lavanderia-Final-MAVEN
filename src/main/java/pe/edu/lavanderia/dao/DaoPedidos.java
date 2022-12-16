@@ -10,6 +10,8 @@ import pe.edu.lavanderia.dto.DtoPrendaListaMostrar;
 import pe.edu.lavanderia.dto.DtoServicios;
 import pe.edu.lavanderia.entidades.jdbc.Pedidos;
 import pe.edu.lavanderia.entidades.jdbc.VisitaDomiciliaria;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DaoPedidos extends DaoGenerico {
     // Metodo para obtener Pedidos
@@ -32,6 +34,12 @@ public class DaoPedidos extends DaoGenerico {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return serviceList;
     }
@@ -50,6 +58,12 @@ public class DaoPedidos extends DaoGenerico {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return cod;
     }
@@ -155,6 +169,12 @@ public class DaoPedidos extends DaoGenerico {
             } catch (Exception e) {
                 System.out.println(e);
                 throw new RuntimeException(e);
+            } finally {
+                try {
+                    conexion.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
 
@@ -174,6 +194,12 @@ public class DaoPedidos extends DaoGenerico {
             } catch (Exception e) {
                 System.out.println(e);
                 throw new RuntimeException(e);
+            } finally {
+                try {
+                    conexion.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }
@@ -192,13 +218,51 @@ public class DaoPedidos extends DaoGenerico {
 
                 String prendas = rs.getString(3);
                 String cantidad = rs.getString(4);
-                String codServicios = rs.getString(8);                
-                VisitaDomiciliaria ob = new VisitaDomiciliaria(rs.getInt(1), rs.getInt(2), rs.getDate(5), rs.getInt(6), rs.getString(7), prendas, cantidad, codServicios);
+                String codServicios = rs.getString(8);
+                VisitaDomiciliaria ob = new VisitaDomiciliaria(rs.getInt(1), rs.getInt(2), rs.getDate(5), rs.getInt(6),
+                        rs.getString(7), prendas, cantidad, codServicios);
                 lst.add(ob);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lst;
+    }
+
+    public List<VisitaDomiciliaria> getAllVisitas() {
+        List<VisitaDomiciliaria> lst = new ArrayList<VisitaDomiciliaria>();// Creamos lista
+        Connection conexion = getConexion();// Obtenemos conexion
+        String sentencia = "SELECT cod_visita, cod_cliente, prendas, cantidad, fecha_recojo, cod_hora, distrito, servicios FROM public.visita_domiciliaria";
+        PreparedStatement ps;
+        try {
+            ps = conexion.prepareStatement(sentencia);
+            ResultSet rs = ps.executeQuery();
+            // Recorremos
+            while (rs.next()) {
+
+                String prendas = rs.getString(3);
+                String cantidad = rs.getString(4);
+                String codServicios = rs.getString(8);
+                VisitaDomiciliaria ob = new VisitaDomiciliaria(rs.getInt(1), rs.getInt(2), rs.getDate(5), rs.getInt(6),
+                        rs.getString(7), prendas, cantidad, codServicios);
+                lst.add(ob);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return lst;
     }

@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pe.edu.lavanderia.entidades.jdbc.Pedidos;
+import pe.edu.lavanderia.entidades.jdbc.VisitaDomiciliaria;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionPedidos;
 
-@WebServlet(name = "ServletLoadPedidos", urlPatterns = { "/ServletLoadPedidos" })
+@WebServlet(name = "ServletLoadPedidos", urlPatterns = {"/ServletLoadPedidos"})
 public class ServletLoadPedidos extends HttpServlet {
 
     @EJB
@@ -54,7 +55,10 @@ public class ServletLoadPedidos extends HttpServlet {
         }
         //Cargamos lista de pedidos y lo mandamos al JSP
         List<Pedidos> lst = bo.getPedidos();
+        List<VisitaDomiciliaria> lstVisitas = bo.getAllVisitas();
+
         request.setAttribute("lst", lst);
+        request.setAttribute("listaVisitasDomiciliarias", lstVisitas);
 
         if (tipo.equalsIgnoreCase("personal")) {
             request.getRequestDispatcher("pages/PersonalLavanderia/menuPersonal.jsp").forward(request, response);

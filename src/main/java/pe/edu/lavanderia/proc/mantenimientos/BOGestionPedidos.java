@@ -49,5 +49,8 @@ public class BOGestionPedidos {
     public List<VisitaDomiciliaria> getVisitas(int codCliente) {
         return dao.getVisitas(codCliente);
     }
+    public List<VisitaDomiciliaria> getAllVisitas(){
+        return dao.getAllVisitas();
+    }
 
 }

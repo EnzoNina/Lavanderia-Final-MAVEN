@@ -10,20 +10,12 @@ public class DtoServicios {
     public DtoServicios() {
     }
 
-    
-
-    /**
-     * @param cod
-     * @param nombre
-     * @param precio
-     */
-    public DtoServicios(int cod, String nombre, double precio) {
+    public DtoServicios(int cod, String nombre, double precio,String descripcion) {
         this.cod = cod;
         this.nombre = nombre;
         this.precio = precio;
+        this.descripcion=descripcion;
     }
-
-
 
     public int getCod() {
         return cod;

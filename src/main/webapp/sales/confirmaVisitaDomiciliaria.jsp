@@ -54,7 +54,7 @@
                             <div class="tab-pane fade show active" id="bordered-cliente" role="tabpanel"
                                  aria-labelledby="cliente-tab">
 
-                                <input type="hidden" id="instruccion" name="instruccion" value="buscar" />                                
+                                <input type="hidden" id="instruccion" name="instruccion" value="buscar" />
                                 <input type="hidden" class="form-control" name="cod" required value="<%=request.getSession().getAttribute("cod")%>">
                                 <div class="row g-3">
                                     <div class="col-md-6">
@@ -111,7 +111,7 @@
                                                                                 <a class="btn btn-primary" data-toggle="modal" data-target="#addRopa" data-cod="${prenda.cod}"
                                                                                data-tp="${prenda.tipoPrenda}" data-tt="${prenda.tipoTela}" data-color="${prenda.color}"
                                                                                >
-                                                                                Agregar Prenda
+                                                                                <i class="bi bi-plus-square"></i>
                                                                             </a>
                                                                         </td>
                                                                     </tr>
@@ -173,7 +173,7 @@
                                             <select class="form-select" aria-label="Servicios" name="servicio">
                                                 <option selected>Seleccione un servicio...</option>
                                                 <c:forEach items="${list}" var="servicio">
-                                                    <option value="${servicio.cod}-${servicio.nombre}-${servicio.precio}">
+                                                    <option value="${servicio.cod}-${servicio.nombre}-${servicio.precio}-${servicio.descripcion}">
                                                         <c:out
                                                             value="Codigo:${servicio.cod}-Servicio:${servicio.nombre}-Precio:${servicio.precio}">
                                                         </c:out>
@@ -198,7 +198,7 @@
                                             <div class="col-12">
                                                 <div class="card recent-sales overflow-auto">
                                                     <div class="card-body">
-                                                        <h5 class="card-title">Servicios Agregados</h5>                                            
+                                                        <h5 class="card-title">Servicios Agregados</h5>
                                                         <table class="table table-borderless datatable">
                                                             <thead>
                                                                 <tr>
@@ -238,37 +238,37 @@
                         </div>
                     </div>
 
-
-
-
                     <!-- Bordered Entrega -->
                     <div class="card-body">
-                    <div class="container tab-pane fade " id="bordered-entrega" role="tabpanel" aria-labelledby="entrega-tab">
-                        <h6>Datos de Entrada y Salida</h6>
-                        <div class="row">
-                            
-                         <div class="form-floating my-5 col-md-8">
-                            <textarea
-                              name="observacion"
-                              id="observacion"
-                              style="height: 150px"
-                              class="form-control"
-                              placeholder="Observacion"
-                            ></textarea>
+                        <div class="container tab-pane fade " id="bordered-entrega" role="tabpanel" aria-labelledby="entrega-tab">
+                            <h6>Datos de Entrada y Salida</h6>
+                            <div class="row">
 
-                             <label for="observacion" style="padding: 20px;">Observacion</label>
-                          </div>
-                        </div>
-                        <div class="container row">
-                        <div class="mb-3 imput-group col-md-6">
-                            <label class="form-label">Fecha de Entrega</label>
-                            <input  class="col-md-6" type="date" name="fecha_entrega" id="fecha_entrega">
-                        </div>
-                        </div>
-                        <input class="btn btn-primary" type="submit" value="Registrar Ingreso de Prendas"
-                               onclick=completarIngreso()>
+                                <div class="form-floating my-5 col-md-8">
+                                    <textarea
+                                        name="observacion"
+                                        id="observacion"
+                                        style="height: 150px"
+                                        class="form-control"
+                                        placeholder="Observacion"
+                                        ></textarea>
 
-                    </div>
+                                    <label for="observacion" style="padding: 20px;">Observacion</label>
+                                </div>
+                            </div>
+                            <div class="container row">
+                                <div class="mb-3 imput-group col-md-6">
+                                    <label class="form-label">Fecha de Entrega</label>
+                                    <input  class="col-md-6" type="date" name="fecha_entrega" id="fecha_entrega">
+                                </div>
+                            </div>
+
+                            <a class="btn btn-success" data-toggle="modal" data-target="#generarBoleta">Boleta</a>
+
+                            <input class="btn btn-primary" type="submit" value="Registrar Ingreso de Prendas"
+                                   onclick=completarIngreso()>
+
+                        </div>
                     </div>
                 </div><!-- End Bordered Tabs -->
                 </div>
@@ -317,7 +317,7 @@
                             <div class="mb-3 row">
                                 <label for="text" class="col-sm-2 col-form-label">Cantidad</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" name="cantidad" value="" />
+                                    <input type="number" class="form-control" name="cantidad" value="" required />
                                 </div>
                             </div>
 
@@ -403,6 +403,29 @@
             </div>
         </div>
 
+        <%-- Generar Reporte Modal --%>        
+        <div class="modal fade" id="generarBoleta" tabindex="-1" aria-labelledby="generarBoleta" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteSV">GenerarReporte</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form target="_blank" action="<%=request.getContextPath()%>/ServletConfirmacionVisita" id="frmReporte" method="get">                            
+                            <h4>Haga clic en generar para imprimir la boleta de venta</h4>
+                            <input type="hidden" id="instruccion" name="instruccion" value="generarBoleta" />
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    Cerrar
+                                </button>
+                                <button type="submit" class="btn btn-primary">Imprimir Boleta</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- ======= Footer ======= -->
         <footer id="footer" class="footer">
             <%@include file="../Common/footer.html" %>
@@ -411,7 +434,7 @@
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
                 class="bi bi-arrow-up-short"></i></a>
 
-        <%@include file="../Common/imports.html" %>
+        <%@include file="../Common/imports.html" %>                
         <script src="http://localhost:8080/lavanderia/js/ingresoPrendas.js" ></script>
         <script src="http://localhost:8080/lavanderia/js/gestionaddRopa.js"></script>
     </body>

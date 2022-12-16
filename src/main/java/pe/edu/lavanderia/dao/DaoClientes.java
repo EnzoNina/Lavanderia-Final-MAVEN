@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import pe.edu.lavanderia.entidades.jdbc.Clientes;
 
@@ -34,6 +36,12 @@ public class DaoClientes extends DaoGenerico {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return clientList;
     }

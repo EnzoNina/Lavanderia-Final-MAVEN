@@ -31,6 +31,12 @@ public class DaoCategorias extends DaoGenerico {
         } catch (SQLException e) {
 
             e.printStackTrace();
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return list;
     }
@@ -117,6 +123,12 @@ public class DaoCategorias extends DaoGenerico {
         } catch (SQLException e) {
 
             e.printStackTrace();
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return list;
     }
@@ -140,6 +152,12 @@ public class DaoCategorias extends DaoGenerico {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return c;
     }

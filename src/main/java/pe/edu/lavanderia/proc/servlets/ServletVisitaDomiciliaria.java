@@ -85,9 +85,7 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
         DtoPrendaListaMostrar obDtoMostrar = new DtoPrendaListaMostrar(codRopa, tipoPrenda, tipoTela, color,
                 cantidadRopa);
 
-        // Agregamos ropa y cantidad
-        // lstRopaCant.add(cantidadRopa);
-        // listaPrendas.add(String.valueOf(codRopa));
+        // Agregamos ropa y cantidad        
         lstRopaMandar.add(obDtoMostrar);
 
         request.getSession().setAttribute("listaRopa", lstRopaMandar);
@@ -101,9 +99,7 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
 
         for (DtoPrendaListaMostrar ropa : lstRopaMandar) {
             if (ropa.getCod() == codRopa) {
-                lstRopaMandar.remove(ropa);
-                // listaPrendas.remove(String.valueOf(codRopa));
-                // lstRopaCant.remove(cantidadRopa);
+                lstRopaMandar.remove(ropa);                
                 break;
             }
         }
@@ -151,7 +147,7 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
         String[] arrPartes = servicioTotal.split("-");
         // Creamos objeto de servicio
         DtoServicios obServicio = new DtoServicios(Integer.parseInt(arrPartes[0]), arrPartes[1],
-                Double.parseDouble(arrPartes[2]));
+                Double.parseDouble(arrPartes[2]),arrPartes[3]);
 
         // Agregamos el objeto a la lista
         lstServicio.add(obServicio);

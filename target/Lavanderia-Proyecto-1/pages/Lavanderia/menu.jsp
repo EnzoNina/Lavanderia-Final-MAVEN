@@ -25,7 +25,7 @@
             <section class="section dashboard">
                 <div class="row">
 
-                    <!-- Left side columns -->
+                    <!-- Tabla Pedidos Recientes -->
                     <div class="col-lg-12">
                         <div class="row">
                             <!-- Customers Card -->
@@ -34,7 +34,7 @@
                                 <div class="col-12">
                                     <div class="card recent-sales overflow-auto">
                                         <div class="card-body">
-                                            <h5 class="card-title">Pedidos Recientes<span></h5>
+                                            <h5 class="card-title"><span>Pedidos Recientes</span></h5>
                                             <table class="table table-borderless datatable">
                                                 <thead>
                                                     <tr>
@@ -67,6 +67,47 @@
                             </div>
                         </div><!-- End Left side columns -->
                     </div>
+
+                    <!-- Tabla Visitas Domiciliarias -->
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <!-- Customers Card -->
+                            <div class="col-xl-12">
+                                <!-- Recent Sales -->
+                                <div class="col-12">
+                                    <div class="card recent-sales overflow-auto">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><span>Visitas Domiciliarias</span></h5>
+                                            <table class="table table-borderless datatable">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Codigo de Prendas</th>
+                                                        <th scope="col">Cantidad de Prendas</th>
+                                                        <th scope="col">Codigo de Servicios</th>
+                                                        <th scope="col">Fecha de Recojo</th>                                                        
+                                                    </tr>
+                                                </thead>
+                                                <tbody>                                                                                                      
+                                                    <c:forEach items="${listaVisitasDomiciliarias}" var="listaVisitasDomiciliarias">
+                                                        <tr>
+                                                            <td id="codVisita"> <c:out value="${listaVisitasDomiciliarias.cod_visitaDomiciliaria}"></c:out> </td>
+                                                            <td id="prendasVisita"> <c:out value="${listaVisitasDomiciliarias.arrPrendaString}"></c:out> </td>
+                                                            <td id="cantidadVistia"> <c:out value="${listaVisitasDomiciliarias.arrCantString}"></c:out> </td>
+                                                            <td id="serviciosVisita"> <c:out value="${listaVisitasDomiciliarias.arrCodString}"></c:out ></td>                                                            
+                                                            <td id="fechaVisita"> <c:out value="${listaVisitasDomiciliarias .fecha_recojo}"></c:out ></td>
+                                                            </tr>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div><!-- End Recent Sales -->
+                            </div>
+                        </div><!-- End Left side columns -->
+                    </div>
+
+
                 </div>
             </section>
 

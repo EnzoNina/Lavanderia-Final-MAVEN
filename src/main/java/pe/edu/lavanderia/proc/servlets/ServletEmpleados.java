@@ -4,11 +4,8 @@ package pe.edu.lavanderia.proc.servlets;
 import javax.ejb.EJB;
 
 import javax.servlet.annotation.WebServlet;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -79,11 +76,10 @@ public class ServletEmpleados extends HttpServlet {
             List<DtoEmpleados> lst = bo.getEmpleadosDTO();
 
             request.setAttribute("lst", lst);
-            request.getRequestDispatcher("pages/PersonalLavanderia/empleadoPersonal.jsp").forward(request, response);
+            request.getRequestDispatcher("pages/PersonalLavanderia/empleadoPersonal.jsp").forward(request, response);            
         } else if (tipo.equalsIgnoreCase("administracion")) {
 
             List<Empleados> lst = bo.getEmpleados();
-
             request.setAttribute("lst", lst);
             request.getRequestDispatcher("pages/Lavanderia/empleado.jsp").forward(request, response);
         }
@@ -192,6 +188,7 @@ public class ServletEmpleados extends HttpServlet {
             out.print("ERROR: Al intentar generar el reporte: " + e.getMessage());
             e.printStackTrace();
         }
+        
     }
 
 }

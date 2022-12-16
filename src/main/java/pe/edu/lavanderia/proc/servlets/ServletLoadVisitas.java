@@ -21,10 +21,9 @@ public class ServletLoadVisitas extends HttpServlet {
     // final static BOGestionCategorias bo = new BOGestionCategorias();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        System.out.println("GHOLAAAAAAAAAAAAA");
+            throws ServletException, IOException {        
+        
         // Cargamos lista de visitas y mandamos al JSP
-
         int codCliente = Integer.parseInt((String) request.getSession().getAttribute("cod_cliente"));
 
         List<VisitaDomiciliaria> lst = bo.getVisitas(codCliente);

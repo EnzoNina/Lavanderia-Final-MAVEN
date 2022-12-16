@@ -6,8 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import pe.edu.lavanderia.entidades.jdbc.Servicios;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DaoServicios extends DaoGenerico {
     // Metodo para obtener Servicios
@@ -25,12 +26,18 @@ public class DaoServicios extends DaoGenerico {
             // Recorremos
             while (rs.next()) {
                 Servicios obServicio = new Servicios(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4),
-                        rs.getDouble(5),rs.getBoolean(6));
+                        rs.getDouble(5), rs.getBoolean(6));
                 serviceList.add(obServicio);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return serviceList;
     }
@@ -66,7 +73,7 @@ public class DaoServicios extends DaoGenerico {
             stm.setString(1, servicio.getNombre());
             stm.setString(2, servicio.getDescripcion());
             stm.setInt(3, servicio.getCod_categoria());
-            stm.setDouble(4, servicio.getPrecio());            
+            stm.setDouble(4, servicio.getPrecio());
             stm.setInt(5, servicio.getCod());
             stm.executeUpdate();
         } catch (Exception e) {
@@ -81,8 +88,8 @@ public class DaoServicios extends DaoGenerico {
     }
 
     // Método para eliminar Servicios
-    public void removeServicios(Boolean estado,int cod) {
-        Connection cnx = getConexion();        
+    public void removeServicios(Boolean estado, int cod) {
+        Connection cnx = getConexion();
         String sentencia = "UPDATE public.servicios SET estado = ? WHERE cod_servicio = ?";
         try {
             PreparedStatement stm = cnx.prepareStatement(sentencia);
@@ -100,7 +107,7 @@ public class DaoServicios extends DaoGenerico {
         }
     }
 
-    //Método para consultar por Categoria
+    // Método para consultar por Categoria
     public List<Servicios> getServiciosXCategoria(int cod_categoria) {
         List<Servicios> serviceList = new ArrayList<Servicios>();// Creamos lista
         Connection conexion = getConexion();// Obtenemos conexion
@@ -133,5 +140,4 @@ public class DaoServicios extends DaoGenerico {
 
         return serviceList;
     }
-
 }

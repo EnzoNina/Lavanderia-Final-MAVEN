@@ -111,7 +111,7 @@
                                                                                 <a class="btn btn-primary" data-toggle="modal" data-target="#addRopa" data-cod="${prenda.cod}"
                                                                                data-tp="${prenda.tipoPrenda}" data-tt="${prenda.tipoTela}" data-color="${prenda.color}"
                                                                                >
-                                                                                Agregar Prenda
+                                                                                <i class="bi bi-plus-square"></i>
                                                                             </a>
                                                                         </td>
                                                                     </tr>
@@ -173,7 +173,7 @@
                                             <select class="form-select" aria-label="Servicios" name="servicio">
                                                 <option selected>Seleccione un servicio...</option>
                                                 <c:forEach items="${list}" var="servicio">
-                                                    <option value="${servicio.cod}-${servicio.nombre}-${servicio.precio}">
+                                                    <option value="${servicio.cod}-${servicio.nombre}-${servicio.precio}-${servicio.descripcion}">
                                                         <c:out
                                                             value="Codigo:${servicio.cod}-Servicio:${servicio.nombre}-Precio:${servicio.precio}">
                                                         </c:out>
@@ -250,6 +250,8 @@
                             <input type="date" name="fecha_recojo" id="fecha_recojo">
                         </div>
 
+                        <a class="btn btn-success" data-toggle="modal" data-target="#generarBoleta">Boleta</a>
+
                         <input class="btn btn-primary" type="submit" value="Registrar Visita Domiciliaria"
                                onclick=completarIngreso()>
 
@@ -302,7 +304,7 @@
                             <div class="mb-3 row">
                                 <label for="text" class="col-sm-2 col-form-label">Cantidad</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" name="cantidad" value="" />
+                                    <input type="number" class="form-control" name="cantidad" value="" required />
                                 </div>
                             </div>
 
@@ -388,6 +390,29 @@
             </div>
         </div>
 
+        <%-- Generar Reporte Modal --%>        
+        <div class="modal fade" id="generarBoleta" tabindex="-1" aria-labelledby="generarBoleta" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteSV">GenerarReporte</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form target="_blank" action="<%=request.getContextPath()%>/ServletConfirmacionVisita" id="frmReporte" method="get">                            
+                            <h4>Haga clic en generar para imprimir la boleta de venta</h4>
+                            <input type="hidden" id="instruccion" name="instruccion" value="generarBoleta" />
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    Cerrar
+                                </button>
+                                <button type="submit" class="btn btn-primary">Generar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- ======= Footer ======= -->
         <footer id="footer" class="footer">
             <%@include file="../Common/footer.html" %>
@@ -396,7 +421,7 @@
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
                 class="bi bi-arrow-up-short"></i></a>
 
-        <%@include file="../Common/imports.html" %>
+        <%@include file="../Common/imports.html" %>        
         <script src="http://localhost:8080/lavanderia/js/ingresoPrendas.js" ></script>        
         <script src="http://localhost:8080/lavanderia/js/gestionaddRopa.js"></script>
     </body>

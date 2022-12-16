@@ -1,7 +1,7 @@
 //AGREGADO 
 function reporte(instruccion) {
     console.log('aaa');
-    $.get('../ServletEmpleados?instruccion=listar', function (r) {
+    $.get('ServletEmpleados?instruccion=listar', function (r) {
         if (r) {
             $('#instruccion').val(instruccion);
             $('#lista').val(JSON.stringify(r));
