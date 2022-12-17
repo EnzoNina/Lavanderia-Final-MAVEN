@@ -75,7 +75,7 @@
                                                                                 <a class="btn btn-primary" data-toggle="modal" data-target="#addRopa" data-cod="${prenda.cod}"
                                                                                data-tp="${prenda.tipoPrenda}" data-tt="${prenda.tipoTela}" data-color="${prenda.color}"
                                                                                >
-                                                                                Agregar Prenda
+                                                                                <i class="bi bi-plus-square"></i>
                                                                             </a>
                                                                         </td>
                                                                     </tr>
