@@ -48,7 +48,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <c:forEach items="${list}" var="servicio">
+                                                    <c:forEach items="${lst}" var="servicio">
                                                         <tr>
                                                             <td id="cod">
                                                                 <c:out value="${servicio.cod}"></c:out>
@@ -187,9 +187,9 @@
                                 <div class="col-sm-10">
                                     <select class="form-select" name="cate"
                                             aria-label="Codigo Categoria...">
-                                        <c:forEach items="${categoriasCod}" var="codCategoria">
-                                            <option value="${codCategoria}">
-                                                <c:out value="${codCategoria}"></c:out>
+                                        <c:forEach items="${lstCategorias}" var="catego">
+                                            <option value="${catego.cod_categoria}">
+                                                <c:out value="${catego.nombre}"></c:out>
                                                 </option>
                                         </c:forEach>
                                     </select>                                               

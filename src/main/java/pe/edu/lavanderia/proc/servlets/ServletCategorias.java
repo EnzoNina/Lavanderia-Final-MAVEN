@@ -14,7 +14,7 @@ import pe.edu.lavanderia.dto.DtoCategorias;
 import pe.edu.lavanderia.entidades.jdbc.Categorias;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionCategorias;
 
-@WebServlet(name = "ServletCategorias", urlPatterns = { "/ServletCategorias" })
+@WebServlet(name = "ServletCategorias", urlPatterns = {"/ServletCategorias"})
 public class ServletCategorias extends HttpServlet {
 
     @EJB
@@ -107,16 +107,8 @@ public class ServletCategorias extends HttpServlet {
         int cod = Integer.parseInt(request.getParameter("cod"));
         String nombre = request.getParameter("nom");
         String descripcion = request.getParameter("desc");
-        boolean estado = false;
-        String esta = request.getParameter("estado");
 
-        if (esta.equalsIgnoreCase("true")) {
-            estado = true;
-        } else {
-            estado = false;
-        }
-
-        Categorias ob = new Categorias(cod, nombre, descripcion, estado);
+        Categorias ob = new Categorias(cod, nombre, descripcion, true);
         bo.editCategoria(ob);
         response.sendRedirect("ServletCategorias");
     }

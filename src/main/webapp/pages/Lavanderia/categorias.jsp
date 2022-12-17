@@ -96,8 +96,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="get" action="<%=request.getContextPath()%>/ServletCategorias" >
-                                <input type="hidden" name="instruccion" value="new"/>
-                                <input type="hidden" name="tipo" value="personal"/>
+                                <input type="hidden" name="instruccion" value="new"/>                                
                                 <div class="mb-3 row">
                                     <label for="text" class="col-sm-4 col-form-label">Categoria</label>
                                     <div class="col-sm-8">

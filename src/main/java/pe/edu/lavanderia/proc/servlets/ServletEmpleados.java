@@ -126,8 +126,8 @@ public class ServletEmpleados extends HttpServlet {
         String usuario = request.getParameter("usuario");
         String contraseña = request.getParameter("contra");
         String tipoEmpleado = request.getParameter("empleado");
-
-        Empleados o = new Empleados(cod, dni, nombres, ape_paterno, ape_materno, celular, usuario, contraseña, tipoEmpleado, true);
+                                
+        Empleados o = new Empleados(cod, usuario,tipoEmpleado,nombres,ape_paterno,ape_materno,dni,celular,contraseña,true);
         bo.editEmpleado(o);
         response.sendRedirect("ServletEmpleados");
     }
