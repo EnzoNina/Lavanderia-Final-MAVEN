@@ -4,7 +4,7 @@
 <ul class="sidebar-nav" id="sidebar-nav">
 
     <li class="nav-item">
-        <a class="nav-link " href="">
+        <a class="nav-link " href="<%=request.getContextPath()%>/ServletLoadVisitas">
             <i class="bi bi-grid"></i>
             <span>Inicio</span>
         </a>
@@ -20,7 +20,7 @@
     </li><!-- End Profile Page Nav -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="">
+        <a class="nav-link collapsed"  href="<%=request.getContextPath()%>/ServletLoadVisitas">
             <i class="bi bi-person"></i>
             <span>Mis Pedidos</span>
         </a>
