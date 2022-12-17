@@ -128,51 +128,51 @@
                                         </select> 
                                     </div>
                                     <div class="mb-3 row" style="display: none;">
-                                        <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
-                                        <div class="col-sm-10">
+                                        <label for="staticEmail" class="col-sm-4 col-form-label">Codigo</label>
+                                        <div class="col-sm-8">
                                             <input type="text" class="form-control" name="codigo" value="" />
                                         </div>
                                     </div>
                                     <div class="mb-3 row" style="margin-top: auto">
-                                        <label for="staticEmail" class="col-sm-2 col-form-label">Nombres</label>
-                                        <div class="col-sm-10">
+                                        <label for="staticEmail" class="col-sm-4 col-form-label">Nombres</label>
+                                        <div class="col-sm-8">
                                             <input type="text" class="form-control" name="nombres"
                                                    value="" required/>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="staticEmail" class="col-sm-2 col-form-label">Apellido
+                                        <label for="staticEmail" class="col-sm-4 col-form-label">Apellido
                                             Paterno</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-8">
                                             <input type="text" class="form-control" name="pa" value="" required/>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="staticEmail" class="col-sm-2 col-form-label">Apellido
+                                        <label for="staticEmail" class="col-sm-4 col-form-label">Apellido
                                             Materno</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-8">
                                             <input type="text" class="form-control" name="ma" value="" required/>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="inputPassword" class="col-sm-2 col-form-label">DNI</label>
-                                        <div class="col-sm-10">
+                                        <label for="inputPassword" class="col-sm-4 col-form-label">DNI</label>
+                                        <div class="col-sm-8">
                                             <input type="number" class="form-control" name="dni" value=""
                                                    maxlength=8
                                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="inputPassword" class="col-sm-2 col-form-label">Celular</label>
-                                        <div class="col-sm-10">
+                                        <label for="inputPassword" class="col-sm-4 col-form-label">Celular</label>
+                                        <div class="col-sm-8">
                                             <input type="number" class="form-control" name="celular"
                                                    value="" maxlength=9
                                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="staticEmail" class="col-sm-2 col-form-label">Usuario</label>
-                                        <div class="col-sm-10">
+                                        <label for="staticEmail" class="col-sm-4 col-form-label">Usuario</label>
+                                        <div class="col-sm-8">
                                             <input type="text" class="form-control" name="usuario"
                                                    value="" required/>
                                         </div>

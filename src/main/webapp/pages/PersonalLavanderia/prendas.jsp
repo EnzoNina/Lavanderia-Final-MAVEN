@@ -56,8 +56,8 @@
                                                                     <button class="btn btn-primary" data-toggle="modal" data-target="#editarTP" 
                                                                             data-cod="${tipoPrenda.codTipoPrenda}" 
                                                                     data-tipo="${tipoPrenda.tipoPrenda}">
-                                                                    Editar</button>
-                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#deleteTP" data-cod="${tipoPrenda.codTipoPrenda}" >Eliminar</button>
+                                                                    <i class="bi bi-pencil-square"></i></button>
+                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#deleteTP" data-cod="${tipoPrenda.codTipoPrenda}" ><i class="bi bi-trash3"></i></button>
                                                             </td>
                                                         </tr>
                                                     </c:forEach> 
@@ -97,8 +97,8 @@
                                                                 <td>
                                                                     <button class="btn btn-primary" data-toggle="modal" data-target="#editarTT" data-cod="${tela.cod_tipoTela}" 
                                                                         data-tipo="${tela.tipoTela}">
-                                                                    Editar</button>
-                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#deleteTT" data-cod="${tela.cod_tipoTela}" >Eliminar</button>
+                                                                    <i class="bi bi-pencil-square"></i></button>
+                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#deleteTT" data-cod="${tela.cod_tipoTela}" ><i class="bi bi-trash3"></i></button>
                                                             </td>
                                                         </tr>
                                                     </c:forEach> 
@@ -150,8 +150,8 @@
                                                                             data-cod="${prenda.cod}"                                                     
                                                                     data-color="${prenda.color}"
                                                                     >
-                                                                    Editar</button>
-                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#delete" data-cod="${prenda.cod}" >Eliminar</button>
+                                                                    <i class="bi bi-pencil-square"></i></button>
+                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#delete" data-cod="${prenda.cod}" ><i class="bi bi-trash3"></i></button>
                                                             </td>
                                                         </tr>
                                                     </c:forEach> 

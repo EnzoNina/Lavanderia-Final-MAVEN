@@ -90,21 +90,21 @@
                             <input type="hidden" name="instruccion" value="new" />
                             <input type="hidden" name="tipo" value="personal"/>
                             <div class="mb-3 row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Servicio</label>
-                                <div class="col-sm-10">
+                                <label for="staticEmail" class="col-sm-4 col-form-label">Servicio</label>
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="nom" required/>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="staticEmail"
-                                       class="col-sm-2 col-form-label">Descripcion</label>
-                                <div class="col-sm-10">
+                                       class="col-sm-4 col-form-label">Descripcion</label>
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="desc" required/>
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Categoria</label>
-                                <div class="col-sm-10">
+                                <label for="staticEmail" class="col-sm-4 col-form-label">Categoria</label>
+                                <div class="col-sm-8">
 
                                     <select class="form-select" name="cate"
                                             aria-label="Codigo Categoria...">
@@ -117,8 +117,8 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Precio</label>
-                                <div class="col-sm-10">
+                                <label for="staticEmail" class="col-sm-4 col-form-label">Precio</label>
+                                <div class="col-sm-8">
                                     <input type="number" step=".01" class="form-control" name="prec" required/>
                                 </div>
                             </div>

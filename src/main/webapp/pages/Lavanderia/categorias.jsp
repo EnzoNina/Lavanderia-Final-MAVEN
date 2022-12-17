@@ -59,7 +59,7 @@
                                                                     </a>
                                                                 </td>
                                                                 <td id="desc">
-                                                                <c:out value="${categoria.descripcion}"></c:out>
+                                                                    <p class="text-start"><c:out value="${categoria.descripcion}"></c:out></p>
                                                                 </td>
                                                                 <td id="estado">
                                                                 <c:out value="${categoria.estado}"></c:out>
