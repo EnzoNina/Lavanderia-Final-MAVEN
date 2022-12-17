@@ -43,8 +43,8 @@
                         </ul>
 
                         <div class="tab-content pt-2" id="borderedTabContent">                            
-                            <!-- Borderer Prendas -->
-                            <div class="tab-pane fade" id="bordered-prendas" role="tabpanel" aria-labelledby="prendas-tab">
+                            <!-- Borderer Prendas -->                            
+                            <div class="tab-pane fade show active" id="bordered-prendas" role="tabpanel" aria-labelledby="prendas-tab">
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <!-- Customers Card -->
