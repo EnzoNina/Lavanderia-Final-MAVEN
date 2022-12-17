@@ -122,9 +122,9 @@
                                     <input type="hidden" name="instruccion" value="new" />
                                     <div class="mb-3 row">
                                         <select class="form-select" name="empleado"
-                                            aria-label="Tipo Empleado">
-                                        <option value="empleado">empleado</option>
-                                        <option value="administrador">administrador</option>
+                                                aria-label="Tipo Empleado">
+                                            <option value="personal">personal</option>
+                                            <option value="administrador">administrador</option>
                                         </select> 
                                     </div>
                                     <div class="mb-3 row" style="display: none;">
@@ -180,7 +180,7 @@
                                     <div class="mb-3 row">
                                         <label for="inputPassword" class="col-sm-4 col-form-label">Contraseña</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" name="contra" value="" required/>
+                                            <input type="text" class="form-control" name="contra" value="" required style="width: 90%; margin-left: 10px;" />
                                         </div>
                                     </div>
                                     <input type="submit" value="Agregar"
@@ -210,7 +210,7 @@
 
                                     <select class="form-select" name="empleado"
                                             aria-label="Tipo Empleado">
-                                        <option value="empleado">empleado</option>
+                                        <option value="personal">personal</option>
                                         <option value="administrador">administrador</option>
                                     </select> 
 

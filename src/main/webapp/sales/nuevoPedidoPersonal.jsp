@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 
 <head>
-    <title>Ingreso de prendas</title>
+    <title>Nuevo Pedido</title>
     <%@include file="../Common/estilosAdmin.html" %>
 </head>
 <body>
@@ -25,7 +25,7 @@
               name="formulario" id="formulario" >
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Confirmacion de Visita Domiciliaria</h5>
+                    <h5 class="card-title">Nuevo Pedido</h5>
                     <!-- Bordered Tabs -->
                     <ul class="nav nav-tabs nav-tabs-bordered" id="borderedTab" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -110,7 +110,7 @@
                                                                             <a class="btn btn-primary" data-toggle="modal" data-target="#addRopa" data-cod="${prenda.cod}"
                                                                            data-tp="${prenda.tipoPrenda}" data-tt="${prenda.tipoTela}" data-color="${prenda.color}"
                                                                            >
-                                                                            Agregar Prenda
+                                                                            <i class="bi bi-plus-square"></i>
                                                                         </a>
                                                                     </td>
                                                                 </tr>
@@ -236,7 +236,6 @@
                         </div>                                                                        
                     </div>
                 </div>
-
                 <!-- Bordered Entrega -->
 
                 <div class="tab-pane fade" id="bordered-entrega" role="tabpanel" aria-labelledby="entrega-tab" style="margin-left:30px;">
@@ -304,7 +303,7 @@
                         <div class="mb-3 row">
                             <label for="text" class="col-sm-2 col-form-label">Cantidad</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" name="cantidad" value="" required />
+                                <input type="number" class="form-control" name="cantidad" value=""  required/>
                             </div>
                         </div>
 
@@ -422,7 +421,7 @@
             class="bi bi-arrow-up-short"></i></a>
 
     <%@include file="../Common/imports.html" %>
-    <script src="http://localhost:8080/lavanderia/js/gestionaddRopa.js"></script>
+    <script src="http://localhost:8080/lavanderia/js/gestionaddRopa.js"></script>        
     <script src="http://localhost:8080/lavanderia/js/ingresoPrendas.js" ></script>
 </body>
 

@@ -95,10 +95,10 @@
                                                             <td id="codTT" > <c:out value="${tela.cod_tipoTela}" ></c:out> </td>
                                                             <td id="tipoTela"><c:out value="${tela.tipoTela}" >  </c:out></td>
                                                                 <td>
-                                                                    <button class="btn btn-primary" data-toggle="modal" data-target="#editarTP" data-cod="${tela.cod_tipoTela}" 
+                                                                    <button class="btn btn-primary" data-toggle="modal" data-target="#editarTT" data-cod="${tela.cod_tipoTela}" 
                                                                         data-tipo="${tela.tipoTela}">
                                                                     <i class="bi bi-pencil-square"></i></button>
-                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#deleteTP" data-cod="${tela.cod_tipoTela}" ><i class="bi bi-trash3"></i></button>
+                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#deleteTT" data-cod="${tela.cod_tipoTela}" ><i class="bi bi-trash3"></i></button>
                                                             </td>
                                                         </tr>
                                                     </c:forEach> 

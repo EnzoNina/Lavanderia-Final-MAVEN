@@ -191,7 +191,7 @@
                                     <div class="mb-3 row">
                                         <label for="inputPassword" class="col-sm-2 col-form-label">Contraseña</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="contra" value="" required/>
+                                            <input type="text" class="form-control" name="contra" value="" required style="width: 90%; margin-left: 10px;" />
                                         </div>
                                     </div>
                                     <input type="submit" value="Editar"

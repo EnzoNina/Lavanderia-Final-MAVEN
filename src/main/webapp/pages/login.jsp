@@ -23,7 +23,7 @@
                                 <a class="button button-190 button-circle btn-primary-rounded" data-toggle="modal"
                                    data-target="#exampleModal" style="color: white">Login
                                 </a>
-                                <a href="registrar.jsp">¿No tiene una cuenta? <span class="text-primary">Cree una ahora</span></a>
+                                <a href="http://localhost:8080/lavanderia/pages/registrar.jsp?tipo=user">¿No tiene una cuenta? <span class="text-primary">Cree una ahora</span></a>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6 col-12 wow fadeInUp" data-wow-delay=".4s">

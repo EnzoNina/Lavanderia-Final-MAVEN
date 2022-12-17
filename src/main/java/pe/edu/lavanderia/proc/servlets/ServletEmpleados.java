@@ -76,7 +76,7 @@ public class ServletEmpleados extends HttpServlet {
             List<DtoEmpleados> lst = bo.getEmpleadosDTO();
 
             request.setAttribute("lst", lst);
-            request.getRequestDispatcher("pages/PersonalLavanderia/empleadoPersonal.jsp").forward(request, response);            
+            request.getRequestDispatcher("pages/PersonalLavanderia/empleadoPersonal.jsp").forward(request, response);
         } else if (tipo.equalsIgnoreCase("administracion")) {
 
             List<Empleados> lst = bo.getEmpleados();
@@ -188,7 +188,7 @@ public class ServletEmpleados extends HttpServlet {
             out.print("ERROR: Al intentar generar el reporte: " + e.getMessage());
             e.printStackTrace();
         }
-        
+
     }
 
 }

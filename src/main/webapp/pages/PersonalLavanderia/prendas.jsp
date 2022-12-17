@@ -95,10 +95,10 @@
                                                             <td id="codTT" > <c:out value="${tela.cod_tipoTela}" ></c:out> </td>
                                                             <td id="tipoTela"><c:out value="${tela.tipoTela}" >  </c:out></td>
                                                                 <td>
-                                                                    <button class="btn btn-primary" data-toggle="modal" data-target="#editarTP" data-cod="${tela.cod_tipoTela}" 
+                                                                    <button class="btn btn-primary" data-toggle="modal" data-target="#editarTT" data-cod="${tela.cod_tipoTela}" 
                                                                         data-tipo="${tela.tipoTela}">
                                                                     Editar</button>
-                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#deleteTP" data-cod="${tela.cod_tipoTela}" >Eliminar</button>
+                                                                <button class="btn btn-primary" data-toggle="modal" data-target="#deleteTT" data-cod="${tela.cod_tipoTela}" >Eliminar</button>
                                                             </td>
                                                         </tr>
                                                     </c:forEach> 
@@ -508,14 +508,7 @@
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="cod" />
                                 </div>
-                            </div>
-
-                            <div class="mb-3 row">
-                                <label for="text" class="col-sm-2 col-form-label">Tipo Tela</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="TT" required/>
-                                </div>
-                            </div>                                    
+                            </div>                            
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                     Cerrar

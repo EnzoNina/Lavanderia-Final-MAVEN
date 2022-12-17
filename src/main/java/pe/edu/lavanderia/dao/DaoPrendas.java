@@ -46,13 +46,14 @@ public class DaoPrendas extends DaoGenerico {
     // Agregamos Prendas
     public void addPrendas(Prendas ob) {
         Connection conexion = getConexion();
-        String cadena = "INSERT INTO public.prendas (cod_tipo_prenda,cod_tipo_tela,color) values(?,?,?)";
+        String cadena = "INSERT INTO public.prendas (cod_tipo_prenda,cod_tipo_tela,color,estado) values(?,?,?,?)";
         PreparedStatement ps;
         try {
             ps = conexion.prepareStatement(cadena);
             ps.setInt(1, ob.getCod_tipoPrenda());
             ps.setInt(2, ob.getCod_tipoTela());
             ps.setString(3, ob.getColor());
+            ps.setBoolean(4, true);
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
@@ -67,11 +68,12 @@ public class DaoPrendas extends DaoGenerico {
 
     public void addTipoPrenda(TipoPrenda ob) {
         Connection con = getConexion();
-        String cadena = "INSERT INTO public.tipo_prendas (nombre_tipo_prenda) VALUES(?)";
+        String cadena = "INSERT INTO public.tipo_prendas (nombre_tipo_prenda,estado) VALUES(?,?)";
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(cadena);
             ps.setString(1, ob.getTipoPrenda());
+            ps.setBoolean(2, true);
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
@@ -86,12 +88,13 @@ public class DaoPrendas extends DaoGenerico {
 
     public void addTipoTela(TipoTela ob) {
         Connection con = getConexion();
-        String cadena = "INSERT INTO public.tipo_telas (nombre_tipo_tela) VALUES(?)";
+        String cadena = "INSERT INTO public.tipo_telas (nombre_tipo_tela,estado) VALUES(?,?)";
         PreparedStatement ps;
 
         try {
             ps = con.prepareStatement(cadena);
             ps.setString(1, ob.getTipoTela());
+            ps.setBoolean(2, true);
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
@@ -171,10 +174,11 @@ public class DaoPrendas extends DaoGenerico {
     // Remover prendas
     public void removePrendas(int codigo) {
         Connection con = getConexion();
-        String sentencia = "DELETE FROM public.prendas WHERE cod_prenda=?";
+        String sentencia = "UPDATE public.prendas SET estado = ? WHERE cod_prenda=?";
         try {
             PreparedStatement ps = con.prepareStatement(sentencia);
-            ps.setInt(1, codigo);
+            ps.setBoolean(1, false);
+            ps.setInt(2, codigo);
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -189,10 +193,11 @@ public class DaoPrendas extends DaoGenerico {
 
     public void removeTipoPrenda(int codigo) {
         Connection con = getConexion();
-        String sentencia = "DELETE FROM public.tipo_prendas WHERE cod_tipo_prenda=?";
+        String sentencia = "UPDATE public.tipo_prendas SET estado =? WHERE cod_tipo_prenda=?";
         try {
             PreparedStatement ps = con.prepareStatement(sentencia);
-            ps.setInt(1, codigo);
+            ps.setBoolean(1, false);
+            ps.setInt(2, codigo);
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -207,10 +212,11 @@ public class DaoPrendas extends DaoGenerico {
 
     public void removeTipoTela(int codigo) {
         Connection con = getConexion();
-        String sentencia = "DELETE FROM public.tipo_telas WHERE cod_tipo_tela=?";
+        String sentencia = "UPDATE public.tipo_telas SET estado = ? WHERE cod_tipo_tela=?";
         try {
             PreparedStatement ps = con.prepareStatement(sentencia);
-            ps.setInt(1, codigo);
+            ps.setBoolean(1, false);
+            ps.setInt(2, codigo);
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -226,7 +232,7 @@ public class DaoPrendas extends DaoGenerico {
     public List<TipoTela> getTipoTelas() {
         List<TipoTela> list = new ArrayList<TipoTela>();
         Connection conexion = getConexion();
-        String sentencia = "SELECT cod_tipo_tela,nombre_tipo_tela FROM public.tipo_telas";
+        String sentencia = "SELECT cod_tipo_tela,nombre_tipo_tela FROM public.tipo_telas WHERE estado = true";
         PreparedStatement ps;
         try {
             ps = conexion.prepareStatement(sentencia);
@@ -253,7 +259,7 @@ public class DaoPrendas extends DaoGenerico {
     public List<TipoPrenda> getTipoPrendas() {
         List<TipoPrenda> list = new ArrayList<TipoPrenda>();
         Connection conexion = getConexion();
-        String sentencia = "SELECT cod_tipo_prenda,nombre_tipo_prenda FROM public.tipo_prendas";
+        String sentencia = "SELECT cod_tipo_prenda,nombre_tipo_prenda FROM public.tipo_prendas WHERE estado = true";
         PreparedStatement ps;
         try {
             ps = conexion.prepareStatement(sentencia);
@@ -280,13 +286,13 @@ public class DaoPrendas extends DaoGenerico {
     public List<DtoPrendasLista> getPrendasList() {
         List<DtoPrendasLista> lst = new ArrayList<DtoPrendasLista>();
         Connection conexion = getConexion();
-        String sql = "select * from prendas  join tipo_prendas  on prendas.cod_tipo_prenda = tipo_prendas.cod_tipo_prenda join tipo_telas on prendas.cod_tipo_tela =tipo_telas.cod_tipo_tela";
+        String sql = "select * from prendas  join tipo_prendas  on prendas.cod_tipo_prenda = tipo_prendas.cod_tipo_prenda join tipo_telas on prendas.cod_tipo_tela =tipo_telas.cod_tipo_tela WHERE prendas.estado = true AND tipo_prendas.estado = true AND tipo_telas.estado = true";
         PreparedStatement ps;
         try {
             ps = conexion.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                DtoPrendasLista ob = new DtoPrendasLista(rs.getInt(1), rs.getString(6), rs.getString(8),
+                DtoPrendasLista ob = new DtoPrendasLista(rs.getInt(1), rs.getString(7), rs.getString(10),
                         rs.getString(2));
                 lst.add(ob);
             }

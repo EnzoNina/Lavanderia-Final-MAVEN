@@ -17,7 +17,7 @@ import pe.edu.lavanderia.entidades.jdbc.TipoPrenda;
 import pe.edu.lavanderia.entidades.jdbc.TipoTela;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionPrendas;
 
-@WebServlet(name = "ServletPrendas", urlPatterns = { "/ServletPrendas" })
+@WebServlet(name = "ServletPrendas", urlPatterns = {"/ServletPrendas"})
 public class ServletPrendas extends HttpServlet {
 
     @EJB
@@ -88,14 +88,7 @@ public class ServletPrendas extends HttpServlet {
             String TT = request.getParameter("TT");
             bo.addTipoTela(new TipoTela(TT));
         }
-
-        String tipoLogin = (String) request.getSession().getAttribute("tipoLogin");
-
-        if (tipoLogin.equalsIgnoreCase("personal")) {
-            request.getRequestDispatcher("pages/PersonalLavanderia/prendas.jsp").forward(request, response);
-        } else if (tipoLogin.equalsIgnoreCase("administrador")) {
-            request.getRequestDispatcher("pages/Lavanderia/prendas.jsp").forward(request, response);
-        }
+        response.sendRedirect("ServletPrendas");
     }
 
     private void editPrenda(HttpServletRequest request, HttpServletResponse response)
@@ -105,6 +98,7 @@ public class ServletPrendas extends HttpServlet {
             int cod = Integer.parseInt(request.getParameter("cod"));
             int tipoPrenda = Integer.parseInt(request.getParameter("tipoPrenda"));
             int tipoTela = Integer.parseInt(request.getParameter("tipoTela"));
+            System.out.println("TIPO TELA : " + tipoTela);
             String color = request.getParameter("color");
             Prendas ob = new Prendas(cod, tipoPrenda, tipoTela, color);
             bo.editPrenda(ob);
@@ -117,13 +111,7 @@ public class ServletPrendas extends HttpServlet {
             String TT = request.getParameter("TT");
             bo.editTipoTela(new TipoTela(cod, TT));
         }
-        String tipoLogin = (String) request.getSession().getAttribute("tipoLogin");
-
-        if (tipoLogin.equalsIgnoreCase("personal")) {
-            request.getRequestDispatcher("pages/PersonalLavanderia/prendas.jsp").forward(request, response);
-        } else if (tipoLogin.equalsIgnoreCase("administrador")) {
-            request.getRequestDispatcher("pages/Lavanderia/prendas.jsp").forward(request, response);
-        }
+        response.sendRedirect("ServletPrendas");
     }
 
     private void deletePrenda(HttpServletRequest request, HttpServletResponse response)

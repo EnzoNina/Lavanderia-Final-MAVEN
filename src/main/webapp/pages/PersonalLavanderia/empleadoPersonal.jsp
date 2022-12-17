@@ -83,11 +83,10 @@
                         <form action="<%=request.getContextPath()%>/ServletEmpleados"
                               method="get">
                             <input type="hidden" name="instruccion" value="new" />
-                            <input type="hidden" name="tipo" value="personal"/>
-
+                            <input type="hidden" name="tipo" value="personal"/>                            
                             <select class="form-select" name="empleado"
                                     aria-label="Tipo Empleado">
-                                <option value="empleado">empleado</option>                                        
+                                <option value="personal">personal</option>                                        
                             </select> 
                             <div class="mb-3 row" style="display: none;">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Codigo</label>
@@ -142,7 +141,7 @@
                             <div class="mb-3 row">
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Contraseña</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="contra" value="" required/>
+                                    <input type="text" class="form-control" name="contra" value="" required style="width: 90%; margin-left: 10px"/>
                                 </div>
                             </div>
                             <input type="submit" value="Agregar"

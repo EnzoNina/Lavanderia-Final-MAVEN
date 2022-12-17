@@ -80,7 +80,7 @@
                             </div>
 
                             <!-- Borderer Prendas -->
-                            <div class="tab-pane fade" id="bordered-prendas" role="tabpanel" aria-labelledby="prendas-tab">
+                            <div class="tab-pane fade" id="bordered-prendas" role="tabpanel" aria-labelledby="prendas-tab"  >
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <!-- Customers Card -->
@@ -239,7 +239,7 @@
                     </div>
                     <!-- Bordered Entrega -->
 
-                    <div class="tab-pane fade" id="bordered-entrega" role="tabpanel" aria-labelledby="entrega-tab">
+                    <div class="tab-pane fade" id="bordered-entrega" role="tabpanel" aria-labelledby="entrega-tab" style="margin-left: 30px; width: 90%;">
                         <h6>Datos de Entrada y Salida</h6>
                         <div class="mb-3 row">
                             <label class="form-label">Observacion</label>
@@ -247,7 +247,7 @@
                         </div>
                         <div class="mb-3 row imput-group">
                             <label class="form-label">Fecha de Entrega</label>
-                            <input type="date" name="fecha_recojo" id="fecha_recojo">
+                            <input type="date" name="fecha_entrega" id="fecha_entrega">
                         </div>
 
                         <a class="btn btn-success" data-toggle="modal" data-target="#generarBoleta">Boleta</a>

@@ -80,7 +80,9 @@ public class ServletRegister extends HttpServlet {
                 tipo = "administracion";
             }
 
-            if (tipo.equalsIgnoreCase("personal")) {
+            if (tipo.equalsIgnoreCase("user")) {                
+                response.sendRedirect("pages/login.jsp");
+            } else if (tipo.equalsIgnoreCase("personal")) {
                 response.sendRedirect("ServletListaClientes?tipo=personal");
             } else {
                 // Regresamos a la lista de clientes            
