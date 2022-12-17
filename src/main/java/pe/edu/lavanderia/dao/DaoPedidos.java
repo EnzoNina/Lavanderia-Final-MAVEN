@@ -82,52 +82,8 @@ public class DaoPedidos extends DaoGenerico {
             stm.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
-        } finally {
-            try {
-                cnx.close();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
         }
 
-    }
-
-    // Método para editar Pedidos
-    public void editPedidos(Pedidos pedido, String tipo) {
-        Connection cnx = getConexion();
-        String sentencia = "UPDATE public.pedidos SET cod_cliente = ?, tipo=? ,direccion = ?, horario = ?, prendas = ?, cantidad = ?, observacion = ?, monto = ?, fecha_entrega = ? WHERE cod_pedido = ?";
-        try {
-            PreparedStatement stm = cnx.prepareStatement(sentencia);
-
-            stm.executeUpdate();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        } finally {
-            try {
-                cnx.close();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-    // Método para eliminar Pedidos
-    public void removePedidos(int cod) {
-        Connection cnx = getConexion();
-        String sentencia = "DELETE FROM public.pedidos WHERE cod_pedido = ?";
-        try {
-            PreparedStatement stm = cnx.prepareStatement(sentencia);
-            stm.setInt(1, cod);
-            stm.executeUpdate();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        } finally {
-            try {
-                cnx.close();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
     }
 
     public void programarVisita(VisitaDomiciliaria ob) {
@@ -145,12 +101,6 @@ public class DaoPedidos extends DaoGenerico {
             stm.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
-        } finally {
-            try {
-                cnx.close();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
         }
     }
 
@@ -169,12 +119,6 @@ public class DaoPedidos extends DaoGenerico {
             } catch (Exception e) {
                 System.out.println(e);
                 throw new RuntimeException(e);
-            } finally {
-                try {
-                    conexion.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
-                }
             }
         }
 
@@ -194,12 +138,6 @@ public class DaoPedidos extends DaoGenerico {
             } catch (Exception e) {
                 System.out.println(e);
                 throw new RuntimeException(e);
-            } finally {
-                try {
-                    conexion.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
-                }
             }
         }
     }

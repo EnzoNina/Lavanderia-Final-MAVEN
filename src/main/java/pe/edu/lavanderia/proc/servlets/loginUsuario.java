@@ -25,6 +25,7 @@ public class loginUsuario extends HttpServlet {
         String arra[] = bo.login(user, pass);
 
         request.getSession().setAttribute("cod_cliente", arra[0]);
+        request.getSession().setAttribute("nombrePerfil", arra[2]);
 
         if (!arra[0].isEmpty()) {            
             request.getSession().setAttribute("DNI", arra[1]);

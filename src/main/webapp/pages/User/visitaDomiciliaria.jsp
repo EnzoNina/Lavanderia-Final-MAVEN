@@ -137,7 +137,7 @@
                                             <select class="form-select" aria-label="Servicios" name="servicio">
                                                 <option selected>Seleccione un servicio...</option>
                                                 <c:forEach items="${list}" var="servicio">
-                                                    <option value="${servicio.cod}-${servicio.nombre}-${servicio.precio}">
+                                                    <option value="${servicio.cod}-${servicio.nombre}-${servicio.precio}-${servicio.descripcion}">
                                                         <c:out
                                                             value="Codigo:${servicio.cod}-Servicio:${servicio.nombre}-Precio:${servicio.precio}">
                                                         </c:out>
@@ -220,7 +220,7 @@
                             </select>
                         </div>
 
-                        <input class="btn btn-primary" type="submit" value="Registrar Ingreso de Prendas"
+                        <input class="btn btn-primary" type="submit" value="Programar visita domiciliaria"
                                onclick=completarIngreso()>
 
                     </div>

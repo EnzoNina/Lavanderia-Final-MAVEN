@@ -26,14 +26,6 @@ public class BOGestionPedidos {
         dao.addPedidos(ob);
     }
 
-    public void editPedido(Pedidos ob, String tipo) {
-        dao.editPedidos(ob, tipo);
-    }
-
-    public void removePedido(int cod) {
-        dao.removePedidos(cod);
-    }
-
     public void programarVisita(VisitaDomiciliaria ob) {
         dao.programarVisita(ob);
     }

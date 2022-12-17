@@ -21,7 +21,7 @@ import pe.edu.lavanderia.proc.mantenimientos.BOGestionPedidos;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionPrendas;
 import pe.edu.lavanderia.proc.mantenimientos.BOGestionServicios;
 
-@WebServlet(name = "ServletVisitaDomiciliaria", urlPatterns = { "/ServletVisitaDomiciliaria" })
+@WebServlet(name = "ServletVisitaDomiciliaria", urlPatterns = {"/ServletVisitaDomiciliaria"})
 public class ServletVisitaDomiciliaria extends HttpServlet {
 
     // Atributos
@@ -99,7 +99,7 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
 
         for (DtoPrendaListaMostrar ropa : lstRopaMandar) {
             if (ropa.getCod() == codRopa) {
-                lstRopaMandar.remove(ropa);                
+                lstRopaMandar.remove(ropa);
                 break;
             }
         }
@@ -116,11 +116,6 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
         request.getSession().setAttribute("list", lst);
         request.getSession().setAttribute("lstPrendas", lstPrendasDTO);
 
-        request.getSession().setAttribute("DNI", "DNI");
-        request.getSession().setAttribute("nombres", "Nombres");
-        request.getSession().setAttribute("apellidos", "Apellidos");
-        request.getSession().setAttribute("direccion", "Direccion");
-
         request.getRequestDispatcher("pages/User/visitaDomiciliaria.jsp").forward(request, response);
     }
 
@@ -132,7 +127,6 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
         for (DtoServicios servicio : lstServicio) {
             if (servicio.getCod() == codServicio) {
                 lstServicio.remove(servicio);
-                // codServicios.remove(codServicio);
                 break;
             }
         }
@@ -147,7 +141,7 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
         String[] arrPartes = servicioTotal.split("-");
         // Creamos objeto de servicio
         DtoServicios obServicio = new DtoServicios(Integer.parseInt(arrPartes[0]), arrPartes[1],
-                Double.parseDouble(arrPartes[2]),arrPartes[3]);
+                Double.parseDouble(arrPartes[2]), arrPartes[3]);
 
         // Agregamos el objeto a la lista
         lstServicio.add(obServicio);
@@ -194,14 +188,11 @@ public class ServletVisitaDomiciliaria extends HttpServlet {
                 distrito, arrServicios);
 
         boPedidos.programarVisita(visita);
+
         request.getSession().setAttribute("listaServicio", null); // Establecemos la lista de servicio
         request.getSession().setAttribute("listaRopa", null);
-        request.getSession().setAttribute("DNI", "DNI");
-        request.getSession().setAttribute("nombres", "Nombres");
-        request.getSession().setAttribute("apellidos", "Apellidos");
-        request.getSession().setAttribute("direccion", "Direccion");
 
-        request.getRequestDispatcher("pages/User/menuUser.jsp").forward(request, response);
+        response.sendRedirect("ServletLoadVisitas");
     }
 
     @Override

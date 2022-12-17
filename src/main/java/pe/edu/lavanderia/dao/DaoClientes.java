@@ -155,19 +155,21 @@ public class DaoClientes extends DaoGenerico {
     public String[] login(String user, String pass) {
 
         String dni = null;
-        String[] array = new String[2];
+        String[] array = new String[3];
         String cod = null;
+        String nombre =null;
 
         Connection co = getConexion();
         try {
-            String sql = "SELECT dni,cod_cliente FROM clientes WHERE usuario = ? AND contraseña = ?";
+            String sql = "SELECT dni,cod_cliente,nombres FROM clientes WHERE usuario = ? AND contraseña = ?";
             PreparedStatement pst = co.prepareStatement(sql);
             pst.setString(1, user);
-            pst.setString(2, pass);
+            pst.setString(2, pass);           
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 dni = rs.getString(1);
                 cod = rs.getString(2);
+                nombre=rs.getString(3);
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -187,6 +189,7 @@ public class DaoClientes extends DaoGenerico {
 
         array[0] = cod;
         array[1] = dni;
+        array[2]=nombre;
 
         return array;
     }
